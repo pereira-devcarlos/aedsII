@@ -101,3 +101,7 @@ Capacitar o estudante a **compreender e implementar** estruturas de dados, desen
 - Conteúdo valorizado em entrevistas e provas técnicas.
 
 ---
+<div align="center">
+  <p></p>
+  <p>Desenvolvido por <strong>Carlos Pereira</strong></p>
+</div>
