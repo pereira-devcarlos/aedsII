@@ -85,10 +85,10 @@ Capacitar o estudante a **compreender e implementar** estruturas de dados, desen
 ### **Prática**
 | Trabalho/Exercício | Peso | Data |
 |--------------------|------| ---- |
-| Trabalho Prático 1 | 0.3 | Combinar |
-| Trabalho Prático 2 | 0.3 | Combinar |
-| Trabalho Prático 3 | 0.3 | Combinar |
-| Exercícios Práticos | 0.1 | Semanais |
+| Trabalho Prático 1 | 0.3 | 23/09 |
+| Trabalho Prático 2 | 0.3 | 22/10 |
+| Trabalho Prático 3 | 0.3 | 19/11 |
+| Exercícios Práticos | 0.1 |  |
 
 ---
 
