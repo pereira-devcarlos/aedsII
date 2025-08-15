@@ -76,19 +76,19 @@ Capacitar o estudante a **compreender e implementar** estruturas de dados, desen
 ## 📊 Avaliação
 
 ### **Teoria**
-| Avaliação | Peso |
-|-----------|------|
-| Avaliação 1 | 3.0 |
-| Avaliação 2 | 4.0 |
-| Avaliação 3 | 3.0 |
+| Avaliação | Peso | Data |
+|-----------|------| ---- |
+| Avaliação 1 | 3.0 | Combinar |
+| Avaliação 2 | 4.0 | Combinar |
+| Avaliação 3 | 3.0 | Combinar |
 
 ### **Prática**
-| Trabalho/Exercício | Peso |
-|--------------------|------|
-| Trabalho Prático 1 | 0.3 |
-| Trabalho Prático 2 | 0.3 |
-| Trabalho Prático 3 | 0.3 |
-| Exercícios Práticos | 0.1 |
+| Trabalho/Exercício | Peso | Data |
+|--------------------|------| ---- |
+| Trabalho Prático 1 | 0.3 | Combinar |
+| Trabalho Prático 2 | 0.3 | Combinar |
+| Trabalho Prático 3 | 0.3 | Combinar |
+| Exercícios Práticos | 0.1 | Semanais |
 
 ---
 
