@@ -21,7 +21,12 @@ int main(){
     scanf("%d", &vetor[10]);
     
     int pos = busca(vetor, vetor[10]);
-    printf("\nO numero %d esta na posicao %d", vetor[10], pos);
+
+    if (pos == -1){
+        printf("\nErro: neste vetor nao possui o numero %d", vetor[10]);
+    } else {
+        printf("\nO numero %d esta na posicao %d", vetor[10], pos);
+    }
 
     return 0;
 }
