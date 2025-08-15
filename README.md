@@ -1,4 +1,4 @@
-# 📚 Algoritmos e Estruturas de Dados II — Teoria & Prática
+# 📚 Algoritmos e Estruturas de Dados II
 
 > **Curso:** Ciência da Computação — Universidade Federal de Alfenas  
 > **Carga Horária Total:** 120h (60h Teórica + 60h Prática)  
