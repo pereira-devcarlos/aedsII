@@ -31,6 +31,22 @@ int insere(int v[], int *n, int tam, int ins){
     return -2;
 }
 
+int remove_elemento(int v[], int *n, int x){
+    if (*n != 0){ // Verifica se o vetor não está vazio
+        int pos = busca(v, x, *n); // busca só nos elementos usados
+        // Verifica se existe o elemento a ser removido
+        if (pos != -1){ 
+            int i = pos - 1; // converter para índice 0
+            for (; i < *n - 1; i++){
+                v[i] = v[i+1];
+            }
+            (*n)--;
+            return 1; // sucesso
+        }
+    }
+    return 0; // falha
+}
+
 int main(){
     int n=7;
     int vetor[10] = {1, 2, 3, 4, 5, 9, 12, 15};
@@ -40,6 +56,7 @@ int main(){
         printf("\n====== Menu de Opções ======\n");
         printf("[1]-Buscar elemento\n");
         printf("[2]-Inserir elemento\n");
+        printf("[3]-Remover elemento\n");
         printf("[0]-Sair\n");
         printf("Digite a opção desejada: ");
         scanf("%d", &opcao);
@@ -70,6 +87,10 @@ int main(){
             } else {
                 printf("\nO numero %d foi inserido com sucesso!\n", vetor[9]);
             }
+            break;
+        case 3:
+            printf("\nDigite o numero a ser removido: ");
+            scanf("%d", vetor[9]);
             break;
         case 0:
             printf("\nEncerrando o programa...\n");
