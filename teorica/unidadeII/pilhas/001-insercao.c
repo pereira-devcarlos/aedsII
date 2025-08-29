@@ -4,7 +4,7 @@
 typedef struct{
     int chave;
     int valor;
-}No;
+} No;
 
 int insert(No p[], int *topo, No ins){
     if (*topo < 9){
@@ -25,7 +25,12 @@ int main(){
 
     No ins = {4, 20};
     int res = insert(P, &topo, ins);
-    
+
+    if (res == -1) {
+        printf("Pilha cheia! Não foi possível inserir.\n");
+    } else {
+        printf("Elemento inserido no topo %d -> chave: %d, valor: %d\n",res, P[topo].chave, P[topo].valor);
+    }
 
     return 0;
 }
