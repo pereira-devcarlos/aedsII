@@ -13,7 +13,6 @@ int busca(int v[], int x, int tam){
         // Retorna a posição do elemento encontrado
         return i+1;
     }
-    
 }
 
 int insere(int v[], int *n, int tam, int ins){
@@ -76,6 +75,7 @@ int main(){
                 printf("\nO numero %d esta na posicao %d\n", vetor[9], pos);
             }
             break;
+            
         case 2:
             printf("\nDigite o numero que deseja inserir: ");
             scanf("%d", &vetor[9]);    
@@ -90,6 +90,7 @@ int main(){
                 printf("\nO numero %d foi inserido com sucesso!\n", vetor[9]);
             }
             break;
+
         case 3:
             printf("\nDigite o numero a ser removido: ");
             scanf("%d", &vetor[9]);
@@ -103,11 +104,12 @@ int main(){
             } else {
                 printf("\nErro: vetor está vazio\n");
             }
-            
             break;
+
         case 0:
             printf("\nEncerrando o programa...\n");
             break;
+
         default:
             printf("\nErro: opção invalida.\n");
             break;
