@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct{
+typedef struct { 
     int chave;
     int valor;
 } No;
@@ -42,29 +42,63 @@ No remover(No P[], int *topo){
         return removido;
     }
     // Caso não possuir um nó irá retornar um nó vazio
-    No vazio = {0, 0};
+    No vazio = {-1, 0};
     return vazio;
 }
 
 int main(){
-    No P[10]={
-        {1, 30},
-        {2, 20},
-        {3, 15}
-    };
-    int topo = 2;
+    No P[10]; // Pilha com 10 posições
+    // Topo inicializado com -1 (Já que não possui nada na pilha)
+    int topo = -1; 
+    
+    int opcao = 1;
+    while (opcao != 0){
+        printf("\n===== Menu de Opcoes =====\n");
+        printf("[1]-Inserir um no\n");
+        printf("[2]-Remover um no\n");
+        printf("[3]-Listar a pilha\n");
+        printf("[0]-Encerrar o programa\n");
+        printf("Insira a opcao desejada: ");
+        scanf("%d", &opcao);
 
-    No ins = {4, 20};
-    int res = insert(P, &topo, ins);
+        switch (opcao){
+        case 1:{
+            No ins; // Nó para inserção
+            // Entrada de dados para o nó ins
+            printf("\nDigite a chave do seu no: ");
+            scanf("%d", &ins.chave);
 
-    if (res == -1) {
-        printf("Pilha cheia! Não foi possível inserir.\n");
-    } else {
-        printf("Elemento inserido no topo %d -> chave: %d, valor: %d\n",res, P[topo].chave, P[topo].valor);
+            printf("Digite o valor do seu no: ");
+            scanf("%d", &ins.valor);
+
+            // Guardando o retorno da função insert em result
+            int result = insert(P, &topo, ins);
+
+            // Condicionais para a impressão do resultado da inserção
+            if (result == -1) {
+                printf("\nPilha cheia! Não foi possível inserir.\n");
+            } else {
+                printf("\nElemento inserido no topo %d -> chave: %d, valor: %d\n",result, P[topo].chave, P[topo].valor);
+            }
+            break;
+            }
+        case 2: {
+            No rem = remover(P, &topo);
+            printf("Elemento removido: chave %d, valor %d\n\n", rem.chave, rem.valor); 
+        
+            break;
+            }
+        case 0:{
+            printf("\nEncerrando programa...\n\n");
+
+            break;
+            }    
+        default:
+            break;
+        }
+    
     }
-
-    No rem = remover(P, &topo);
-    printf("Elemento removido: chave %d, valor %d\n\n", rem.chave, rem.valor); 
+    
 
     return 0;
 }
