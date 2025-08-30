@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define M 5
+#define M 5 // Tamanho máximo da fila
 
 typedef struct {
     int chave;
@@ -10,8 +10,8 @@ typedef struct {
 
 int main(){
     No F[M]; // Nó da fila
-    int * f; // Inicio da fila
-    int * r; // Retaguarda
+    int f = -1; // Inicio da fila
+    int r = -1; // Retaguarda
     
     return 0;
 }
