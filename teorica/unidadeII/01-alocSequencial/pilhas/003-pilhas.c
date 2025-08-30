@@ -6,6 +6,15 @@ typedef struct {
     int valor;
 } No;
 
+/** Função de buscar uma chave de um nó na pilha
+ * p[] = Nó onde será buscado a chave
+ * topo = O topo é o tamanho da nossa pilha
+ * x = É o valor a ser buscado na pilha
+ * 
+ * Retorno:
+ * Retorna a posição do elemento na pilha caso encontrado
+ * Caso não encontrar o valor de x irá retornar -1
+ */
 int busca(No p[], int topo, int x){
     for (int i = 0; i <= topo; i++){
         if (p[i].chave == x){
