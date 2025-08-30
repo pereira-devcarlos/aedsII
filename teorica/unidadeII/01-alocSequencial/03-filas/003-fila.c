@@ -11,20 +11,48 @@ typedef struct {
     int valor;
 } No;
 
-// Função de inserir um nó na fila
-int insert(No f[], int *in, int *re, No ins);
-// Função para remover um nó da fila 
-No *remover(No F[], int *in, int *re);
-// Função para exibir o resultado do insert
-void resultInsert(No F[], int result);
-// Função para exibir o resultado do remover
-void resultRemove(No* rem);
+int insert(No f[], int *in, int *re, No ins); // Função de inserir um nó na fila
+No *remover(No F[], int *in, int *re);        // Função para remover um nó da fila 
+void resultInsert(No F[], int result); // Função para exibir o resultado do insert
+void resultRemove(No* rem);            // Função para exibir o resultado do remove
+void exibirMenu();
 
 int main(){
     No F[M]; // Nó da fila
     No ins;  // Nó para dados de inserção
     No* rem; // Ponteiro de nó para a remoção
-    int result; // Armazenar resultados das funções
+    int result; // Armazenar o resultado da função de inserção
+
+    int opcao = 1;
+    while (opcao != 0){
+        exibirMenu();
+        scanf("%d", &opcao);
+
+        switch (opcao){
+        case 1:{
+            // Entrada de dados ao nó que será inserido na fila
+            printf("\nDigite a chave do seu no: ");
+            scanf("%d", &ins.chave);
+            printf("Digite o valor do seu no: ");
+            scanf("%d", &ins.valor);
+
+            
+            // Chamando a função de inserção e imprimindo na tela
+            result = insert(F, &in, &re, ins);
+            resultInsert(F, result); 
+
+            break;
+        }
+        case 0:{
+            printf("\nEncerrando o programa...\n");
+            break;
+        }
+        default:{
+            printf("\nErro: opcao invalida!!!\n");
+            break;
+        }
+        }
+    }
 
     return 0;
 }
@@ -76,17 +104,25 @@ No *remover(No F[], int *in, int *re){
 // Função para exibir o resultado do insert
 void resultInsert(No F[], int result){
     if (result == -1) {
-        printf("Fila cheia! Nao foi possivel inserir o no.\n");
+        printf("\nFila cheia! Nao foi possivel inserir o no.\n");
     } else {
-        printf("Elemento inserido na fila posicao %d -> chave: %d, valor: %d\n", result, F[re].chave, F[re].valor);
+        printf("\nElemento inserido na fila posicao %d -> chave: %d, valor: %d\n", result, F[re].chave, F[re].valor);
     }
 }
 
 // Função para exibir o resultado do remover
 void resultRemove(No* rem){
     if (rem == NULL) {
-        printf("Fila vazia!\n");
+        printf("\nFila vazia!\n");
     } else {
-        printf("Removido: chave %d, valor %d\n", rem->chave, rem->valor);
+        printf("\nRemovido: chave %d, valor %d\n", rem->chave, rem->valor);
     }
+}
+
+void exibirMenu(){
+    printf("\n===== Menu de Opcoes =====\n");
+    printf("[1]-Inserir um no na fila\n");
+    printf("[2]-Remover um no da fila\n");
+    printf("[0]-Encerrar o programa!!\n");
+    printf("Digite a opcao que deseja realizar: ");
 }
