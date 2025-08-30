@@ -83,14 +83,31 @@ int main(){
             break;
             }
         case 2: {
+            // Nó a ser removido
             No rem = remover(P, &topo);
-            printf("Elemento removido: chave %d, valor %d\n\n", rem.chave, rem.valor); 
-        
+
+            // Condicionais para imprimir o resultado da remoção da pilha
+            if (rem.chave != -1){
+                printf("\nElemento removido: chave %d, valor %d\n", rem.chave, rem.valor); 
+            } else {
+                printf("\nErro: nao possui no a ser removido da pilha\n"); 
+            }
             break;
             }
+        case 3:{
+            // Imprimir todos nós existente na pilha
+            if (topo>=0){
+                printf("\nListar pilha:\n");
+                for (int i = 0; i <= topo; i++){
+                    printf("Elemento %d: chave %d, valor %d\n", i+1, P[i].chave, P[i].valor);
+                }
+            } else {
+                printf("\nErro: nao possui nenhum elemento nesta pilha!!!\n");
+            }
+            break;
+        }
         case 0:{
             printf("\nEncerrando programa...\n\n");
-
             break;
             }    
         default:
