@@ -6,12 +6,23 @@ typedef struct{
     int valor;
 } No;
 
+/** Função de inserir um novo nó na pilha 
+ * p[] = Nó que ira receber o a inserção
+ * topo = O topo que toda pilha precisa para inserir e remover nó
+ * ins = Nó que ira ser inserido na pilha
+ * 
+ * Retorno:
+ * Caso for inserido com sucesso retorna o valor do topo
+ * Caso a pilha esteja cheia irá retornar -1
+*/
 int insert(No p[], int *topo, No ins){
+    // Verifica se a pilha tem espaço disponivel
     if (*topo < 9){
         (*topo)++;
         p[*topo]= ins;
         return *topo;
     }
+    // Pilha cheia retorna -1
     return -1;
 }
 
