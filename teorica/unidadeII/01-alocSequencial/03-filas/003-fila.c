@@ -4,12 +4,30 @@
 
 // Váriaveis Globais
 int in = -1; // Inicio da fila
-int re = -1; // Retaguarda
+int re = -1; // Retaguarda da fila
 
 typedef struct {
     int chave;
     int valor;
 } No;
+
+// Função de inserir um nó na fila
+int insert(No f[], int *in, int *re, No ins);
+// Função para remover um nó da fila 
+No *remover(No F[], int *in, int *re);
+// Função para exibir o resultado do insert
+void resultInsert(No F[], int result);
+// Função para exibir o resultado do remover
+void resultRemove(No* rem);
+
+int main(){
+    No F[M]; // Nó da fila
+    No ins;  // Nó para dados de inserção
+    No* rem; // Ponteiro de nó para a remoção
+    int result; // Armazenar resultados das funções
+
+    return 0;
+}
 
 // Função de inserir um nó na fila
 int insert(No f[], int *in, int *re, No ins){
@@ -71,13 +89,4 @@ void resultRemove(No* rem){
     } else {
         printf("Removido: chave %d, valor %d\n", rem->chave, rem->valor);
     }
-}
-
-int main(){
-    No F[M]; // Nó da fila
-    No ins;  // Nó para dados de inserção
-    No* rem; // Ponteiro de nó para a remoção
-    int result; // Armazenar resultados das funções
-
-    return 0;
 }
