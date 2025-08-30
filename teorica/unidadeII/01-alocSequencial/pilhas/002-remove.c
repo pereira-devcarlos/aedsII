@@ -15,6 +15,16 @@ int insert(No p[], int *topo, No ins){
     return -1;
 }
 
+No remover(No P[], int *topo){
+    if (*topo >= 0){
+        No removido = P[*topo];
+        (*topo)--;
+        return removido;
+    }
+    No vazio = {0, 0};
+    return vazio;
+}
+
 // Implementar a função remove aqui !!!
 
 int main(){
@@ -33,6 +43,9 @@ int main(){
     } else {
         printf("Elemento inserido no topo %d -> chave: %d, valor: %d\n",res, P[topo].chave, P[topo].valor);
     }
+
+    No rem = remover(P, &topo);
+    printf("Elemento removido: chave %d, valor %d\n\n", rem.chave, rem.valor); 
 
     return 0;
 }
