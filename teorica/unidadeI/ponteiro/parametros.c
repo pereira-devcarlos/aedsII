@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Função dobra com parametro de valor
+// Função dobraV com parametro por valor
 void dobraV(int numV){
     numV = numV * 2;
     printf("\nO valor de numV: %d\n", numV);
 }
 
+// Função dobraR com parâmetro por referência
 void dobraR(int *numR){
     *numR *= 2;
     printf("\nO valor de numR: %d\n", *numR);
@@ -14,18 +15,17 @@ void dobraR(int *numR){
 
 int main(){
     // Passagem de parâmetro por valor e por referência!!!
+    
     int num1 = 10;
     printf("O valor de num1: %d\n", num1);
 
     // Dobrando o num1 com a função com parâmetro por valor
     dobraV(num1);
-
     // Imprimindo o valor de num1 após dobraV
     printf("O valor de num1: %d\n", num1);
 
     // Dobrando o num1 com a função com parâmetro por referência
     dobraR(&num1);
-    
     // Imprimindo o valor de num1 após dobraR
     printf("O valor de num1: %d\n", num1);
 
