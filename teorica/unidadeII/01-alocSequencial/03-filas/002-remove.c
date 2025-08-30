@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define M 3 // Tamanho máximo da fila
+// Váriaveis Globais
 int in = -1; // Inicio da fila
 int re = -1; // Retaguarda
 
@@ -59,9 +60,10 @@ void resultInsert(No F[], int result){
         printf("Fila cheia! Nao foi possivel inserir o no.\n");
     } else {
         printf("Elemento inserido na fila posicao %d -> chave: %d, valor: %d\n", result, F[re].chave, F[re].valor);
-    } 
+    }
 }
 
+// Função para exibir o resultado do remover
 void resultRemove(No* rem){
     if (rem == NULL) {
         printf("Fila vazia!\n");
