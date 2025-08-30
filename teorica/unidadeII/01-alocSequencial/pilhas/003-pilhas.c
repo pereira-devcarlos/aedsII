@@ -6,6 +6,15 @@ typedef struct {
     int valor;
 } No;
 
+int busca(No p[], int topo, int x){
+    for (int i = 0; i <= topo; i++){
+        if (p[i].chave == x){
+            return i;
+        }
+    }
+    return -1;
+}
+
 /** Função de inserir um novo nó na pilha 
  * p[] = Nó que ira receber o a inserção
  * topo = O topo que toda pilha precisa para inserir e remover nó
@@ -13,17 +22,21 @@ typedef struct {
  * 
  * Retorno:
  * Caso for inserido com sucesso retorna o valor do topo
- * Caso a pilha esteja cheia irá retornar -1
+ * Caso a pilha esteja cheia irá retornar -2
 */
 int insert(No p[], int *topo, No ins){
     // Verifica se a pilha tem espaço disponivel
     if (*topo < 9){
-        (*topo)++;
-        p[*topo]= ins;
-        return *topo;
+        if (busca(p, *topo, ins.chave) == -1){
+            (*topo)++;
+            p[*topo]= ins;
+            return *topo;
+        }
+        // Chave já existente retorna -1
+        return -1;
     }
-    // Pilha cheia retorna -1
-    return -1;
+    // Pilha cheia retorna -2
+    return -2;
 }
 
 /** Função de remoção de um nó da pilha
@@ -75,8 +88,10 @@ int main(){
             int result = insert(P, &topo, ins);
 
             // Condicionais para a impressão do resultado da inserção
-            if (result == -1) {
+            if (result == -2) {
                 printf("\nPilha cheia! Não foi possível inserir.\n");
+            } else if (result == -1) {
+                printf("\nChave existente! Não foi possível inserir.\n");
             } else {
                 printf("\nElemento inserido no topo %d -> chave: %d, valor: %d\n",result, P[topo].chave, P[topo].valor);
             }
