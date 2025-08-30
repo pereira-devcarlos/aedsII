@@ -15,6 +15,8 @@ int insert(No p[], int *topo, No ins){
     return -1;
 }
 
+// Implementar a função remove aqui !!!
+
 int main(){
     No P[10]={
         {1, 30},
