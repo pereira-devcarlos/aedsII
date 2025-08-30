@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define M 10 // Tamanho máximo da fila
+#define M 3 // Tamanho máximo da fila
 
 // Váriaveis Globais
 int in = -1; // Inicio da fila
@@ -13,6 +13,7 @@ typedef struct {
 
 int insert(No f[], int *in, int *re, No ins); // Função de inserir um nó na fila
 No *remover(No F[], int *in, int *re);        // Função para remover um nó da fila 
+void listarFila(No F[], int in, int re);      // Função para listar os nós da fila
 void resultInsert(No F[], int result); // Função para exibir o resultado do insert
 void resultRemove(No* rem);            // Função para exibir o resultado do remove
 void exibirMenu();
@@ -47,6 +48,12 @@ int main(){
             // Chamando a função de remoção e imprimindo o resultado
             rem = remover(F, &in, &re);
             resultRemove(rem);
+
+            break;
+        }
+        case 3:{
+            // Chamando a função que lista todos os elementos da fila
+            listarFila(F, in, re);
 
             break;
         }
@@ -108,6 +115,28 @@ No *remover(No F[], int *in, int *re){
     return NULL;
 }
 
+// Função para listar a fila inteira
+void listarFila(No F[], int in, int re){
+    int prov = in; // Variável provisória
+    // Verificando se a fila está vazia
+    if (in == -1){
+        printf("\nFila vazia!\n");
+    } else {
+        printf("\nListar Fila:");
+        // Loop para exibir todos os elementos da fila
+        while (in != -1){
+            if (in != re){
+                prov = (in+1) % M;
+                printf("\nElemento da fila na posicao %d -> chave: %d, valor: %d;", in, F[in].chave, F[in].valor);
+                in = prov;
+            } else { // Inicio == a Retaguarda é a ultima posição da fila
+                printf("\nElemento da fila na posicao %d -> chave: %d, valor: %d;\n", in, F[in].chave, F[in].valor);
+                in = -1; // Atribuindo -1 ao inicio para sair do loop
+            }
+        }
+    }
+}
+
 // Função para exibir o resultado do insert
 void resultInsert(No F[], int result){
     if (result == -1) {
@@ -130,6 +159,7 @@ void exibirMenu(){
     printf("\n===== Menu de Opcoes =====\n");
     printf("[1]-Inserir um no na fila\n");
     printf("[2]-Remover um no da fila\n");
+    printf("[3]-Listar todos elementos\n");
     printf("[0]-Encerrar o programa!!\n");
     printf("Digite a opcao que deseja realizar: ");
 }
