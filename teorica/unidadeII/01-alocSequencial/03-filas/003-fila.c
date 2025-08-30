@@ -37,9 +37,16 @@ int main(){
             scanf("%d", &ins.valor);
 
             
-            // Chamando a função de inserção e imprimindo na tela
+            // Chamando a função de inserção e imprimindo o resultado
             result = insert(F, &in, &re, ins);
             resultInsert(F, result); 
+
+            break;
+        }
+        case 2:{
+            // Chamando a função de remoção e imprimindo o resultado
+            rem = remover(F, &in, &re);
+            resultRemove(rem);
 
             break;
         }
