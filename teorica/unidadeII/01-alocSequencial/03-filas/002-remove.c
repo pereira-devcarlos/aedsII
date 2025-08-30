@@ -54,7 +54,7 @@ No *remover(No F[], int *in, int *re){
 }
 
 // Função para exibir o resultado do insert
-void exibirInsert(No F[], int result){
+void resultInsert(No F[], int result){
     if (result == -1) {
         printf("Fila cheia! Nao foi possivel inserir o no.\n");
     } else {
@@ -62,36 +62,28 @@ void exibirInsert(No F[], int result){
     } 
 }
 
-int main(){
-    No F[M]; // Nó da fila
-    No ins;  // Nó para dados de inserção
-    int result; // Armazenar resultados das funções
-
-    No* rem = remover(F, &in, &re);
+void resultRemove(No* rem){
     if (rem == NULL) {
         printf("Fila vazia!\n");
     } else {
         printf("Removido: chave %d, valor %d\n", rem->chave, rem->valor);
     }
+}
 
-    /*    
-    // Testando inserções
+int main(){
+    No F[M]; // Nó da fila
+    No ins;  // Nó para dados de inserção
+    No* rem; // Ponteiro de nó para a remoção
+    int result; // Armazenar resultados das funções
+   
+    // Testando inserção
     ins.chave = 1; ins.valor= 7;
     result = insert(F, &in, &re, ins);
-    exibirInsert(F, result);
+    resultInsert(F, result);
 
-    ins.chave = 2; ins.valor= 13;
-    result = insert(F, &in, &re, ins);
-    exibirInsert(F, result);
-
-    ins.chave = 3; ins.valor= 20;
-    result = insert(F, &in, &re, ins);
-    exibirInsert(F, result);
-
-    ins.chave = 4; ins.valor= 17;
-    result = insert(F, &in, &re, ins);
-    exibirInsert(F, result);
-    */
+    // Testando Remoção
+    rem = remover(F, &in, &re);
+    resultRemove(rem);    
 
     return 0;
 }
