@@ -89,9 +89,9 @@ int main(){
 
             // Condicionais para a impressão do resultado da inserção
             if (result == -2) {
-                printf("\nPilha cheia! Não foi possível inserir.\n");
+                printf("\nPilha cheia! Nao foi possível inserir um no.\n");
             } else if (result == -1) {
-                printf("\nChave existente! Não foi possível inserir.\n");
+                printf("\nChave existente! Nao foi possivel inserir um no.\n");
             } else {
                 printf("\nElemento inserido no topo %d -> chave: %d, valor: %d\n",result, P[topo].chave, P[topo].valor);
             }
@@ -110,7 +110,7 @@ int main(){
             break;
             }
         case 3:{
-            // Imprimir todos nós existente na pilha
+            // Imprimir todos os nós existente na pilha
             if (topo>=0){
                 printf("\nListar pilha:\n");
                 for (int i = 0; i <= topo; i++){
@@ -126,11 +126,11 @@ int main(){
             break;
             }    
         default:
+            printf("\nErro: opcao invalida!\n");
             break;
         }
     
     }
-    
 
     return 0;
 }
