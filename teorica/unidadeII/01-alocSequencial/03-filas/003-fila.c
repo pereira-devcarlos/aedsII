@@ -36,7 +36,6 @@ int main(){
             scanf("%d", &ins.chave);
             printf("Digite o valor do seu no: ");
             scanf("%d", &ins.valor);
-
             
             // Chamando a função de inserção e imprimindo o resultado
             result = insert(F, &in, &re, ins);
@@ -155,6 +154,7 @@ void resultRemove(No* rem){
     }
 }
 
+// Função para exibir o menu de opções
 void exibirMenu(){
     printf("\n===== Menu de Opcoes =====\n");
     printf("[1]-Inserir um no na fila\n");
