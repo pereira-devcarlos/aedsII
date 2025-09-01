@@ -2,10 +2,18 @@
 #include <stdlib.h>
 
 void insere(int * p, int tamanho){
+    /*
     for (int i = 0; i < tamanho; i++){
         p[i] = i * 2;
     }
-    
+    */
+
+    for (int i = 0; i < tamanho; i++){
+        printf("\nInforme o valor a ser inserido na posicao %d: ", i+1);
+        // Como ponteiro já armazena um endereço !!
+        // Não é necessário o uso de & no scanf
+        scanf("%d", (p + i));
+    }
 }
 
 void imprime(int * p, int tamanho){
@@ -20,8 +28,8 @@ int main(){
     int numElementos = 4;
     int* pont = malloc(numElementos * sizeof(int));
 
-    printf("Imprimindo usando funcoes com parametro por referencia: \n");
     insere(pont, numElementos);
+    printf("Imprimindo usando funcoes com parametro por referencia: \n");
     imprime(pont, numElementos);
 
     // Aritméticas de Ponteiros
