@@ -2,13 +2,17 @@
 #include <stdlib.h>
 
 int main(){
-    // Alocação Dinâmica de Memória, Aritméticas de Ponteiros
+    // Alocação Dinâmica de Memória
     int numElementos = 4;
-    int* pont = malloc(sizeof(int));
+    int* pont = malloc(numElementos * sizeof(int));
 
-    *pont = 10;
-    printf("%d\n", *pont);
+    // Aritméticas de Ponteiros
+    for (int i = 0; i < numElementos; i++){
+        *(pont + i) = i * 2;
+        printf("%d\n", *(pont + i));
+    }
 
+    // Liberação da Memória (Obrigatório em Alocação Dinâmica)
     free(pont);
     return 0;
 }
