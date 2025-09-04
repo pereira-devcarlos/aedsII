@@ -31,6 +31,33 @@ void inserir_inicio(int elemento) {
 	 p=tmp1;
 }
 
+// Função para inserir em uma determinada posição
+void inserir_posicao(int elemento, int pos) {
+    tmp = p;
+    tmp1 = (struct node*) malloc (sizeof(struct node));
+    tmp1->data=elemento;
+    
+    // Caso for inserir na primeira posição
+    if (pos == 1){
+        tmp1->next = p;
+        p = tmp1;
+        return;
+    }
+    
+    for (int i = 1; i < pos - 1 && tmp != NULL; i++){
+        tmp = tmp->next;
+    }
+    // Caso não tiver uma posição, liberar a memória
+    if (tmp == NULL){
+        printf("\nErro: posicao invalida!");
+        free(tmp1);
+        return;
+    }
+    // Inserir na lista encadeada
+    tmp1->next = tmp->next;
+    tmp->next = tmp1;
+}
+
 void apagar(int ele) {
     tmp = p;
 	struct node *pre=tmp;
@@ -88,6 +115,7 @@ bool ehVazia() {
         return (0);
     }
 }
+
 void imprimir() {
 	tmp = p;
  	while (tmp != NULL) {
@@ -124,19 +152,20 @@ int obter_ultimo(void) {
 }
 
 void main() { 
-  int val, n;
+  int pos, val, n;
   p = NULL;
   do {
     printf("\n************************* MENU ************************");
 	printf("\n1.Inserir no fim");
 	printf("\n2.Inserir no inicio");
 	printf("\n3.Apagar um elemento em particular");
-	printf("\n4.Apagar do inicio");
-	printf("\n5.Apagar do fim");
-	printf("\n6.Imprimir lista");
-	printf("\n7.E vazia?");
-    printf("\n8.Obter primeiro");
-    printf("\n9.Obter ultimo");
+    printf("\n4.Inserir no em determinada posicao");
+	printf("\n5.Apagar do inicio");
+	printf("\n6.Apagar do fim");
+	printf("\n7.Imprimir lista");
+	printf("\n8.E vazia?");
+    printf("\n9.Obter primeiro");
+    printf("\n10.Obter ultimo");
     printf("\n0.Sair");
 	printf("\nEntre sua opcao : ");
 	scanf("%d",&n);
@@ -153,26 +182,33 @@ void main() {
 			    scanf("%d",&val);
 			    apagar(val);
 			    break;
-		case 4: 
+        case 4:
+                printf("\nDigite a posicao ");
+                scanf("%d", &pos);
+                printf("\nDigite o valor ");
+			    scanf("%d",&val);
+                inserir_posicao(val, pos);
+                break;
+		case 5: 
 			    apagar_inicio();
 			    break;
-		case 5: 
+		case 6: 
 			    apagar_fim();
 			    break;
-		case 6: imprimir();
+		case 7: imprimir();
 		 	    break;
-		case 7: if (ehVazia() == 1) {
+		case 8: if (ehVazia() == 1) {
                     printf("\nLista vazia");
                 } else {
                     printf("\nLista não vazia");
                 }
                 break;
-        case 8: val = obter_primeiro();
+        case 9: val = obter_primeiro();
                 if (val != 0) {
                     printf("%d", val);
                 }
 		 	    break;
-        case 9: val = obter_ultimo();
+        case 10: val = obter_ultimo();
                 if (val != 0) {
                     printf("%d", val);
                 }
