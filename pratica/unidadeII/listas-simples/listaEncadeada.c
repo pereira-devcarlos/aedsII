@@ -158,8 +158,8 @@ void main() {
     printf("\n************************* MENU ************************");
 	printf("\n1.Inserir no fim");
 	printf("\n2.Inserir no inicio");
-	printf("\n3.Apagar um elemento em particular");
-    printf("\n4.Inserir no em determinada posicao");
+    printf("\n3.Inserir no em determinada posicao");
+	printf("\n4.Apagar um elemento em particular");
 	printf("\n5.Apagar do inicio");
 	printf("\n6.Apagar do fim");
 	printf("\n7.Imprimir lista");
@@ -178,17 +178,17 @@ void main() {
 			    scanf("%d",&val);
 			    inserir_inicio(val);
 			    break;
-		case 3: printf("\nDigite o valor ");
-			    scanf("%d",&val);
-			    apagar(val);
-			    break;
-        case 4:
+        case 3:
                 printf("\nDigite a posicao ");
                 scanf("%d", &pos);
                 printf("\nDigite o valor ");
 			    scanf("%d",&val);
                 inserir_posicao(val, pos);
                 break;
+		case 4: printf("\nDigite o valor ");
+			    scanf("%d",&val);
+			    apagar(val);
+			    break;
 		case 5: 
 			    apagar_inicio();
 			    break;
