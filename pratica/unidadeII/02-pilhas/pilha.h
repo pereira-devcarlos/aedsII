@@ -6,6 +6,6 @@ bool ehVazia(struct pilha* pilha);
 void push(struct pilha* pilha, int item);
 int pop(struct pilha* pilha);
 int obtem_elemento(struct pilha* pilha);
-void listar_pilha (struct pilha p);
+void listar_pilha (struct pilha* p);
 
 #endif // _H_PILHA

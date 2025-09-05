@@ -65,9 +65,10 @@ int obtem_elemento(struct pilha* pilha) {
 	return pilha->items[pilha->topo]; 
 } 
 
-void listar_pilha (struct pilha p){
-    for (int i = 0; i <= p.topo; i++){
-        printf("\n%d", p.items[i]);
+void listar_pilha (struct pilha* p){
+    // Percorrer e exibe toda a pilha
+    for (int i = 0; i <= p->topo; i++){
+        printf("\n%d", p->items[i]);
     }
 }
 
@@ -78,7 +79,7 @@ int main() {
     // Cria pilha com 5 posições
     struct pilha* pilha = criar_pilha(5); 
     do {
-        printf("\n************************* MENU ************************");
+        printf("\n\n************************* MENU ************************");
 	    printf("\n1. Push");
 	    printf("\n2. Pop");
 	    printf("\n3. Obtém elemento");
@@ -112,7 +113,7 @@ int main() {
                 if (aux) {
                     printf("\nPilha vazia!!");
                 } else {
-                    listar_pilha(*pilha);
+                    listar_pilha(pilha);
                 }
                 break;
             case 6:
@@ -122,6 +123,10 @@ int main() {
                 break;
         }
 	} while(1);
+
+    // Liberar memória ao encerrar o programa
+    free(pilha->items);
+    free(pilha);
     
     return (0);
  }
