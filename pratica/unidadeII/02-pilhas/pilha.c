@@ -44,8 +44,8 @@ bool ehVazia(struct pilha* pilha) {
 void push(struct pilha* pilha, int item) { 
 	// Se a pilha estiver cheia, não tem como inserir nenhum novo elemento
     if (ehCheia(pilha)) {
-		printf("\nPilha cheia. Impossível inserir elementos");
-        return; 
+		pilha->tamanho *= 2;
+        pilha->items = (int*) realloc(pilha->items, pilha->tamanho * sizeof(int));
     }
     // Aumenta o topo da pilha
     pilha->topo++;
@@ -120,6 +120,10 @@ int main() {
                 break;         
             case 6:
                 return (1);
+                break;
+            case 7:
+                
+
                 break;
             default: printf("\nOpção errada!");
                 break;
