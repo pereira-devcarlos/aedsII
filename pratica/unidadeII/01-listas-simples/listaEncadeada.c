@@ -181,10 +181,21 @@ int obter_ultimo(void) {
 	}
 }
 
-int obter_posicao () {
+int obter_posicao (int pos) {
+	tmp = p;
+
 	if (p == NULL){
 		return 0;
 	}
+
+	for (int i = 1; i < pos; i++){
+		tmp = tmp->next;
+	}
+	// Se tmp for NULL ou tmp->next for NULL, posição é inválida
+	if (tmp == NULL || pos <= 0){
+		return -1;
+	}
+	return tmp->data;
 }
 
 void main() { 
@@ -257,8 +268,17 @@ void main() {
 				apagar_posicao(pos);
 				break;
 		case 12:
-				printf("\nDigite a posicao que deseja obter");
+				printf("\nDigite a posicao que deseja obter ");
 				scanf("%d", &pos);
+				int posicao = obter_posicao(pos);
+				if (posicao == 0){
+					printf("\nErro: lista vazia");
+				} else if (posicao == -1){
+					printf("\nErro: posicao invalida");
+				} else {
+					printf("\n%d", posicao);
+				}
+				break;
         case 0: exit(0);
 		 	    break;
 		default: printf("\n Opção errada!");
