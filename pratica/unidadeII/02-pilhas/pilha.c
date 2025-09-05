@@ -83,9 +83,8 @@ int main() {
 	    printf("\n2. Pop");
 	    printf("\n3. Obtém elemento");
 	    printf("\n4. Pilha vazia?");
-        printf("\n5. Pilha cheia?");
-	    printf("\n6. Listar pilha");
-	    printf("\n7. Sair");
+	    printf("\n5. Listar pilha");
+	    printf("\n6. Sair");
 	    printf("\n Digite sua escolha : ");
 	    scanf("%d",&n);
 	    switch(n) {
@@ -107,16 +106,8 @@ int main() {
                 } else {
                     printf("\nPilha não está vazia");
                 }
-                break;
-            case 5: 
-                aux = ehCheia(pilha);
-                if (aux) {
-                    printf("\nPilha cheia");
-                } else {
-                    printf("\nPilha não está cheia");
-                }
-                break;         
-            case 6:
+                break;       
+            case 5:
                 aux = ehVazia(pilha);
                 if (aux) {
                     printf("\nPilha vazia!!");
@@ -124,7 +115,7 @@ int main() {
                     listar_pilha(*pilha);
                 }
                 break;
-            case 7:
+            case 6:
                 return (1);
                 break;                
             default: printf("\nOpção errada!");
