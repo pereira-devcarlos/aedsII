@@ -115,22 +115,28 @@ void apagar_posicao(int pos) {
 
 	// Remover na primeira posição 
 	if (pos == 1){
+		if (p == NULL) {
+			printf("\nErro: lista vazia!");
+			return;
+		}
 		p = tmp->next;
 		free(tmp);
 		return;
 	}
-	
+
 	for (i = 1; i < pos - 1 && tmp != NULL; i++){
-        tmp = tmp->next;
-    }
-	if (i < pos - 1){
+		tmp = tmp->next;
+	}
+	// Se tmp for NULL ou tmp->next for NULL, posição é inválida
+	if (tmp == NULL || tmp->next == NULL){
 		printf("\nErro: nao possui no nesta posicao!");
-	} else {
-		tmp1 = tmp->next;
-		tmp->next = tmp1->next;
-		free(tmp1);
-	}	
-}
+		return;
+	}
+	tmp1 = tmp->next;
+	tmp->next = tmp1->next;
+	free(tmp1);
+}	
+
 
 bool ehVazia() {
     if (p == NULL) {
