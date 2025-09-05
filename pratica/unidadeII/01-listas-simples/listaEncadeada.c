@@ -181,18 +181,20 @@ int obter_ultimo(void) {
 	}
 }
 
+// Função para obter o valor em uma determinada posição
 int obter_posicao (int pos) {
 	tmp = p;
 
 	if (p == NULL){
+		// Retornar 0 caso de lista vazia
 		return 0;
 	}
 
 	for (int i = 1; i < pos; i++){
 		tmp = tmp->next;
 	}
-	// Se tmp for NULL ou tmp->next for NULL, posição é inválida
 	if (tmp == NULL || pos <= 0){
+		// Posição é inválida
 		return -1;
 	}
 	return tmp->data;
@@ -209,11 +211,11 @@ void main() {
 	printf("\n4.Apagar um elemento em particular");
 	printf("\n5.Apagar do inicio");
 	printf("\n6.Apagar do fim");
-	printf("\n7.Imprimir lista");
-	printf("\n8.E vazia?");
-    printf("\n9.Obter primeiro");
-    printf("\n10.Obter ultimo");
-	printf("\n11.Apagar no em uma determinada posicao");
+	printf("\n7.Apagar no em uma determinada posicao");
+	printf("\n8.Imprimir lista");
+	printf("\n9.E vazia?");
+    printf("\n10.Obter primeiro");
+    printf("\n11.Obter ultimo");
     printf("\n12.Obter o valor em uma posicao");
     printf("\n0.Sair");
 	printf("\nEntre sua opcao : ");
@@ -244,29 +246,29 @@ void main() {
 		case 6: 
 			    apagar_fim();
 			    break;
-		case 7: imprimir();
+		case 7:
+				printf("\nDigite a posicao que deseja remover ");
+                scanf("%d", &pos);
+				apagar_posicao(pos);
+				break;
+		case 8: imprimir();
 		 	    break;
-		case 8: if (ehVazia() == 1) {
+		case 9: if (ehVazia() == 1) {
                     printf("\nLista vazia");
                 } else {
                     printf("\nLista não vazia");
                 }
                 break;
-        case 9: val = obter_primeiro();
+        case 10: val = obter_primeiro();
                 if (val != 0) {
                     printf("%d", val);
                 }
 		 	    break;
-        case 10: val = obter_ultimo();
+        case 11: val = obter_ultimo();
                 if (val != 0) {
                     printf("%d", val);
                 }
 		 	    break;
-		case 11:
-				printf("\nDigite a posicao que deseja remover ");
-                scanf("%d", &pos);
-				apagar_posicao(pos);
-				break;
 		case 12:
 				printf("\nDigite a posicao que deseja obter ");
 				scanf("%d", &pos);
