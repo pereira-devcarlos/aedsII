@@ -108,6 +108,30 @@ void apagar_fim() {
 	}
 }
 
+// Função para apagar em uma determinada posição
+void apagar_posicao(int pos) {
+	tmp = p;
+	int i;
+
+	// Remover na primeira posição 
+	if (pos == 1){
+		p = tmp->next;
+		free(tmp);
+		return;
+	}
+	
+	for (i = 1; i < pos - 1 && tmp != NULL; i++){
+        tmp = tmp->next;
+    }
+	if (i < pos - 1){
+		printf("\nErro: nao possui no nesta posicao!");
+	} else {
+		tmp1 = tmp->next;
+		tmp->next = tmp1->next;
+		free(tmp1);
+	}	
+}
+
 bool ehVazia() {
     if (p == NULL) {
         return (1);
@@ -155,7 +179,7 @@ void main() {
   int pos, val, n;
   p = NULL;
   do {
-    printf("\n************************* MENU ************************");
+    printf("\n\n************************* MENU ************************");
 	printf("\n1.Inserir no fim");
 	printf("\n2.Inserir no inicio");
     printf("\n3.Inserir no em determinada posicao");
@@ -166,6 +190,7 @@ void main() {
 	printf("\n8.E vazia?");
     printf("\n9.Obter primeiro");
     printf("\n10.Obter ultimo");
+	printf("\n11.Apagar no em uma determinada posicao");
     printf("\n0.Sair");
 	printf("\nEntre sua opcao : ");
 	scanf("%d",&n);
@@ -213,6 +238,11 @@ void main() {
                     printf("%d", val);
                 }
 		 	    break;
+		case 11:
+				printf("\nDigite a posicao que deseja remover ");
+                scanf("%d", &pos);
+				apagar_posicao(pos);
+				break;
         case 0: exit(0);
 		 	    break;
 		default: printf("\n Opção errada!");
