@@ -23,15 +23,6 @@ struct pilha* criar_pilha(int tamanho) {
 	return pilha; 
 } 
 
-bool ehCheia(struct pilha* pilha) { 
-    // Se topo == tamanho - 1, quer dizer que a pilha é cheia
-	if (pilha->topo == pilha->tamanho - 1) {
-        return (true);
-    }
-    // Caso contrário, ela não está cheia
-    return (false);
-} 
-
 bool ehVazia(struct pilha* pilha) { 
 	// Se o topo == -1, então a pilha é vazia
     // Verificar que isto é verdade na criação da pilha
@@ -42,8 +33,8 @@ bool ehVazia(struct pilha* pilha) {
 } 
 
 void push(struct pilha* pilha, int item) { 
-	// Se a pilha estiver cheia, não tem como inserir nenhum novo elemento
-    if (ehCheia(pilha)) {
+	// Se a pilha encher, dobramos o tamanho dela e realocamos
+    if (pilha->topo == pilha->tamanho - 1) {
 		pilha->tamanho *= 2;
         pilha->items = (int*) realloc(pilha->items, pilha->tamanho * sizeof(int));
     }
