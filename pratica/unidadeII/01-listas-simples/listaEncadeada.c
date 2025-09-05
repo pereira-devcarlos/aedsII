@@ -181,6 +181,12 @@ int obter_ultimo(void) {
 	}
 }
 
+int obter_posicao () {
+	if (p == NULL){
+		return 0;
+	}
+}
+
 void main() { 
   int pos, val, n;
   p = NULL;
@@ -197,6 +203,7 @@ void main() {
     printf("\n9.Obter primeiro");
     printf("\n10.Obter ultimo");
 	printf("\n11.Apagar no em uma determinada posicao");
+    printf("\n12.Obter o valor em uma posicao");
     printf("\n0.Sair");
 	printf("\nEntre sua opcao : ");
 	scanf("%d",&n);
@@ -249,6 +256,9 @@ void main() {
                 scanf("%d", &pos);
 				apagar_posicao(pos);
 				break;
+		case 12:
+				printf("\nDigite a posicao que deseja obter");
+				scanf("%d", &pos);
         case 0: exit(0);
 		 	    break;
 		default: printf("\n Opção errada!");
