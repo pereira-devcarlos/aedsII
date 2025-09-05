@@ -74,6 +74,12 @@ int obtem_elemento(struct pilha* pilha) {
 	return pilha->items[pilha->topo]; 
 } 
 
+void listar_pilha (struct pilha p){
+    for (int i = 0; i <= p.topo; i++){
+        printf("\n%d", p.items[i]);
+    }
+}
+
 
 int main() { 
     int val, n;
@@ -87,7 +93,8 @@ int main() {
 	    printf("\n3. Obtém elemento");
 	    printf("\n4. Pilha vazia?");
         printf("\n5. Pilha cheia?");
-	    printf("\n6. Sair");
+	    printf("\n6. Listar pilha");
+	    printf("\n7. Sair");
 	    printf("\n Digite sua escolha : ");
 	    scanf("%d",&n);
 	    switch(n) {
@@ -119,12 +126,16 @@ int main() {
                 }
                 break;         
             case 6:
-                return (1);
+                aux = ehVazia(pilha);
+                if (aux) {
+                    printf("\nPilha vazia!!");
+                } else {
+                    listar_pilha(*pilha);
+                }
                 break;
             case 7:
-                
-
-                break;
+                return (1);
+                break;                
             default: printf("\nOpção errada!");
                 break;
         }
