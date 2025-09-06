@@ -24,15 +24,7 @@ No * removePilha(No* topo){
 }
 
 int main(){
-    No* topo = NULL;
-
-    // Testando a remoção
-    No* teste = removePilha(topo);
-    if (teste != NULL){
-        printf("\nNo removido com sucesso-> chave:%d, valor:%d\n", teste->chave, teste->valor);
-    } else {
-        printf("\nErro ao remover um no, pilha vazia!\n");
-    }    
+    No* topo = NULL;  
 
     // Nó alocado para a inserção
     No * inserir = (No*) malloc(sizeof(No));
@@ -47,7 +39,7 @@ int main(){
     printf("\nInsercao realizada com sucesso -> chave: %d, valor: %d\n", inserir->chave, inserir->valor);
 
     // Testando a remoção
-    teste = removePilha(topo);
+    No* teste = removePilha(topo);
     if (teste != NULL){
         printf("\nNo removido com sucesso-> chave:%d, valor:%d\n", teste->chave, teste->valor);
     } else {
