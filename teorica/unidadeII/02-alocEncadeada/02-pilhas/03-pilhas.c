@@ -14,38 +14,65 @@ void insertPilha(No* inserir, No** topo){
 }
 
 // Função para remover um no de uma pilha
-No * removePilha(No* topo){
+No * removePilha(No** topo){
     No * retorno = NULL;
-    if (topo != NULL){
-        retorno = topo;
-        topo = topo->prox;
+    if (*topo != NULL){
+        retorno = *topo;
+        *topo = (*topo)->prox;
     }
     return retorno;
+}
+
+void menu(){
+    printf("\n************ MENU ************");
+    printf("\n[1]-Inserir um no");
+    printf("\n[2]-Remover um no");
+    printf("\n[3]-Imprimir lista");
+    printf("\n[0]-Encerrar programa");
+    printf("\nDigite a opcao que deseja: ");
 }
 
 int main(){
     No* topo = NULL;  
 
-    // Nó alocado para a inserção
-    No * inserir = (No*) malloc(sizeof(No));
+    int opcao = -1;
+    while (opcao != 0){
+        menu();
+        scanf("%d", &opcao);
 
-    printf("\nDigite a chave do no: ");
-    scanf("%d", &inserir->chave);      
-    printf("\nDigite o valor do no: ");
-    scanf("%d", &inserir->valor);
-    inserir->prox = NULL;
+        switch (opcao){
+        case 1:{
+            // Nó alocado para a inserção
+            No * inserir = (No*) malloc(sizeof(No));
 
-    insertPilha(inserir, &topo);
-    printf("\nInsercao realizada com sucesso -> chave: %d, valor: %d\n", inserir->chave, inserir->valor);
-
-    // Testando a remoção
-    No* teste = removePilha(topo);
-    if (teste != NULL){
-        printf("\nNo removido com sucesso-> chave:%d, valor:%d\n", teste->chave, teste->valor);
-    } else {
-        printf("\nErro ao remover um no, pilha vazia!\n");
+            printf("\nDigite a chave do no: ");
+            scanf("%d", &inserir->chave);      
+            printf("\nDigite o valor do no: ");
+            scanf("%d", &inserir->valor);
+            inserir->prox = NULL;
+            
+            insertPilha(inserir, &topo);
+            printf("\nInsercao realizada com sucesso -> chave: %d, valor: %d\n", inserir->chave, inserir->valor);
+            break;
+        }
+        case 2:{
+            // Nó para armazenar o retorno da função remover
+            No* teste = removePilha(&topo);
+            if (teste != NULL){
+                printf("\nNo removido com sucesso-> chave:%d, valor:%d\n", teste->chave, teste->valor);
+            } else {
+                printf("\nErro ao remover um no, pilha vazia!\n");
+            }
+            break;
+        }
+        case 0:
+            printf("\nEncerrando programa...\n");
+            break;
+        default:
+            printf("\nErro: opcao invalida!\n");
+            break;
+        }
     }
-    
 
     return 0;
 }
