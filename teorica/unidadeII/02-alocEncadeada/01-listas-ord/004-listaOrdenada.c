@@ -119,8 +119,10 @@ void main(){
             scanf("%d", &chave_remover);
 
             No * rem = remover(chave_remover);
-            if (rem == NULL){
-                printf("\nErro ao remover no\n");
+            if (ptlista->prox == NULL){
+                printf("\nErro: lista vazia!\n");
+            } else if (rem == NULL){
+                printf("\nErro: no com a chave %d inexistente!\n", chave_remover);
             } else {
                 printf("\nNo com a chave %d foi removido com sucesso!\n", chave_remover);
             }
