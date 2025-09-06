@@ -96,6 +96,22 @@ void main(){
             break;
         }
         case 2:{
+            // Alocando um nó na memória para inserir o novo
+            No * inserir = (No*) malloc(sizeof(No));
+
+            printf("\nDigite a chave do no: ");
+            scanf("%d", &inserir->chave);      
+            printf("\nDigite o valor do no: ");
+            scanf("%d", &inserir->valor);
+            inserir->prox = NULL;
+
+            int val = insert(inserir);
+            if (val == 0){
+                printf("\nInsercao realizada com sucesso -> chave: %d, valor: %d\n", inserir->chave, inserir->valor);
+            } else {
+                printf("\nErro ao inserir o no!\n");
+            }
+            break;
         }
         case 0:
             printf("\nEncerrando programa...");
