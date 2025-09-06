@@ -1,33 +1,30 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct no_ {
-    //usada para indexar conteúdo.
-    //deve ser única em todo o
-    //vetor
+typedef struct no {
+    // Usada para indexar conteúdo.
     int chave;
-
-    //qualquer coisa que eu queira
-    //guardar. Ex: info. útil.
+    // Guardar ex: info. útil.
     int valor;
 
-    struct no_* prox;
-} no ;
+    struct no* prox;
+} No ;
 
 // Variavel global já que será utilizadas varias vezes
-no * ptlista;
+No * ptlista;
 
-void busca_enc(int x, no ** ant, no ** pont){
-    *ant = ptlista;
+// Função de Busca Encadeada
+void busca(int x, No ** ant, No ** pont){
     *pont = NULL;
-    no * ptr = (*ptlista).prox;
+    *ant = ptlista;
+    No * ptr = ptlista->prox;
 
-    while(ptr != NULL){
-        if((*ptr).chave < x){
+    while (ptr != NULL){
+        if (ptr->chave < x){
             *ant = ptr;
-            ptr = (*ptr).prox;
-        }else{
-            if((*ptr).chave == x){
+            ptr = ptr->prox;
+        } else {
+            if (ptr->chave == x){
                 *pont = ptr;
             }
             ptr = NULL;
@@ -35,33 +32,55 @@ void busca_enc(int x, no ** ant, no ** pont){
     }
 }
 
+
+
 void main(){
-    ptlista = (no*) malloc(sizeof(no));
-    (*ptlista).prox = NULL;
-    //OU
-    //ptlista->prox = NULL;
+    // Inicia ptlista apontadando para null
+    ptlista = (No*) malloc(sizeof(No));
+    ptlista->prox = NULL;
 
-    no * ant;
-    no * pont;
+    // Varáveis para manipular a lista
+    No * ant;  // Armazena o no anterior
+    No * pont; // Retorno das funções
 
-    //testando a busca...
+    No * novo = (No*) malloc(sizeof(No));
+    novo->chave = 1;
+    novo->valor = 3;
+    novo->prox = NULL;
+    ptlista->prox = novo;
+
+    novo = (No*) malloc(sizeof(No));
+    novo->chave = 2;
+    novo->valor = 4;
+    novo->prox = ptlista->prox;
+    ptlista->prox = novo;
+
     int chave_procurar = 2;
     printf("elemento sendo buscado: %d\n", chave_procurar);
 
-    busca_enc(chave_procurar, &ant, &pont);
+    busca(chave_procurar, &ant, &pont);
     if(pont != NULL){
         printf("Elemento encontrado!\n\n");
     }else{
         printf("Elemento não encontrado!\n\n");
     }
 
-    //testando a busca...
-    chave_procurar = 5;
-    
-    busca_enc(chave_procurar, &ant, &pont);
+
+    chave_procurar = 4;
     printf("elemento sendo buscado: %d\n", chave_procurar);
 
-    busca_enc(chave_procurar, &ant, &pont);
+    busca(chave_procurar, &ant, &pont);
+    if(pont != NULL){
+        printf("Elemento encontrado!\n\n");
+    }else{
+        printf("Elemento não encontrado!\n\n");
+    }    
+
+
+    chave_procurar = 1;
+    printf("elemento sendo buscado: %d\n", chave_procurar);
+
+    busca(chave_procurar, &ant, &pont);
     if(pont != NULL){
         printf("Elemento encontrado!\n\n");
     }else{
@@ -74,5 +93,4 @@ void main(){
     // - implementar a liberação de memória (ao encerrar)
     // - ajustar o código de modo a ficar "utilizável",
     // com menu para buscar, inserir, remover, imprimir e encerrar.
-    free(ptlista);
 }
