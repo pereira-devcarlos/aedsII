@@ -15,8 +15,8 @@ No * ptlista;
 
 // Função de Busca Encadeada
 void busca(int x, No ** ant, No ** pont){
-    *pont = NULL;
     *ant = ptlista;
+    *pont = NULL;
     No * ptr = ptlista->prox;
 
     while (ptr != NULL){
@@ -32,7 +32,19 @@ void busca(int x, No ** ant, No ** pont){
     }
 }
 
-
+// Função de inserção
+int insert(No * inserir){
+    int re = -1;
+    No * ant;
+    No * pont;
+    busca(inserir->chave, &ant, &pont);
+    if (pont == NULL){
+        inserir->prox = ant->prox;
+        ant->prox = inserir;
+        re = 0;
+    }
+    return re;
+}
 
 void main(){
     // Inicia ptlista apontadando para null
@@ -40,20 +52,20 @@ void main(){
     ptlista->prox = NULL;
 
     // Varáveis para manipular a lista
-    No * ant;  // Armazena o no anterior
+    No * ant; // Armazena o no anterior
     No * pont; // Retorno das funções
 
-    No * novo = (No*) malloc(sizeof(No));
-    novo->chave = 1;
-    novo->valor = 3;
-    novo->prox = NULL;
-    ptlista->prox = novo;
+    No * inserir = (No*) malloc(sizeof(No));
+    inserir->chave = 1;
+    inserir->valor = 3;
+    inserir->prox = NULL;
+    int teste = insert(inserir);
 
-    novo = (No*) malloc(sizeof(No));
-    novo->chave = 2;
-    novo->valor = 4;
-    novo->prox = ptlista->prox;
-    ptlista->prox = novo;
+    inserir = (No*) malloc(sizeof(No));
+    inserir->chave = 2;
+    inserir->valor = 4;
+    inserir->prox = NULL;
+    teste = insert(inserir);
 
     int chave_procurar = 2;
     printf("elemento sendo buscado: %d\n", chave_procurar);
