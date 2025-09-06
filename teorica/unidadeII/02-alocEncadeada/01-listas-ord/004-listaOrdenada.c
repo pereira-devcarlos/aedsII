@@ -58,11 +58,26 @@ No * remover(int x){
     return NULL;
 } 
 
+// Função para exibir nós da lista
+void exibirLista(){
+    if(ptlista->prox != NULL){
+        No * imprimir = ptlista->prox;
+        for (int i = 1; imprimir != NULL; i++){
+            printf("\nNo na posicao %d-> chave: %d, valor: %d", i, imprimir->chave, imprimir->valor);
+            imprimir = imprimir->prox;
+        }
+        printf("\n");
+    } else {
+        printf("\nLista Vazia!\n");
+    }
+}
+
 void menu(){
     printf("\n************ MENU ************");
     printf("\n[1]-Buscar um no");
     printf("\n[2]-Inserir um no");
     printf("\n[3]-Remover um no");
+    printf("\n[4]-Imprimir lista");
     printf("\n[0]-Encerrar programa");
     printf("\nDigite a opcao que deseja: ");
 }
@@ -128,6 +143,10 @@ void main(){
             }
             break;
         }
+        case 4:
+            exibirLista();
+
+            break;
         case 0:
             printf("\nEncerrando programa...");
             break;
