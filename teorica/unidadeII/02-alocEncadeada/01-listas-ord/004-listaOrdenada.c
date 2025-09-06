@@ -113,6 +113,19 @@ void main(){
             }
             break;
         }
+        case 3:{
+            int chave_remover;
+            printf("\nDigite a chave do no que deseja remover: ");
+            scanf("%d", &chave_remover);
+
+            No * rem = remover(chave_remover);
+            if (rem == NULL){
+                printf("\nErro ao remover no\n");
+            } else {
+                printf("\nNo com a chave %d foi removido com sucesso!\n", chave_remover);
+            }
+            break;
+        }
         case 0:
             printf("\nEncerrando programa...");
             break;
@@ -120,14 +133,6 @@ void main(){
             printf("\nErro: opcao invalida!");
             break;
         }
-    }
-
-
-    No * rem = remover(1);
-    if (rem == NULL){
-        printf("\nErro ao remover no");
-    } else {
-        printf("\nNo com a chave %d foi removido com sucesso!\n", rem->chave);
     }
 
     //TODO:
