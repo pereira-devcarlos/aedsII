@@ -14,11 +14,11 @@ void insertPilha(No* inserir, No** topo){
 }
 
 // Função para remover um no de uma pilha
-No * removePilha(No* topo){
+No * removePilha(No** topo){
     No * retorno = NULL;
-    if (topo != NULL){
-        retorno = topo;
-        topo = topo->prox;
+    if (*topo != NULL){
+        retorno = *topo;
+        *topo = (*topo)->prox;
     }
     return retorno;
 }
@@ -39,7 +39,7 @@ int main(){
     printf("\nInsercao realizada com sucesso -> chave: %d, valor: %d\n", inserir->chave, inserir->valor);
 
     // Testando a remoção
-    No* teste = removePilha(topo);
+    No* teste = removePilha(&topo);
     if (teste != NULL){
         printf("\nNo removido com sucesso-> chave:%d, valor:%d\n", teste->chave, teste->valor);
     } else {
