@@ -61,6 +61,8 @@ No * remover(int x){
 // Função para exibir nós da lista
 void exibirLista(){
     if(ptlista->prox != NULL){
+        printf("\nLista Ordenada: ");
+
         No * imprimir = ptlista->prox;
         for (int i = 1; imprimir != NULL; i++){
             printf("\nNo na posicao %d-> chave: %d, valor: %d", i, imprimir->chave, imprimir->valor);
