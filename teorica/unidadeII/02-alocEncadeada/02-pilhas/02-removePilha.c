@@ -7,14 +7,32 @@ typedef struct no{
     struct no* prox;
 } No;
 
-// Função de inserção em uma pilha
-void insertPilha(No* inserir, No* topo){
-    inserir->prox = topo;
-    topo = inserir;
+// Função para inserir um no em uma pilha
+void insertPilha(No* inserir, No** topo){
+    inserir->prox = *topo;
+    *topo = inserir;
+}
+
+// Função para remover um no de uma pilha
+No * removePilha(No* topo){
+    No * retorno = NULL;
+    if (topo != NULL){
+        retorno = topo;
+        topo = topo->prox;
+    }
+    return retorno;
 }
 
 int main(){
     No* topo = NULL;
+
+    // Testando a remoção
+    No* teste = removePilha(topo);
+    if (teste != NULL){
+        printf("\nNo removido com sucesso-> chave:%d, valor:%d\n", teste->chave, teste->valor);
+    } else {
+        printf("\nErro ao remover um no, pilha vazia!\n");
+    }    
 
     // Nó alocado para a inserção
     No * inserir = (No*) malloc(sizeof(No));
@@ -25,8 +43,17 @@ int main(){
     scanf("%d", &inserir->valor);
     inserir->prox = NULL;
 
-    insertPilha(inserir, topo);
+    insertPilha(inserir, &topo);
     printf("\nInsercao realizada com sucesso -> chave: %d, valor: %d\n", inserir->chave, inserir->valor);
+
+    // Testando a remoção
+    teste = removePilha(topo);
+    if (teste != NULL){
+        printf("\nNo removido com sucesso-> chave:%d, valor:%d\n", teste->chave, teste->valor);
+    } else {
+        printf("\nErro ao remover um no, pilha vazia!\n");
+    }
+    
 
     return 0;
 }
