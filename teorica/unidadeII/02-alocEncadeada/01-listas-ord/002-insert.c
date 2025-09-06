@@ -46,6 +46,18 @@ int insert(No * inserir){
     return re;
 }
 
+// Função de remoção
+No * remover(int x){
+    No * ant;
+    No * pont;
+    busca(x, &ant, &pont);
+    if (pont != NULL){
+        ant->prox = pont->prox;
+        return pont;
+    }
+    return NULL;
+} 
+
 void main(){
     // Inicia ptlista apontadando para null
     ptlista = (No*) malloc(sizeof(No));
@@ -88,10 +100,15 @@ void main(){
         printf("Elemento não encontrado!\n\n");
     }    
 
-
+    No * rem = remover(1);
+    if (rem == NULL){
+        printf("\nErro ao remover no");
+    } else {
+        printf("\nNo com a chave %d foi removido com sucesso!\n", rem->chave);
+    }
+    
+    // Testando se a função está removendo corretamente
     chave_procurar = 1;
-    printf("elemento sendo buscado: %d\n", chave_procurar);
-
     busca(chave_procurar, &ant, &pont);
     if(pont != NULL){
         printf("Elemento encontrado!\n\n");
