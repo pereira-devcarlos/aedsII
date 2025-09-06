@@ -140,12 +140,13 @@ void main(){
                 printf("\nErro: no com a chave %d inexistente!\n", chave_remover);
             } else {
                 printf("\nNo com a chave %d foi removido com sucesso!\n", chave_remover);
+                free(rem);
             }
             break;
         }
         case 4:
+            // Imprimir a lista inteira na tela
             exibirLista();
-
             break;
         case 0:
             printf("\nEncerrando programa...");
@@ -156,10 +157,8 @@ void main(){
         }
     }
 
-    //TODO:
-    // - implementar a remoção   (Realizada com sucecsso!)
-    // - implementar a impressão
-    // - implementar a liberação de memória (ao encerrar)
-    // - ajustar o código de modo a ficar "utilizável",
-    // com menu para buscar, inserir, remover, imprimir e encerrar.
+    // liberando Memória ao encerrar o programa
+    free(ptlista);
+    free(ant);
+    free(pont);
 }
