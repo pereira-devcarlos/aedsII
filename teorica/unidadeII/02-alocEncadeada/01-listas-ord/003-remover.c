@@ -117,7 +117,7 @@ void main(){
     }
 
     //TODO:
-    // - implementar a remoção
+    // - implementar a remoção   (Realizada com sucecsso!)
     // - implementar a impressão
     // - implementar a liberação de memória (ao encerrar)
     // - ajustar o código de modo a ficar "utilizável",
