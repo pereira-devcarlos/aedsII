@@ -61,18 +61,18 @@ int main(){
             printf("\nNo inserido: chave=%d, valor=%d", insere->chave, insere->valor);            
             break;
         }
-        case 2:
+        case 2:{
+            No* liberar = removeFila(&inicio, &fim);
+            printf("\nRemovido: chave=%d, valor=%d\n", liberar->chave, liberar->valor);
+            free(liberar);
+
             break;
+        }
         default:
             printf("\nErro: opcao invalida!");
             break;
         }
     }
-    
-    
-    No* liberar = removeFila(&inicio, &fim);
-    printf("\nRemovido: chave=%d, valor=%d\n", liberar->chave, liberar->valor);
-    free(liberar);
 
     return 0;
 }
