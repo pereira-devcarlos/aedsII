@@ -30,16 +30,45 @@ No* removeFila(No **inicio, No **fim){
     return retorno;
 }
 
+void menu(){
+    printf("\n|||||||||| Menu ||||||||||");
+    printf("\n[1]-Inserir no na fila");
+    printf("\n[2]-Remover no na fila");
+    printf("\n[3]-Listar fila");
+    printf("\n[0]-Encerrar programa");
+    printf("\nDigite a opcao desejada: ");
+}
+
 int main(){
     No * inicio = NULL;
     No * fim = NULL;
 
-    No* insere = (No*) malloc(sizeof(No));
-    insere->chave= 1;
-    insere->valor= 3;
-    insere->prox= NULL;
-    insertFila(insere, &inicio, &fim);
-    printf("\nNo inserido: chave=%d, valor=%d", insere->chave, insere->valor);
+    int opcao = -1;
+    while (opcao != 0){
+        menu();
+        scanf("%d", &opcao);
+
+        switch (opcao){
+        case 1:{
+            No* insere = (No*) malloc(sizeof(No));
+            printf("\nDigite a chave que deseja inserir: ");
+            scanf("%d", insere->chave);
+            printf("\nDigite o valor que deseja inserir: ");
+            scanf("%d", insere->valor);
+            insere->prox= NULL;
+            
+            insertFila(insere, &inicio, &fim);
+            printf("\nNo inserido: chave=%d, valor=%d", insere->chave, insere->valor);            
+            break;
+        }
+        case 2:
+            break;
+        default:
+            printf("\nErro: opcao invalida!");
+            break;
+        }
+    }
+    
     
     No* liberar = removeFila(&inicio, &fim);
     printf("\nRemovido: chave=%d, valor=%d\n", liberar->chave, liberar->valor);
