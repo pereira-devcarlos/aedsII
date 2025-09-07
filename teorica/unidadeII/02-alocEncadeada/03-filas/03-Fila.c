@@ -63,25 +63,34 @@ int main(){
 
         switch (opcao){
         case 1:{
+            // Alocando um nó na mémoria
             No* insere = (No*) malloc(sizeof(No));
+
+            // Entrada de dados do usuário
             printf("\nDigite a chave que deseja inserir: ");
             scanf("%d", &insere->chave);
             printf("\nDigite o valor que deseja inserir: ");
             scanf("%d", &insere->valor);
             insere->prox= NULL;
             
+            // Chamada da função de inserção
             insertFila(insere, &inicio, &fim);
             printf("\nNo inserido: chave=%d, valor=%d\n", insere->chave, insere->valor);            
             break;
         }
         case 2:{
             No* liberar = removeFila(&inicio, &fim);
-            printf("\nRemovido: chave=%d, valor=%d\n", liberar->chave, liberar->valor);
-            free(liberar);
-
+            // Verificar se possui algo a ser removido da fila
+            if (liberar != NULL){ 
+                printf("\nRemovido: chave=%d, valor=%d\n", liberar->chave, liberar->valor);
+                free(liberar);
+            } else {
+                printf("\nFila Vazia! Nada a ser removido!\n");
+            }
             break;
         }
         case 3:{
+            // Exibir todos os nós da fila
             listarFila(inicio, fim);
 
             break;
