@@ -7,7 +7,7 @@ typedef struct no {
     struct no* prox;
 } No;
 
-void insertFila(No * insere, No **fim, No **inicio){
+void insertFila(No * insere, No **inicio, No **fim){
     if (*fim != NULL){
         (*fim)->prox= insere;
     } else {
@@ -38,7 +38,8 @@ int main(){
     insere->chave= 1;
     insere->valor= 3;
     insere->prox= NULL;
-    insertFila(insere, &fim, &inicio);
+    insertFila(insere, &inicio, &fim);
+    printf("\nNo inserido: chave=%d, valor=%d", insere->chave, insere->valor);
     
     No* liberar = removeFila(&inicio, &fim);
     printf("\nRemovido: chave=%d, valor=%d\n", liberar->chave, liberar->valor);
