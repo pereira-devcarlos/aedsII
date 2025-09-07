@@ -30,6 +30,19 @@ No* removeFila(No **inicio, No **fim){
     return retorno;
 }
 
+void listarFila(No *inicio, No *fim){
+    if(inicio != NULL){
+        printf("\nFila encadeada:");
+        for (int i = 1; inicio!= NULL; i++){
+            printf("\nPosicao %d: chave=%d, valor=%d", i, inicio->chave, inicio->valor);
+            inicio = inicio->prox;
+        }
+        printf("\n");
+    } else {
+        printf("\nFila Vazia!\n");
+    }
+}
+
 void menu(){
     printf("\n|||||||||| Menu ||||||||||");
     printf("\n[1]-Inserir no na fila");
@@ -52,13 +65,13 @@ int main(){
         case 1:{
             No* insere = (No*) malloc(sizeof(No));
             printf("\nDigite a chave que deseja inserir: ");
-            scanf("%d", insere->chave);
+            scanf("%d", &insere->chave);
             printf("\nDigite o valor que deseja inserir: ");
-            scanf("%d", insere->valor);
+            scanf("%d", &insere->valor);
             insere->prox= NULL;
             
             insertFila(insere, &inicio, &fim);
-            printf("\nNo inserido: chave=%d, valor=%d", insere->chave, insere->valor);            
+            printf("\nNo inserido: chave=%d, valor=%d\n", insere->chave, insere->valor);            
             break;
         }
         case 2:{
@@ -68,6 +81,14 @@ int main(){
 
             break;
         }
+        case 3:{
+            listarFila(inicio, fim);
+
+            break;
+        }
+        case 0:
+            printf("\nEncerrando programa...");
+            break;
         default:
             printf("\nErro: opcao invalida!");
             break;
