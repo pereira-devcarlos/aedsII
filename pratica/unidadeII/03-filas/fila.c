@@ -79,7 +79,7 @@ int obtem_elemento(struct fila* fila) {
 	// Se a fila estiver vazia, não tem como obter nenhum elemento
     if (ehVazia(fila)) {
 		printf("\nFila vazia. Impossível obter elementos");
-        return INT_MIN; 
+        return -1; 
     }
     // Retorna o elemento do início da fila
 	return fila->items[fila->inicio]; 
@@ -111,7 +111,12 @@ int main() {
                 printf("\nElemento retirado : %d",pop(fila));
                 break;
             case 3: 
-                printf("\nElemento do início: %d",obtem_elemento(fila));
+                if (ehVazia(fila)){
+                    printf("\nFila vazia. Impossível obter elementos");
+                } else {
+                    printf("\nElemento do início: %d",obtem_elemento(fila));
+                }
+                
                 break;
             case 4: 
                 aux = ehVazia(fila);

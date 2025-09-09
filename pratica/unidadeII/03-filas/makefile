@@ -1,7 +1,7 @@
 # Automatizando o makefile
 
 # Nome do projeto
-PROJ_NAME=fila
+PROJ_NAME=./build/fila
 
 # Arquivos .c
 C_SOURCE=$(wildcard *.c)
@@ -9,8 +9,8 @@ C_SOURCE=$(wildcard *.c)
 # Arquivos .h
 H_SOURCE=$(wildcard *.h)
 
-# Arquivos objeto
-OBJ=$(C_SOURCE:.c=.o)
+# Arquivos objeto (agora na pasta build)
+OBJ=$(patsubst %.c,build/%.o,$(C_SOURCE))
 
 # Compilador
 CC=gcc
@@ -18,7 +18,7 @@ CC=gcc
 # Flags (opções) para o compilador
 CC_FLAGS=-c         \
          -Wall      \
-		 -g         \
+         -g         \
          -pedantic
 
 #########################
@@ -29,11 +29,11 @@ all: $(PROJ_NAME)
 $(PROJ_NAME): $(OBJ)
 	$(CC) -o $@ $^
 
-%.o: %.c %.h
-	$(CC) -o $@ $< $(CC_FLAGS)
+build/%.o: %.c %.h | build
+	$(CC) $(CC_FLAGS) -o $@ $<
 
-main.o: main.c $(H_SOURCE)
-	$(CC) -o $@ $< $(CC_FLAGS)
+build:
+	mkdir -p build
 
 clean:
-	rm -rf *.o $(PROJ_NAME) *~
+	rm -rf build *.o $(PROJ_NAME) *~
