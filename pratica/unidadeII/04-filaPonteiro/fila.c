@@ -99,8 +99,7 @@ int main() {
 	    printf("\n2. Pop");
 	    printf("\n3. Obtém elemento");
 	    printf("\n4. Fila vazia?");
-        printf("\n5. Fila cheia?");
-	    printf("\n6. Sair");
+	    printf("\n5. Sair");
 	    printf("\n Digite sua escolha : ");
 	    scanf("%d",&n);
 	    switch(n) {
@@ -140,11 +139,8 @@ int main() {
                 } else {
                     printf("\nFila não está vazia");
                 }
-                break;
-            case 5: 
-                // Nada por enquanto
-                break;         
-            case 6:
+                break;       
+            case 5:
                 return (1);
                 break;
             default: printf("\nOpção errada!");
