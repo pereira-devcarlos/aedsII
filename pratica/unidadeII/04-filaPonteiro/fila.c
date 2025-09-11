@@ -2,7 +2,7 @@
 #include <stdlib.h> 
 #include <limits.h> 
 #include <stdbool.h>
-#include "fila.h"
+//#include "fila.h"
 
 // Nó da fila
 typedef struct no {
@@ -60,20 +60,19 @@ No* pop(struct fila* fila) {
     No* rem;
 
     if (ehVazia(fila)) {
-        printf("\nFila vazia. Impossível remover elementos");
         return NULL; 
     } else {
-        rem = fila->inicio;
-        fila->inicio = fila->inicio->prox; 
-
         if (fila->inicio == fila->fim) {
             // Último elemento removido
+            rem = fila->inicio;
             fila->inicio = NULL;
             fila->fim = NULL;
+            return rem;
         } 
+        rem = fila->inicio;
+        fila->inicio = fila->inicio->prox; 
+        return rem;
     }
-
-    return rem;
 } 
 
 No* obtem_elemento(struct fila* fila) { 
@@ -106,19 +105,29 @@ int main() {
             case 1: {
 		        printf("\nDigite o valor ");
                 scanf("%d",&val);
-                inserir->items = val;
 
-                push(fila, inserir);
+                push(fila, val);
                 break;
             }
-            case 2: 
-                printf("\nElemento retirado : %d",pop(fila));
+            case 2: {
+                No* removido = pop(fila);
+                if (removido == NULL){
+                    printf("\nFila vazia. Impossível remover elementos");
+                } else {
+                    printf("\nElemento retirado : %d", removido->valor);
+                    free(removido);
+                }
+                
                 break;
+            }
             case 3: 
                 if (ehVazia(fila)){
                     printf("\nFila vazia. Impossível obter elementos");
                 } else {
-                    printf("\nElemento do início: %d",obtem_elemento(fila));
+                    No* elem = obtem_elemento(fila);
+                    if (elem != NULL) {
+                        printf("\nElemento do início: %d", elem->valor);
+                    }
                 }
                 
                 break;
@@ -131,12 +140,7 @@ int main() {
                 }
                 break;
             case 5: 
-                aux = ehCheia(fila);
-                if (aux) {
-                    printf("\nFila cheia");
-                } else {
-                    printf("\nFila não está cheia");
-                }
+                // Nada por enquanto
                 break;         
             case 6:
                 return (1);
