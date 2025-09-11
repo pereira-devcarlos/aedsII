@@ -2,13 +2,7 @@
 #include <stdlib.h> 
 #include <limits.h> 
 #include <stdbool.h>
-//#include "fila.h"
-
-// Nó da fila
-typedef struct no {
-    int valor;
-    struct no* prox;
-} No;
+#include "fila.h"
 
 // Estrutura da fila
 struct fila { 
