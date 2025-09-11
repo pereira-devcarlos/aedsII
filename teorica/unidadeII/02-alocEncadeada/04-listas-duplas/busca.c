@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Estrutura da Fila
+// Estrutura para uma 
+// Lista Ordenada Duplamente Encadeada Circular
 typedef struct no {
     int chave;
     int valor;
@@ -9,6 +10,11 @@ typedef struct no {
     struct no* ant;
     struct no* prox;
 } No;
+
+// Função de busca 
+No* busca(No* ptlista, int x){
+    // Ainda vou implementar :)
+}
 
 int main(){
     // Alocando o ptr que irá apontar para a lista
