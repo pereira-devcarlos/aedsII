@@ -107,6 +107,7 @@ int main() {
                 scanf("%d",&val);
 
                 push(fila, val);
+                printf("\nElemento inserido : %d", val);
                 break;
             }
             case 2: {
