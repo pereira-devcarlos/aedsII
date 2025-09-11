@@ -107,9 +107,14 @@ int main() {
                 scanf("%d",&val);
                 push(fila , val);
                 break;
-            case 2: 
-                printf("\nElemento retirado : %d",pop(fila));
+            case 2: {
+                int rem = pop(fila);
+                if (rem != -1){
+                    printf("\nElemento retirado : %d", rem);
+                }
+
                 break;
+            } 
             case 3: 
                 if (ehVazia(fila)){
                     printf("\nFila vazia. Impossível obter elementos");
