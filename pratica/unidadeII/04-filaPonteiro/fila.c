@@ -4,19 +4,19 @@
 #include <stdbool.h>
 #include "fila.h"
 
-// Estrutura da fila
-struct fila { 
-	int * inicio; 
-	int * fim; 
-	int tamanhoAtul; 
-	No* items; 
-};
-
 // Nó da fila
 typedef struct no {
     int valor;
     struct no* prox;
 } No;
+
+// Estrutura da fila
+struct fila { 
+	No* inicio; 
+	No* fim; 
+	int tamanhoAtul; 
+	No* items; 
+};
 
 struct fila* criar_fila() { 
 	// Aloca a estrutura de dados fila
@@ -37,25 +37,33 @@ bool ehVazia(struct fila* fila) {
     return (false);
 } 
 
-void push(struct fila* fila, struct fila* inserir) { 
+void push(struct fila* fila, int item) { 
+    // Alocação do nó a ser inserido na fila
+    No* insere = (No*) malloc(sizeof(No));
+    insere->valor = item;
+    insere->prox = NULL;
+
     if (ehVazia(fila)) { 
-        fila->inicio = inserir;
-        fila->fim = inserir;
-        fila->items = inserir->items; // Insere o primeiro elemento
+        fila->inicio = insere;
+        fila->fim = insere;
+        fila->items = insere;
         return;
     }
-    fila->fim->prox = inserir;
-    fila->fim = inserir;
+    fila->fim->prox = insere;
+    fila->fim = insere;
+    fila->tamanhoAtul++;
 }
 
 
-struct fila* pop(struct fila* fila) { 
-    struct fila* rem;
+No* pop(struct fila* fila) { 
+    // Nó que será retornado após a remoção da fila
+    No* rem;
+
     if (ehVazia(fila)) {
         printf("\nFila vazia. Impossível remover elementos");
-        return -1; 
+        return NULL; 
     } else {
-        rem = fila;
+        rem = fila->inicio;
         fila->inicio = fila->inicio->prox; 
 
         if (fila->inicio == fila->fim) {
@@ -68,11 +76,11 @@ struct fila* pop(struct fila* fila) {
     return rem;
 } 
 
-struct fila* obtem_elemento(struct fila* fila) { 
+No* obtem_elemento(struct fila* fila) { 
 	// Se a fila estiver vazia, não tem como obter nenhum elemento
     if (ehVazia(fila)) {
 		printf("\nFila vazia. Impossível obter elementos");
-        return -1; 
+        return NULL; 
     }
     // Retorna o elemento do início da fila
 	return fila->inicio; 
@@ -82,7 +90,7 @@ struct fila* obtem_elemento(struct fila* fila) {
 int main() { 
     int val, n;
     bool aux;
-    // Cria fila com 5 posições
+    // Criar fila
     struct fila* fila = criar_fila();
     do {
         printf("\n************************* MENU ************************");
@@ -98,7 +106,6 @@ int main() {
             case 1: {
 		        printf("\nDigite o valor ");
                 scanf("%d",&val);
-                struct fila* inserir = criar_fila();
                 inserir->items = val;
 
                 push(fila, inserir);
