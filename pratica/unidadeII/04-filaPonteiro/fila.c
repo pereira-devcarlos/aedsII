@@ -54,7 +54,6 @@ void push(struct fila* fila, int item) {
     fila->tamanhoAtul++;
 }
 
-
 No* pop(struct fila* fila) { 
     // Nó que será retornado após a remoção da fila
     No* rem;
