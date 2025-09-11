@@ -46,32 +46,27 @@ void push(struct fila* fila, int item) {
     if (ehVazia(fila)) { 
         fila->inicio = insere;
         fila->fim = insere;
-        fila->items = insere;
-        return;
+    } else {
+        fila->fim->prox = insere;
+        fila->fim = insere;
     }
-    fila->fim->prox = insere;
-    fila->fim = insere;
+    fila->items = fila->inicio;
     fila->tamanhoAtul++;
 }
 
 No* pop(struct fila* fila) { 
-    // Nó que será retornado após a remoção da fila
-    No* rem;
-
     if (ehVazia(fila)) {
         return NULL; 
-    } else {
-        if (fila->inicio == fila->fim) {
-            // Último elemento removido
-            rem = fila->inicio;
-            fila->inicio = NULL;
-            fila->fim = NULL;
-            fila->tamanhoAtul = 0;
-            return rem;
-        } 
-        rem = fila->inicio;
+    } 
+    else {
+        No* rem = fila->inicio;
         fila->inicio = fila->inicio->prox; 
         fila->tamanhoAtul--;
+
+        if (fila->inicio == fila->fim) {
+            // Último elemento removido
+            fila->fim = NULL;
+        } 
         return rem;
     }
 } 
