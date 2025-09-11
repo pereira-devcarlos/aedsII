@@ -67,10 +67,12 @@ No* pop(struct fila* fila) {
             rem = fila->inicio;
             fila->inicio = NULL;
             fila->fim = NULL;
+            fila->tamanhoAtul = 0;
             return rem;
         } 
         rem = fila->inicio;
         fila->inicio = fila->inicio->prox; 
+        fila->tamanhoAtul--;
         return rem;
     }
 } 
