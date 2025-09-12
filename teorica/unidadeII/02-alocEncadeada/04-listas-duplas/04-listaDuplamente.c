@@ -75,11 +75,31 @@ No* remover(No *ptlista, int x){
     return NULL;
 }
 
+void listar(No *ptlista){
+    if (ptlista == NULL) {
+        return;
+    }
+    
+    No *p = ptlista->prox;
+    if (p == ptlista){
+        printf("\nLista vazia.");
+        return;
+    }
+
+    printf("\nElementos da lista:");
+    int i = 1;
+    while (p != ptlista){
+        printf("\n[%d] chave=%d, valor=%d", i++, p->chave, p->valor);
+        p = p->prox;
+    }
+}
+
 void exibirMenu(){
     printf("\n\n|||||||||||> Menu <|||||||||||");
     printf("\n[1]-Inserir um no");
     printf("\n[2]-Remover um no");
     printf("\n[3]-Buscar um no");
+    printf("\n[4]-Listar nos");
     printf("\n[0]-Encerrar o programa");
     printf("\n-Digite a opcao desejada: ");
 }
@@ -145,6 +165,9 @@ int main(){
             }
             break;
         }
+        case 4:
+            listar(ptlista);
+            break;
         case 0:
             printf("\nEncerrando o programa...");
             break;
