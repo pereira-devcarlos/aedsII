@@ -75,17 +75,16 @@ int insert(No f[], int *in, int *re, No ins){
     // Inicializa já com o retorno -1 caso a fila tiver cheia
     int pos = -1; 
 
-    if (*in == -1) {  // Fila vazia
-        *in = 0;      // Inicio vai para a primeira posição da Fila
-        *re = 0;      // Retaguarda também para a primeira pos da Fila
-        f[*re] = ins; // Fila recebe o nó a ser inserido
-        pos = *re;    // Retorna a posição da retaguarda
-    } else {
-        int prov = ((*re) + 1) % M;
-        if (prov != *in) { // Fila não está cheia
-            *re = prov;    // Atualiza a retaguarda
-            f[*re] = ins;  // Fila recebe o nó a ser inserido
-            pos = *re;     // Retorna a posição da retaguarda
+    int prov = ((*re) + 1) % M;
+
+    if (prov != *in){
+        *re = prov;
+        f[*re] = ins;
+        pos = *re;
+
+        // Se a fila estiver vazia o inicio avança também
+        if (*in == -1){
+            *in = 0;
         }
     }
 
