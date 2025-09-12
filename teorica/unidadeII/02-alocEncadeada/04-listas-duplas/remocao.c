@@ -40,7 +40,7 @@ No* busca(No* ptlista, int x){
  *  - caso não ocorra a inserção:
  *      --> retorna o endereço retornado pela função buscar
  */
-No *inserir(No *ptlista, No *novo){
+No* inserir(No *ptlista, No *novo){
     No *pont = busca(ptlista, novo->chave);
 
     // Verifica se a lista está vazia ou
@@ -57,13 +57,31 @@ No *inserir(No *ptlista, No *novo){
     return pont;
 }
 
+/** Função de Remoção
+ * Retorno:
+ *  - caso ocorra a remoção:
+ *      --> endereço do nó removido
+ *  - caso não ocorra a remoção (nó não encontrado):
+ *      --> NULL
+ */
+No* remover(No *ptlista, int x){
+    No* pont = busca(ptlista, x);
+
+    if (pont != ptlista && pont->chave == x){
+        pont->ant->prox = pont->prox;
+        pont->prox->ant = pont->ant;
+        return pont;
+    }
+    return NULL;
+}
+
 int main(){
     // Alocando o ptr que irá apontar para a lista
     No* ptlista = (No*) malloc(sizeof(No));
     ptlista->ant = ptlista;
     ptlista->prox = ptlista;
 
-    // Alocando nó para teste de busca
+    // Alocando nó para teste de inserção
     No* novo = (No*) malloc(sizeof(No));
     novo->chave = 1;
     novo->valor = 5;
@@ -75,9 +93,8 @@ int main(){
         printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
 
     }
-    
 
-    // Alocando nó para teste de busca
+    // Alocando nó para teste de inserção
     novo = (No*) malloc(sizeof(No));
     novo->chave = 2;
     novo->valor = 10;
@@ -89,7 +106,16 @@ int main(){
         printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
     }
 
-    // Alocando nó para teste de busca
+    // Testando a função de remoção
+    No* rem = remover(ptlista, 2);
+    if (rem != NULL){
+        printf("\nElemento removido: chave=%d, valor=%d", rem->chave, rem->valor);
+        free(rem);
+    } else {
+        printf("\nErro: nao possui no a ser removido com chave=%d", 2);
+    }
+
+    // Alocando nó para teste de inserção
     novo = (No*) malloc(sizeof(No));
     novo->chave = 2;
     novo->valor = 20;
@@ -101,19 +127,13 @@ int main(){
         printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
     }
 
-    // Testando a função de busca
-    No* busc = busca(ptlista, 1);
-    if(busc->chave == 1){
-        printf("\nElemento 1 encontrado!!");
+    // Testando a função de remoção
+    rem = remover(ptlista, 3);
+    if (rem != NULL){
+        printf("\nElemento removido: chave=%d, valor=%d", rem->chave, rem->valor);
+        free(rem);
     } else {
-        printf("\nElemento 1 nao encontrado!!");
-    }
-
-    busc = busca(ptlista, 3);
-    if(busc->chave == 3){
-        printf("\nElemento 3 encontrado!!");
-    } else {
-        printf("\nElemento 3 nao encontrado!!");
+        printf("\nErro: nao possui no a ser removido com chave=%d", 3);
     }
 
     // Liberando a memória

@@ -63,7 +63,7 @@ int main(){
     ptlista->ant = ptlista;
     ptlista->prox = ptlista;
 
-    // Alocando nó para teste de busca
+    // Alocando nó para teste de inserção
     No* novo = (No*) malloc(sizeof(No));
     novo->chave = 1;
     novo->valor = 5;
@@ -77,7 +77,7 @@ int main(){
     }
     
 
-    // Alocando nó para teste de busca
+    // Alocando nó para teste de inserção
     novo = (No*) malloc(sizeof(No));
     novo->chave = 2;
     novo->valor = 10;
@@ -89,7 +89,7 @@ int main(){
         printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
     }
 
-    // Alocando nó para teste de busca
+    // Alocando nó para teste de inserção
     novo = (No*) malloc(sizeof(No));
     novo->chave = 2;
     novo->valor = 20;
