@@ -11,7 +11,13 @@ typedef struct no {
     struct no* prox;
 } No;
 
-// Função de busca 
+/** Função de busca
+ * Retorno:
+ *  - caso o x > ultimo->chave da lista:
+ *      --> retorna ptlista
+ *  - caso o x <= ultimo->chave:
+ *      --> retorna o endereço do nó que a chave >= x;
+ */
 No* busca(No* ptlista, int x){
     No* ultimo = ptlista->ant;
 
@@ -27,7 +33,7 @@ No* busca(No* ptlista, int x){
     return ptlista;
 }
 
-/**
+/** Função de inserção
  * Retorno:
  *  - caso ocorra a inserção:
  *      --> retorna NULL
