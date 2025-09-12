@@ -60,9 +60,9 @@ No* inserir(No *ptlista, No *novo){
 /** Função de Remoção
  * Retorno:
  *  - caso ocorra a remoção:
- *      --> endereço do nó removido
+ *      --> retorna o endereço do nó removido
  *  - caso não ocorra a remoção (nó não encontrado):
- *      --> NULL
+ *      --> retorna NULL
  */
 No* remover(No *ptlista, int x){
     No* pont = busca(ptlista, x);
