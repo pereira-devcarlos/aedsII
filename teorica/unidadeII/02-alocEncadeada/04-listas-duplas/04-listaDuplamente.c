@@ -76,7 +76,7 @@ No* remover(No *ptlista, int x){
 }
 
 void exibirMenu(){
-    printf("\n|||||||||||> Menu <|||||||||||");
+    printf("\n\n|||||||||||> Menu <|||||||||||");
     printf("\n[1]-Inserir um no");
     printf("\n[2]-Remover um no");
     printf("\n[3]-Buscar um no");
@@ -102,9 +102,9 @@ int main(){
             No* novo = (No*) malloc(sizeof(No));
             
             printf("\nDigite a chave do seu no: ");
-            scanf("%d", novo->chave);
+            scanf("%d", &novo->chave);
             printf("\nDigite o valor do seu no: ");
-            scanf("%d", novo->valor);
+            scanf("%d", &novo->valor);
             
             No* insere = inserir(ptlista, novo);
             if (insere == NULL){
