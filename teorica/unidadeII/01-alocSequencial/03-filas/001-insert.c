@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define M 3 // Tamanho máximo da fila
+
+// Váriaveis Globais
 int in = -1; // Inicio da fila
-int re = -1; // Retaguarda
+int re = -1; // Retaguarda da fila
 
 typedef struct {
     int chave;
