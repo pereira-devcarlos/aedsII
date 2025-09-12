@@ -75,70 +75,87 @@ No* remover(No *ptlista, int x){
     return NULL;
 }
 
+void exibirMenu(){
+    printf("\n|||||||||||> Menu <|||||||||||");
+    printf("\n[1]-Inserir um no");
+    printf("\n[2]-Remover um no");
+    printf("\n[3]-Buscar um no");
+    printf("\n[0]-Encerrar o programa");
+    printf("\n-Digite a opcao desejada: ");
+}
+
 int main(){
-    // Alocando o ptr que irá apontar para a lista
+    // Criando ptr que irá apontar para a lista
     No* ptlista = (No*) malloc(sizeof(No));
     ptlista->ant = ptlista;
     ptlista->prox = ptlista;
 
-    // Alocando nó para teste de inserção
-    No* novo = (No*) malloc(sizeof(No));
-    novo->chave = 1;
-    novo->valor = 5;
-    
-    No* insere = inserir(ptlista, novo);
-    if (insere == NULL){
-        printf("\nElemento inserido: chave=%d, valor=%d", novo->chave, novo->valor);
-    } else {
-        printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
+    int opcao = -1;
+    while (opcao != 0){
+        exibirMenu();
+        scanf("%d", &opcao);
 
-    }
+        switch (opcao){
+        case 1:
+        {
+            // Alocando nó para a inserção
+            No* novo = (No*) malloc(sizeof(No));
+            
+            printf("\nDigite a chave do seu no: ");
+            scanf("%d", novo->chave);
+            printf("\nDigite o valor do seu no: ");
+            scanf("%d", novo->valor);
+            
+            No* insere = inserir(ptlista, novo);
+            if (insere == NULL){
+                printf("\nElemento inserido: chave=%d, valor=%d", novo->chave, novo->valor);
+            } else {
+                printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
+            }
+            break;
+        }
+        case 2:
+        {
+            int chaveRemover;
+            printf("\nDigite a chave do no que deseja remover: ");
+            scanf("%d", &chaveRemover);
 
-    // Alocando nó para teste de inserção
-    novo = (No*) malloc(sizeof(No));
-    novo->chave = 2;
-    novo->valor = 10;
-    
-    insere = inserir(ptlista, novo);
-    if (insere == NULL){
-        printf("\nElemento inserido: chave=%d, valor=%d", novo->chave, novo->valor);
-    } else {
-        printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
-    }
+            No* rem = remover(ptlista, chaveRemover);
+            if (rem != NULL){
+                printf("\nElemento removido: chave=%d, valor=%d", rem->chave, rem->valor);
+                free(rem);
+            } else {
+                printf("\nErro: nao possui no a ser removido com chave=%d", chaveRemover);
+            }
+            break;
+        }
+        case 3:
+        {
+            int chaveBusca;
+            printf("\nDigite a chave do no a ser buscado: ");
+            scanf("%d", &chaveBusca);
 
-    // Testando a função de remoção
-    No* rem = remover(ptlista, 2);
-    if (rem != NULL){
-        printf("\nElemento removido: chave=%d, valor=%d", rem->chave, rem->valor);
-        free(rem);
-    } else {
-        printf("\nErro: nao possui no a ser removido com chave=%d", 2);
-    }
-
-    // Alocando nó para teste de inserção
-    novo = (No*) malloc(sizeof(No));
-    novo->chave = 2;
-    novo->valor = 20;
-
-    insere = inserir(ptlista, novo);
-    if (insere == NULL){
-        printf("\nElemento inserido: chave=%d, valor=%d", novo->chave, novo->valor);
-    } else {
-        printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
-    }
-
-    // Testando a função de remoção
-    rem = remover(ptlista, 3);
-    if (rem != NULL){
-        printf("\nElemento removido: chave=%d, valor=%d", rem->chave, rem->valor);
-        free(rem);
-    } else {
-        printf("\nErro: nao possui no a ser removido com chave=%d", 3);
+            No* buscar = busca(ptlista, chaveBusca);
+            if (buscar != ptlista && buscar->chave == chaveBusca){
+                printf("\nElemento encontrado: chave=%d, valor=%d", buscar->chave, buscar->valor);
+            } else if (buscar != ptlista && buscar->chave != chaveBusca){
+                printf("\nElemento com a chave=%d nao foi encontrado!", chaveBusca);
+            } else {
+                printf("\nErro: lista vazia!");
+            }
+            break;
+        }
+        case 0:
+            printf("\nEncerrando o programa...");
+            break;
+        default:
+            printf("\nErro: opcao invalida!");
+            break;
+        }
     }
 
     // Liberando a memória
     free(ptlista);
-    free(novo);
-
+    
     return 0;
 }
