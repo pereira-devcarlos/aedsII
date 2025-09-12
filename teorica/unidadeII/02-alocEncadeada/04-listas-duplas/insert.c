@@ -27,6 +27,30 @@ No* busca(No* ptlista, int x){
     return ptlista;
 }
 
+/**
+ * Retorno:
+ *  - caso ocorra a inserção:
+ *      --> retorna NULL
+ *  - caso não ocorra a inserção:
+ *      --> retorna o endereço retornado pela função buscar
+ */
+No *inserir(No *ptlista, No *novo){
+    No *pont = busca(ptlista, novo->chave);
+
+    // Verifica se a lista está vazia ou
+    // Se a chave do nó a ser inserido não existir na lista
+    if (pont == ptlista || novo->chave != pont->chave){
+        novo->prox = pont;
+        novo->ant = pont->ant;
+        pont->ant->prox = novo;
+        pont->ant = novo;
+        return NULL;
+    }
+
+    // Caso a chave do nó a ser inserido já existir na lista
+    return pont;
+}
+
 int main(){
     // Alocando o ptr que irá apontar para a lista
     No* ptlista = (No*) malloc(sizeof(No));
@@ -38,32 +62,38 @@ int main(){
     novo->chave = 1;
     novo->valor = 5;
     
-    novo->ant = ptlista;
-    novo->prox = ptlista;
-    ptlista->ant = novo;
-    ptlista->prox = novo;
+    No* insere = inserir(ptlista, novo);
+    if (insere == NULL){
+        printf("\nElemento inserido: chave=%d, valor=%d", novo->chave, novo->valor);
+    } else {
+        printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
+
+    }
+    
 
     // Alocando nó para teste de busca
     novo = (No*) malloc(sizeof(No));
     novo->chave = 2;
     novo->valor = 10;
     
-    novo->ant = ptlista;
-    novo->prox = ptlista->prox;
-    ptlista->ant->prox = novo;
-    ptlista->prox->ant = novo;
-    ptlista->ant = novo;
+    insere = inserir(ptlista, novo);
+    if (insere == NULL){
+        printf("\nElemento inserido: chave=%d, valor=%d", novo->chave, novo->valor);
+    } else {
+        printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
+    }
 
     // Alocando nó para teste de busca
     novo = (No*) malloc(sizeof(No));
-    novo->chave = 3;
+    novo->chave = 2;
     novo->valor = 20;
 
-    novo->ant = ptlista->ant;
-    novo->prox = ptlista->prox;
-    ptlista->ant->prox = novo;
-    ptlista->prox->ant = novo;
-    ptlista->ant = novo;
+    insere = inserir(ptlista, novo);
+    if (insere == NULL){
+        printf("\nElemento inserido: chave=%d, valor=%d", novo->chave, novo->valor);
+    } else {
+        printf("\nErro ao inserir o elemento: chave=%d, valor=%d", novo->chave, novo->valor);
+    }
 
     // Testando a função de busca
     No* busc = busca(ptlista, 1);
@@ -78,13 +108,6 @@ int main(){
         printf("\nElemento 3 encontrado!!");
     } else {
         printf("\nElemento 3 nao encontrado!!");
-    }
-
-    busc = busca(ptlista, 4);
-    if(busc->chave == 4){
-        printf("\nElemento 4 encontrado!!");
-    } else {
-        printf("\nElemento 4 nao encontrado!!");
     }
 
     // Liberando a memória
