@@ -12,8 +12,22 @@ typedef struct no {
 } No;
 
 // Função de busca 
+/** Retorno:
+ * 
+ */
 No* busca(No* ptlista, int x){
-    // Ainda vou implementar :)
+    No* ultimo = ptlista->ant;
+
+    if (ultimo != ptlista && x <= ultimo->chave){
+        // Pont recebendo o 1° elemento da lista
+        No* pont = ptlista->prox;
+
+        while (pont->chave < x){
+            pont = pont->prox;
+        }
+        return pont;
+    }
+    return ptlista;
 }
 
 int main(){
@@ -53,6 +67,32 @@ int main(){
     ptlista->ant->prox = novo;
     ptlista->prox->ant = novo;
     ptlista->ant = novo;
+
+    // Testando a função de busca
+    No* busc = busca(ptlista, 1);
+    if(busc->chave == 1){
+        printf("\nElemento 1 encontrado!!");
+    } else {
+        printf("\nElemento 1 nao encontrado!!");
+    }
+
+    busc = busca(ptlista, 3);
+    if(busc->chave == 3){
+        printf("\nElemento 3 encontrado!!");
+    } else {
+        printf("\nElemento 3 nao encontrado!!");
+    }
+
+    busc = busca(ptlista, 4);
+    if(busc->chave == 4){
+        printf("\nElemento 4 encontrado!!");
+    } else {
+        printf("\nElemento 4 nao encontrado!!");
+    }
+
+    // Liberando a memória
+    free(ptlista);
+    free(novo);
 
     return 0;
 }
