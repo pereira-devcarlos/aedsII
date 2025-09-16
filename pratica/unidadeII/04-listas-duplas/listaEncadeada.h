@@ -2,17 +2,18 @@
 #include <stdbool.h>
 #define _H_LISTA
 
-void inserir_fim(int);
-void inserir_inicio(int);
-void inserir_posicao(int elemento, int pos);
-void apagar(int);
-void apagar_inicio(void);
-void apagar_fim(void);
-void apagar_posicao(int pos);
-bool ehVazia(void);
-int obter_primeiro(void);
-int obter_ultimo(void);
-int obter_posicao (int pos);
-void imprimir();
+struct listaDupla;
+void inserir_fim(struct listaDupla *lista, int elemento);
+void inserir_inicio(struct listaDupla *lista, int elemento);
+void inserir_posicao(struct listaDupla *lista, int elemento, int pos);
+void apagar(struct listaDupla *lista, int elemento);
+void apagar_inicio(struct listaDupla *lista);
+void apagar_fim(struct listaDupla *lista);
+void apagar_posicao(struct listaDupla *lista, int pos);
+bool ehVazia(struct listaDupla *lista);
+int obter_primeiro(struct listaDupla *lista);
+int obter_ultimo(struct listaDupla *lista);
+int obter_posicao(struct listaDupla *lista, int pos);
+void imprimir(struct listaDupla *lista);
 
 #endif // _H_LISTA
