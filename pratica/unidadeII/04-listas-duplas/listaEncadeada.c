@@ -90,16 +90,19 @@ void apagar(struct listaDupla *lista, int ele) {
 				if (lista->inicio != NULL){
 					lista->inicio->prev = NULL;
 				}
+				printf("\nElemento deletado - %d", tmp->data);			
 				free(tmp);
 				return;
 			} else if (tmp->next == NULL){
 				pre->next = NULL;
 				lista->fim = pre;
+				printf("\nElemento deletado - %d", tmp->data);			
 				free(tmp);
 				return;
 			} else {
                 pre->next=tmp->next;
 				tmp->next->prev = pre;
+				printf("\nElemento deletado - %d", tmp->data);			
 			    free(tmp);
 			    return;
 			}
