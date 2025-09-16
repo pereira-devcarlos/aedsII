@@ -127,6 +127,10 @@ void apagar_fim(struct listaDupla *lista) {
     } else {
 		if (lista->inicio->next == NULL){
 			lista->inicio = NULL;
+			lista->fim = NULL;
+			printf("\nElemento deletado - %d", tmp->data);
+			free(tmp);
+			return;
 		}
 		pre = lista->fim->prev;
 		pre->next= NULL;
