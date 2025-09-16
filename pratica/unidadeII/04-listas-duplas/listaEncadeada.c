@@ -112,7 +112,9 @@ void apagar_inicio(struct listaDupla *lista) {
     } else {
 		printf("\nElemento deletado - %d", lista->inicio->data);
 		lista->inicio = lista->inicio->next;
-		lista->inicio->prev = NULL;
+		if (lista->inicio != NULL){
+			lista->inicio->prev = NULL;
+		}
 		free(tmp);
 	}
  }
@@ -123,13 +125,12 @@ void apagar_fim(struct listaDupla *lista) {
 	if(lista->inicio == NULL) {
 		printf("\n Nenhum elemento deletado ");
     } else {
-		pre = lista->fim->prev;
-		pre->next= NULL;
-		lista->fim = pre;
-
 		if (lista->inicio->next == NULL){
 			lista->inicio = NULL;
 		}
+		pre = lista->fim->prev;
+		pre->next= NULL;
+		lista->fim = pre;
 		
 		printf("\nElemento deletado - %d", tmp->data);
 		free(tmp);
@@ -151,7 +152,7 @@ void apagar_posicao(struct listaDupla *lista,int pos) {
 		return;
 	}
 
-	for (i = 1; i < pos - 1 && tmp != NULL; i++){
+	for (i = 1; i < pos && tmp != NULL; i++){
 		tmp = tmp->next;
 	}
 	// Se tmp for NULL ou tmp->next for NULL, posição é inválida
