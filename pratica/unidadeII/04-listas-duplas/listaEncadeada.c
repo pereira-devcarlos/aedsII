@@ -30,6 +30,7 @@ void inserir_inicio(struct listaDupla *lista, int elemento) {
 		lista->fim = tmp;
 	} else {
 		tmp->next = lista->inicio;
+		lista->inicio->prev = tmp;
 		lista->inicio = tmp;
 	}
 }
