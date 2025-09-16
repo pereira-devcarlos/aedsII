@@ -162,18 +162,23 @@ void apagar_posicao(struct listaDupla *lista,int pos) {
 		return;
 	}
 
-	for (i = 1; i < pos && tmp != NULL; i++){
+	for (i = 1; i < pos - 1 && tmp != NULL; i++){
 		tmp = tmp->next;
 	}
+	tmp1 = tmp->next;
 	// Se tmp for NULL ou tmp->next for NULL, posição é inválida
 	if (tmp == NULL || tmp->next == NULL){
 		printf("\nErro: nao possui no nesta posicao!");
 		return;
+	} else if (tmp1->next == NULL){
+		apagar_fim(lista);
+		return;
+	} else {
+		tmp->next = tmp1->next;
+		tmp1->next->prev = tmp;
+		printf("\nElemento deletado - %d", tmp1->data);
+		free(tmp1);
 	}
-	tmp1 = tmp->next;
-	tmp->next = tmp1->next;
-	tmp1->next->prev = tmp;
-	free(tmp1);
 }	
 
 void imprimir(struct listaDupla *lista) {
@@ -187,6 +192,7 @@ void imprimir(struct listaDupla *lista) {
 int obter_primeiro(struct listaDupla *lista) {
 	if (lista->inicio == NULL) {
 		printf("\n Nenhum elemento encontrado ");
+        return (0);
     } else {
 		return (lista->inicio->data);
 	}
