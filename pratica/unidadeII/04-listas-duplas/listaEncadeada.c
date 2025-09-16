@@ -64,14 +64,14 @@ void inserir_posicao(struct listaDupla *lista, int elemento, int pos) {
 
 	tmp1 = lista->inicio;
     
-    for (int i = 1; i < pos - 1 && tmp1 != NULL; i++){
+    for (int i = 1; i < pos && tmp1 != NULL; i++){
         tmp1 = tmp1->next;
     }
     // Caso não tiver uma posição, liberar a memória
     if (tmp1 == NULL){
-        printf("\nErro: posicao invalida!");
-        free(tmp);
-        return;
+        printf("\nErro: posicao inexistente, no inserido no final da lista!");
+        inserir_fim(lista, elemento);
+		return;
     }
     // Inserir na lista duplamente encadeada
 	tmp->next = tmp1;
