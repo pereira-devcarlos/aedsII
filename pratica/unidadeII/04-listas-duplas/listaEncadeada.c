@@ -86,14 +86,20 @@ void apagar(struct listaDupla *lista, int ele) {
 	while (tmp != NULL) {
 		if (tmp->data==ele) {
             if (tmp == lista->inicio) {
-                lista->inicio = tmp->next;
-			    free(tmp);
-			    return;
+                lista->inicio = lista->inicio->next;
+				if (lista->inicio != NULL){
+					lista->inicio->prev = NULL;
+				}
+				free(tmp);
+				return;
+			} else if (tmp->next == NULL){
+				pre->next = NULL;
+				lista->fim = pre;
+				free(tmp);
+				return;
 			} else {
                 pre->next=tmp->next;
-				if (tmp->next != NULL){
-					tmp->next->prev = pre;
-				}
+				tmp->next->prev = pre;
 			    free(tmp);
 			    return;
 			}
