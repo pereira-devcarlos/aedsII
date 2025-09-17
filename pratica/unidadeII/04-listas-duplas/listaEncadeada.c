@@ -41,7 +41,8 @@ void inserir_fim(struct listaDupla *lista, int elemento) {
     tmp->next=NULL;
 	tmp->prev = NULL;
     if (ehVazia(lista)) {
-        inserir_inicio(lista, elemento);
+		lista->inicio = tmp;
+		lista->fim = tmp;
     } else {
         lista->fim->next = tmp;
 		tmp->prev = lista->fim;
