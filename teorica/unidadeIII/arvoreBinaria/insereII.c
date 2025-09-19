@@ -6,22 +6,19 @@ typedef struct no {
     struct no *esq, *dir;
 } No;
 
-// Função de inserção com Retorno
-No* insere (No *raiz, int valor) {
-    // Verificar se a raiz é NULL
-    if (raiz == NULL){
-        No *novo = (No*) malloc(sizeof(No));
-        novo->valor = valor;
-        novo->esq = NULL;
-        novo->dir = NULL;
-        return novo;
+// Função de inserção sem retorno
+void insere (No **raiz, int valor) {
+    if (*raiz == NULL){
+        *raiz = (No*) malloc(sizeof(No));
+        (*raiz)->valor = valor;
+        (*raiz)->esq = NULL;
+        (*raiz)->dir = NULL;
     } else {
-        if (valor < raiz->valor){
-            raiz->esq = insere(raiz->esq, valor);
+        if (valor < (*raiz)->valor){
+            insere( &((*raiz)->esq), valor);
         } else {
-            raiz->dir = insere(raiz->dir, valor);
+            insere( &((*raiz)->dir), valor);
         }
-        return raiz;                   
     }
 }
 
@@ -56,9 +53,9 @@ int main(){
     No *raiz = NULL;
 
     // Testando as funções de inserir
-    raiz = insere(raiz, 5);
-    raiz = insere(raiz, 2);
-    raiz = insere(raiz, 8);
+    insere(&raiz, 5);
+    insere(&raiz, 2);
+    insere(&raiz, 8);
 
     printf("\nPre Ordem:\n");
     preOrdem(raiz);
