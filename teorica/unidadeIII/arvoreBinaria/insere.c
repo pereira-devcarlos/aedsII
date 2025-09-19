@@ -24,6 +24,33 @@ No* insere (No *raiz, int valor) {
     }
 }
 
+void preOrdem (No *raiz) {
+    if (raiz == NULL){
+        return;
+    }
+    printf("%d\n", raiz->valor);
+    preOrdem(raiz->esq);
+    preOrdem(raiz->dir);
+}
+
+void emOrdem (No *raiz) {
+    if (raiz == NULL){
+        return;
+    }
+    emOrdem(raiz->esq);
+    printf("%d\n", raiz->valor);
+    emOrdem(raiz->dir);
+}
+
+void posOrdem (No *raiz) {
+    if (raiz == NULL){
+        return;
+    }
+    posOrdem(raiz->esq);
+    posOrdem(raiz->dir);
+    printf("%d\n", raiz->valor);
+}
+
 int main(){
     No *raiz = NULL;
 
@@ -32,6 +59,14 @@ int main(){
     raiz = insere(raiz, 2);
     raiz = insere(raiz, 8);
 
+    printf("\nPre Ordem:\n");
+    preOrdem(raiz);
+
+    printf("\nEm Ordem:\n");
+    emOrdem(raiz);
+
+    printf("\nPos Ordem:\n");
+    posOrdem(raiz);
 
     return 0;
 }
