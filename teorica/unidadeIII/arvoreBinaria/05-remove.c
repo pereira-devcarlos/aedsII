@@ -54,7 +54,43 @@ No* buscaPai (No* raiz, int x) {
         }        
         return raiz;
     }
-} 
+}
+
+// Função para Remover a raiz de uma arvore
+No* removeRaiz(No* raiz){
+    No* aux = raiz;
+    // Verificando se existe nó a esquerda
+    if (raiz->esq == NULL){
+        aux = raiz->dir;
+        free(raiz);
+        return aux;
+    }
+    // Verificando se existe nó a direita
+    if (raiz->dir == NULL){
+        aux = raiz->esq;
+        free(raiz);
+        return aux;
+    }
+
+    No* p = raiz;
+    No* f = raiz->esq;
+    // Buscando o maior nó a esqueda da raiz removida 
+    while (f->dir != NULL){
+        p = f;
+        f = f->dir;
+    }
+    
+    // Substituindo a raiz pelo nó novo
+    raiz->valor = f->valor;
+
+    // Removendo o nó folha que virou raiz
+    if (p->dir == f){
+        p->dir = removeRaiz(f);
+    } else {
+        p->esq = removeRaiz(f);
+    }
+    return raiz;
+}
 
 // Funções de impressões: pré ordem, em ordem e pós ordem 
 void preOrdem (No *raiz) {
