@@ -92,6 +92,24 @@ No* removeRaiz(No* raiz){
     return raiz;
 }
 
+// Função para remover um nó qualquer
+No* removeNo(No* raiz, int x){
+    No* n = busca(raiz, x);
+    if (n){
+        No* pai = buscaPai(raiz, x);
+        if (pai){
+            if (pai->dir == n){
+                pai->dir = removeRaiz(n);
+            } else {
+                pai->esq = removeRaiz(n);
+            }
+        } else {
+            raiz = removeRaiz(raiz);
+        }
+    }
+    return raiz;
+}
+
 // Funções de impressões: pré ordem, em ordem e pós ordem 
 void preOrdem (No *raiz) {
     if (raiz == NULL){
@@ -131,9 +149,17 @@ int main(){
     raiz = insere(raiz, 4);
     raiz = insere(raiz, 6);
 
+    printf("\nPre Ordem:\n");
+    preOrdem(raiz);
+
     // Testando função de remover raiz
     raiz = removeRaiz(raiz);
-    printf("\nPre Ordem:\n");
+    printf("\nPre Ordem apos remover a raiz:\n");
+    preOrdem(raiz);
+
+    // Testando função de remover nó
+    raiz = removeNo(raiz, 8);
+    printf("\nPre Ordem apos remover o 8:\n");
     preOrdem(raiz);
 
     return 0;
