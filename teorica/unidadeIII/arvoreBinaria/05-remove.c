@@ -58,18 +58,18 @@ No* buscaPai (No* raiz, int x) {
 
 // Função para Remover a raiz de uma arvore
 No* removeRaiz(No* raiz){
-    No* aux = raiz;
+    No* tmp = raiz;
     // Verificando se existe nó a esquerda
     if (raiz->esq == NULL){
-        aux = raiz->dir;
+        tmp = raiz->dir;
         free(raiz);
-        return aux;
+        return tmp;
     }
     // Verificando se existe nó a direita
     if (raiz->dir == NULL){
-        aux = raiz->esq;
+        tmp = raiz->esq;
         free(raiz);
-        return aux;
+        return tmp;
     }
 
     No* p = raiz;
@@ -94,16 +94,23 @@ No* removeRaiz(No* raiz){
 
 // Função para remover um nó qualquer
 No* removeNo(No* raiz, int x){
+    // verifica se o nó existe na arvore
     No* n = busca(raiz, x);
     if (n){
+        // Verifica se o nó possui pai
         No* pai = buscaPai(raiz, x);
         if (pai){
             if (pai->dir == n){
+                // Nó a ser removido é filho a direita
                 pai->dir = removeRaiz(n);
-            } else {
+            }
+            else {
+                // Nó a ser removido é filho a esquerda
                 pai->esq = removeRaiz(n);
             }
-        } else {
+        }
+        else {
+            // Caso não possui um pai, o próprio nó é a raiz 
             raiz = removeRaiz(raiz);
         }
     }
