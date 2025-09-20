@@ -131,5 +131,10 @@ int main(){
     raiz = insere(raiz, 4);
     raiz = insere(raiz, 6);
 
+    // Testando função de remover raiz
+    raiz = removeRaiz(raiz);
+    printf("\nPre Ordem:\n");
+    preOrdem(raiz);
+
     return 0;
 }
