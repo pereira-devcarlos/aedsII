@@ -39,6 +39,7 @@ No* busca (No* raiz, int x){
     }
 }
 
+// Funções de impressões: pré ordem, em ordem e pós ordem 
 void preOrdem (No *raiz) {
     if (raiz == NULL){
         return;
@@ -83,7 +84,7 @@ int main(){
     }
     
     teste = busca(raiz, 3);
-    if (teste != NULL){
+    if (teste){
         printf("\nNo com o valor 3 encontrado!");
     } else {
         printf("\nNo com o valor 3 nao foi encontrado!");
