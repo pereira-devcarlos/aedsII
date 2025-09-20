@@ -60,14 +60,5 @@ int main(){
     raiz = insere(raiz, 2);
     raiz = insere(raiz, 8);
 
-    printf("\nPre Ordem:\n");
-    preOrdem(raiz);
-
-    printf("\nEm Ordem:\n");
-    emOrdem(raiz);
-
-    printf("\nPos Ordem:\n");
-    posOrdem(raiz);
-
     return 0;
 }
