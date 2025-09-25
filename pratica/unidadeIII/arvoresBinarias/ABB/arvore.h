@@ -9,5 +9,7 @@ struct node {
 struct node* novo_no(int item);
 struct node* inserir(struct node* node, int valor);
 struct node* buscar(struct node* root, int valor);
+struct node* remover(struct node* root, int valor);
+void imprimir_em_ordem(struct node* root);
 
 #endif // _H_ARVORE
