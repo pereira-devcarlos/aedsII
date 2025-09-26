@@ -48,8 +48,8 @@ struct node* buscar(struct node* root, int valor) {
 // Remover um determinado nó da árvore
 struct node* remover(struct node* root, int valor) {
     if (buscar(root, valor) == NULL) {
-        printf("%d nao encontrado\n", valor);
-        return root;
+        printf("Erro: no com valor %d nao foi encontrado!\n", valor);
+        return NULL;
     }
 
     // Nó temporário para armazenar o nó a ser removido
@@ -147,15 +147,21 @@ int main() {
     // Testando a função de remoção
     printf("\nArvore em ordem apos remover 20\n");
     root = remover(root, 20);
-    imprimir_em_ordem(root);
+    if (root) {
+        imprimir_em_ordem(root);
+    }
 
     printf("\nArvore em ordem apos remover 70\n");
     root = remover(root, 70);
-    imprimir_em_ordem(root);
+    if (root) {
+        imprimir_em_ordem(root);
+    }
 
     printf("\nArvore em ordem apos remover 6\n");
     root = remover(root, 6);
-    imprimir_em_ordem(root);
+    if (root) {
+        imprimir_em_ordem(root);
+    }
 
     return 0;
 }
