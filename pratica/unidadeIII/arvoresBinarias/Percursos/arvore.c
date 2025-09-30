@@ -99,7 +99,7 @@ struct node* remover(struct node* root, int valor) {
 // Imprimir a árvore em ordem
 void imprimir_pre_ordem(struct node* root) {
     if (root != NULL) {
-        printf("%d \n", root->valor);
+        printf("\n%d ", root->valor);
         imprimir_pre_ordem(root->esquerda);
         imprimir_pre_ordem(root->direita);
     }
@@ -109,7 +109,7 @@ void imprimir_pre_ordem(struct node* root) {
 void imprimir_em_ordem(struct node* root) {
     if (root != NULL) {
         imprimir_em_ordem(root->esquerda);
-        printf("%d \n", root->valor);
+        printf("\n%d", root->valor);
         imprimir_em_ordem(root->direita);
     }
 }
@@ -119,7 +119,21 @@ void imprimir_pos_ordem(struct node* root) {
     if (root != NULL) {
         imprimir_pos_ordem(root->esquerda);
         imprimir_pos_ordem(root->direita);
-        printf("%d \n", root->valor);
+        printf("\n%d ", root->valor);
+    }
+}
+
+void imprimir_em_niveis(struct node* root){
+    if(root != NULL){
+        if(root->esquerda){
+            printf("\n%d", root->esquerda->valor);
+        }
+        if(root->direita){
+            printf("\n%d", root->direita->valor);
+        }
+
+        imprimir_em_niveis(root->esquerda);
+        imprimir_em_niveis(root->direita);
     }
 }
 
@@ -132,12 +146,16 @@ int main() {
     root = inserir(root, 50);
 
     // Insere outros nós
-    inserir(root, 40);
-    inserir(root, 30);
-    inserir(root, 20);
-    inserir(root, 70);
-    inserir(root, 60);
-    inserir(root, 80);
+    inserir(root, 8);
+    inserir(root, 3);
+    inserir(root, 10);
+    inserir(root, 1);
+    inserir(root, 6);
+    inserir(root, 14);
+    inserir(root, 4);
+    inserir(root, 7);
+    inserir(root, 13);
+
  
     // Testando as funções de percursos
     
@@ -153,5 +171,9 @@ int main() {
     printf("\nImpressão em pós ordem: ");
     imprimir_pos_ordem(root);
     
+    // Imprimir a árvore em niveis
+    printf("\nImpressão em niveis: ");
+    imprimir_em_niveis(root);
+
     return 0;
 }

@@ -13,5 +13,6 @@ struct node* remover(struct node* root, int valor);
 void imprimir_pre_ordem(struct node* root);
 void imprimir_em_ordem(struct node* root);
 void imprimir_pos_ordem(struct node* root);
+void imprimir_em_niveis(struct node* root);
 
 #endif // _H_ARVORE
