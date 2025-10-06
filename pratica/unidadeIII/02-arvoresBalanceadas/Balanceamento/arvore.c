@@ -120,13 +120,24 @@ struct node* inserirArvoreBalanceada(struct node *root, int vetor[], int inicio,
     
     int meio = (inicio + fim)/2;
     // Insere o valor na árvore
-    root->valor = vetor[meio];
+    root = inserir(root, vetor[meio]);
 
     // Chamada recursiva para inserir na esquerda
-    inserirArvoreBalanceada(root->esquerda, vetor, inicio, meio-1);
+    root->esquerda = inserirArvoreBalanceada(root->esquerda, vetor, inicio, meio-1);
 
-    // Chamada recursiva para inserir na esquerda
-    inserirArvoreBalanceada(root->direita, vetor, meio+1, fim);
+    // Chamada recursiva para inserir na direita
+    root->direita = inserirArvoreBalanceada(root->direita, vetor, meio+1, fim);
+
+    return root;
+}
+
+// Imprimir a árvore em ordem
+void imprimirPreOrdem(struct node* root) {
+    if (root != NULL) {
+        printf("%d ", root->valor);
+        imprimirPreOrdem(root->esquerda);
+        imprimirPreOrdem(root->direita);
+    }
 }
 
 int main() {
@@ -156,15 +167,20 @@ int main() {
 
     // Inserindo e exibindo o vetor em ordem
     inserirVetor(root, vetor, &posicao);
+    printf("Valores do vetor ordenado:");
     for (int i = 0; i < tamanho; i++){
-        printf("\nValor %d: %d", i+1, vetor[i]);
+        printf("\nPosicao %d: %d", i+1, vetor[i]);
     }
 
     // Define a árvore balanceada como uma estrutura vazia
     struct node* arvore = NULL;
     
     // Inserindo na árvore balanceada
-    arvore = inserirArvoreBalanceada(arvore, vetor, inicio, tamanho);
+    arvore = inserirArvoreBalanceada(arvore, vetor, inicio, tamanho-1);
+
+    // Exibindo o resultado da inserção na arvore balanceada
+    printf("\n\nImprimindo em pre ordem a arvore balanceada:\n");
+    imprimirPreOrdem(arvore);
 
     free(vetor);
     return 0;

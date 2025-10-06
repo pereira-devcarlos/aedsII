@@ -13,6 +13,6 @@ struct node* remover(struct node* root, int valor);
 void tamanhoArvore(struct node* root, int *tamanho);
 void inserirVetor(struct node* root, int *vetor, int *pos);
 struct node* inserirArvoreBalanceada(struct node *root, int vetor[], int inicio, int fim);
-
+void imprimir_pre_ordem(struct node* root);
 
 #endif // _H_ARVORE
