@@ -114,10 +114,26 @@ void inserirVetor(struct node* root, int *vetor, int *pos){
     }
 }
 
+// Inserção da árvore balanceada
+struct node* inserirArvoreBalanceada(struct node *root, int vetor[], int inicio, int fim){
+    if (inicio > fim) return NULL;
+    
+    int meio = (inicio + fim)/2;
+    // Insere o valor na árvore
+    root->valor = vetor[meio];
+
+    // Chamada recursiva para inserir na esquerda
+    inserirArvoreBalanceada(root->esquerda, vetor, inicio, meio-1);
+
+    // Chamada recursiva para inserir na esquerda
+    inserirArvoreBalanceada(root->direita, vetor, meio+1, fim);
+}
+
 int main() {
     int *vetor;
     int tamanho=0;
     int posicao=0;
+    int inicio=0;
 
     // Define a árvore como uma estrutura vazia
     struct node* root = NULL;

@@ -12,6 +12,7 @@ struct node* buscar(struct node* root, int valor);
 struct node* remover(struct node* root, int valor);
 void tamanhoArvore(struct node* root, int *tamanho);
 void inserirVetor(struct node* root, int *vetor, int *pos);
+struct node* inserirArvoreBalanceada(struct node *root, int vetor[], int inicio, int fim);
 
 
 #endif // _H_ARVORE
