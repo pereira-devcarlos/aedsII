@@ -96,23 +96,36 @@ struct node* remover(struct node* root, int valor) {
     return root;
 }
 
-// Imprimir a árvore em ordem
-void imprimir_em_ordem(struct node* root) {
+// Tamanho da árvore em ordem
+void tamanhoArvore(struct node* root, int *tamanho) {
     if (root != NULL) {
-        imprimir_em_ordem(root->esquerda);
-        printf("%d \n", root->valor);
-        imprimir_em_ordem(root->direita);
+        tamanhoArvore(root->esquerda, tamanho);
+        (*tamanho)++;
+        tamanhoArvore(root->direita, tamanho);
+    }
+}
+
+// Inserção em ordem no vetor
+void inserirVetor(struct node* root, int *vetor, int *pos){
+    if (root != NULL){
+        inserirVetor(root->esquerda, vetor, pos);
+        vetor[(*pos)++] = root->valor;
+        inserirVetor(root->direita, vetor, pos);
     }
 }
 
 int main() {
+    int *vetor;
+    int tamanho=0;
+    int posicao=0;
+
     // Define a árvore como uma estrutura vazia
     struct node* root = NULL;
 
     // Insere o nó inicial (raiz)
     root = inserir(root, 50);
 
-    // Insere outros nós
+    // Insere outros nós (Desbalanceando a árvore)
     inserir(root, 40);
     inserir(root, 30);
     inserir(root, 20);
@@ -120,42 +133,17 @@ int main() {
     inserir(root, 60);
     inserir(root, 80);
  
-    // Valor a ser buscado
-    int valor = 6;
- 
-    // Buscando na árvore
-    if (buscar(root, valor) == NULL) {
-        printf("%d nao encontrado\n", valor);
-    } else {
-        printf("%d encontrado\n", valor);
-    }
- 
-    // Novo valor a ser buscado
-    valor = 60;
- 
-    // Buscando na árvore
-    if (buscar(root, valor) == NULL) {
-        printf("%d nao encontrado\n", valor);
-    } else {
-        printf("%d encontrado\n", valor);
+    // Obtém o tamanho da árvore
+    tamanhoArvore(root, &tamanho);
+    // Cria um vetor dinâmico com o tamanho da arvore
+    vetor = (int*) malloc(tamanho * sizeof(int));
+
+    // Inserindo e exibindo o vetor em ordem
+    inserirVetor(root, vetor, &posicao);
+    for (int i = 0; i < tamanho; i++){
+        printf("\nValor %d: %d", i+1, vetor[i]);
     }
 
-    // Imprime a árvore em ordem
-    printf("\nArvore em ordem: \n");
-    imprimir_em_ordem(root);
-
-    // Testando a função de remoção
-    printf("\nArvore em ordem apos remover 20\n");
-    root = remover(root, 20);
-    imprimir_em_ordem(root);
-
-    printf("\nArvore em ordem apos remover 70\n");
-    root = remover(root, 70);
-    imprimir_em_ordem(root);
-
-    printf("\nArvore em ordem apos remover 6\n");
-    root = remover(root, 6);
-    imprimir_em_ordem(root);
-
+    free(vetor);
     return 0;
 }

@@ -10,6 +10,8 @@ struct node* novo_no(int item);
 struct node* inserir(struct node* node, int valor);
 struct node* buscar(struct node* root, int valor);
 struct node* remover(struct node* root, int valor);
-void imprimir_em_ordem(struct node* root);
+void tamanhoArvore(struct node* root, int *tamanho);
+void inserirVetor(struct node* root, int *vetor, int *pos);
+
 
 #endif // _H_ARVORE
