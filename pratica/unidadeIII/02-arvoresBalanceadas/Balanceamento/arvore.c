@@ -178,6 +178,10 @@ int main() {
     // Inserindo na árvore balanceada
     arvore = inserirArvoreBalanceada(arvore, vetor, inicio, tamanho-1);
 
+    // Imprimindo a arvore desbalanceada para comparar
+    printf("\n\nImprimindo em pre ordem a arvore desbalanceada:\n");
+    imprimirPreOrdem(root);
+
     // Exibindo o resultado da inserção na arvore balanceada
     printf("\n\nImprimindo em pre ordem a arvore balanceada:\n");
     imprimirPreOrdem(arvore);
