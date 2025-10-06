@@ -160,6 +160,12 @@ int main() {
         printf("\nValor %d: %d", i+1, vetor[i]);
     }
 
+    // Define a árvore balanceada como uma estrutura vazia
+    struct node* arvore = NULL;
+    
+    // Inserindo na árvore balanceada
+    arvore = inserirArvoreBalanceada(arvore, vetor, inicio, tamanho);
+
     free(vetor);
     return 0;
 }
