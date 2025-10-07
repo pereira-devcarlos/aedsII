@@ -14,6 +14,20 @@ No* criarNo(int valor){
     return novo;
 }
 
+No* rotacionaEsq(No* raiz){
+    No* nova = raiz->dir;
+    raiz->dir = nova->esq;
+    nova->esq = raiz;
+    return nova;
+}
+
+No* rotacionaDir(No* raiz){
+    No* nova = raiz->esq;
+    raiz->esq = nova->dir;
+    nova->dir = raiz;
+    return nova;
+}
+
 No* insertArvore(No* raiz, int valor){
     if (raiz == NULL){
         raiz = criarNo(valor);
