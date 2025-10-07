@@ -16,36 +16,6 @@ No* criarNo(int valor){
     return novo;
 }
 
-// Função de rotação para esquerda
-No* rotacionaEsq(No* raiz){
-    No* nova = raiz->dir;
-    raiz->dir = nova->esq;
-    nova->esq = raiz;
-    return nova;
-}
-
-// Função de rotação para direita
-No* rotacionaDir(No* raiz){
-    No* nova = raiz->esq;
-    raiz->esq = nova->dir;
-    nova->dir = raiz;
-    return nova;
-}
-
-// Função de rotação dupla para esquerda e direita
-No* cotoveloEsq(No* raiz){
-    raiz->esq = rotacionaEsq(raiz->esq);
-    raiz = rotacionaDir(raiz);
-    return raiz;
-}
-
-// Função de rotação dupla para direita e esquerda
-No* cotoveloDir(No* raiz){
-    raiz->dir = rotacionaDir(raiz->dir);
-    raiz = rotacionaEsq(raiz);
-    return raiz;
-}
-
 // Função para inserir um valor na árvore binária de busca
 No* insertArvore(No* raiz, int valor){
     if (raiz == NULL){
