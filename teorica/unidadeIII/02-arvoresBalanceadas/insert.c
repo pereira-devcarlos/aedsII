@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Definição da estrutura do nó da árvore
 typedef struct no {
     int valor;
     struct no *dir, *esq;
 } No;
 
+// Função para criar um novo nó
 No* criarNo(int valor){
     No* novo = (No*) malloc(sizeof(No));
     novo->valor = valor;
@@ -14,6 +16,7 @@ No* criarNo(int valor){
     return novo;
 }
 
+// Função de rotação para esquerda
 No* rotacionaEsq(No* raiz){
     No* nova = raiz->dir;
     raiz->dir = nova->esq;
@@ -21,6 +24,7 @@ No* rotacionaEsq(No* raiz){
     return nova;
 }
 
+// Função de rotação para direita
 No* rotacionaDir(No* raiz){
     No* nova = raiz->esq;
     raiz->esq = nova->dir;
@@ -28,6 +32,21 @@ No* rotacionaDir(No* raiz){
     return nova;
 }
 
+// Função de rotação dupla para esquerda e direita
+No* cotoveloEsq(No* raiz){
+    raiz->esq = rotacionaEsq(raiz->esq);
+    raiz = rotacionaDir(raiz);
+    return raiz;
+}
+
+// Função de rotação dupla para direita e esquerda
+No* cotoveloDir(No* raiz){
+    raiz->dir = rotacionaDir(raiz->dir);
+    raiz = rotacionaEsq(raiz);
+    return raiz;
+}
+
+// Função para inserir um valor na árvore binária de busca
 No* insertArvore(No* raiz, int valor){
     if (raiz == NULL){
         raiz = criarNo(valor);
