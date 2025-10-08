@@ -7,6 +7,16 @@ typedef struct no {
     struct no *dir, *esq;
 } No;
 
+// Função para criar um novo nó
+No* criarNo(int valor){
+    No* novo = (No*) malloc(sizeof(No));
+    novo->valor = valor;
+    novo->altura = 1;  // Altura inicial do nó é 1
+    novo->dir=NULL;
+    novo->esq=NULL;
+    return novo;
+}
+
 // Função para retornar a altura de uma árvore
 int altura(No* raiz){
     if (raiz == NULL) return 0;
@@ -18,16 +28,6 @@ int altura(No* raiz){
     } else {
         return dir + 1;
     }
-}
-
-// Função para criar um novo nó
-No* criarNo(int valor){
-    No* novo = (No*) malloc(sizeof(No));
-    novo->valor = valor;
-    novo->altura = 1;  // Altura inicial do nó é 1
-    novo->dir=NULL;
-    novo->esq=NULL;
-    return novo;
 }
 
 // Função de rotação para esquerda
@@ -116,7 +116,7 @@ int main(){
     printf("\nAltura da subarvore a esquerda: %d", alturaArvore);
 
     alturaArvore = altura(raiz->dir);
-    printf("\nAltura da subarvore a esquerda: %d", alturaArvore);
+    printf("\nAltura da subarvore a direita: %d", alturaArvore);
 
     return 0;
 }
