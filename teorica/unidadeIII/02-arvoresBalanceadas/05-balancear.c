@@ -79,15 +79,32 @@ No* rotacionaDirEsq(No* raiz){
     return raiz;
 }
 
+// Função para balancear a árvore
 No* balancear(No* raiz){
+    // Armazena o fator de balanceamento
+    int fator = fatorBalanceamento(raiz);
 
+    // Verifica e aplica as rotações necessárias
+    if (fator < -1 && fatorBalanceamento(raiz->dir) <= 0){
+        raiz = rotacionaEsq(raiz);
+    } else if (fator > 1 && fatorBalanceamento(raiz->esq) >= 0){
+        raiz = rotacionaDir(raiz);
+    } else if (fator > 1 && fatorBalanceamento(raiz->dir) < 0){
+        raiz = rotacionaEsqDir(raiz);
+    } else if (fator < -1 && fatorBalanceamento(raiz->esq) > 0){
+        raiz = rotacionaDirEsq(raiz);
+    }
+    // Retorna a raiz possivelmente modificada
+    return raiz;
 }
 
 // Função para inserir um valor na árvore binária de busca
 No* insertArvore(No* raiz, int valor){
+    // Se a árvore estiver vazia, cria um novo nó
     if (raiz == NULL){
         raiz = criarNo(valor);
     } else {
+        // Caso contrário, insere recursivamente na esquerda ou direita
         if (valor < raiz->valor){
             raiz->esq = insertArvore(raiz->esq, valor);
         } else {
