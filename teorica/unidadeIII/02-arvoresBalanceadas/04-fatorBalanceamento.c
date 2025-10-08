@@ -30,6 +30,15 @@ int altura(No* raiz){
     }
 }
 
+// Função para retornar o valor do FB
+int fatorBalanceamento(No* raiz){
+    if(raiz != NULL){
+        return altura(raiz->esq) - altura(raiz->dir);
+    }
+    // Se não possuir a raiz
+    return 0;
+}
+
 // Função de rotação para esquerda
 No* rotacionaEsq(No* raiz){
     No* nova = raiz->dir;
@@ -112,11 +121,8 @@ int main(){
     int alturaArvore = altura(raiz);
     printf("\nAltura dessa arvore: %d", alturaArvore);
 
-    alturaArvore = altura(raiz->esq);
-    printf("\nAltura da subarvore a esquerda: %d", alturaArvore);
-
-    alturaArvore = altura(raiz->dir);
-    printf("\nAltura da subarvore a direita: %d", alturaArvore);
+    int fator = fatorBalanceamento(raiz);
+    printf("\nFator de balanceamento: %d", fator);
 
     return 0;
 }
