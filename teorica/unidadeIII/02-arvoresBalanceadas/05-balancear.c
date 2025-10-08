@@ -79,6 +79,10 @@ No* rotacionaDirEsq(No* raiz){
     return raiz;
 }
 
+No* balancear(No* raiz){
+
+}
+
 // Função para inserir um valor na árvore binária de busca
 No* insertArvore(No* raiz, int valor){
     if (raiz == NULL){
@@ -90,7 +94,13 @@ No* insertArvore(No* raiz, int valor){
             raiz->dir = insertArvore(raiz->dir, valor);
         }
     }
+
+    // Sempre atualizar a altura após a inserção
+    raiz->altura = altura(raiz);
     
+    // Verifica e se caso necessário, irá balancear a árvore
+    raiz = balancear(raiz);
+
     return raiz;
 }
 
@@ -128,8 +138,7 @@ int main(){
     printf("Exibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
 
-    int alturaArvore = altura(raiz);
-    printf("\nAltura dessa arvore: %d", alturaArvore);
+    printf("\n\nAltura dessa arvore: %d", raiz->altura);
 
     int fator = fatorBalanceamento(raiz);
     printf("\nFator de balanceamento: %d", fator);
