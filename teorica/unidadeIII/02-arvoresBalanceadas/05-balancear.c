@@ -17,16 +17,22 @@ No* criarNo(int valor){
     return novo;
 }
 
-// Função para retornar a altura de uma árvore
+// Função para retornar a altura de um nó
 int altura(No* raiz){
     if (raiz == NULL) return 0;
-    
-    int esq = altura(raiz->esq);
-    int dir = altura(raiz->dir);
-    if (esq > dir){
-        return esq + 1;
-    } else {
-        return dir + 1;
+    return raiz->altura;
+}
+
+// Função para atualizar a altura de um nó
+void atualizarAltura(No* raiz) {
+    if (raiz) {
+        int esq = altura(raiz->esq);
+        int dir = altura(raiz->dir);
+        if (esq > dir){
+            raiz->altura = esq + 1;
+        } else {
+            raiz->altura = dir + 1;
+        }
     }
 }
 
@@ -46,8 +52,8 @@ No* rotacionaEsq(No* raiz){
     nova->esq = raiz;
 
     // Atualiza as alturas dos nós
-    raiz->altura = altura(raiz);
-    nova->altura = altura(nova);
+    atualizarAltura(raiz);
+    atualizarAltura(nova);
 
     return nova;
 }
@@ -59,8 +65,8 @@ No* rotacionaDir(No* raiz){
     nova->dir = raiz;
 
     // Atualiza as alturas dos nós
-    raiz->altura = altura(raiz);
-    nova->altura = altura(nova);
+    atualizarAltura(raiz);
+    atualizarAltura(nova);
     
     return nova;
 }
@@ -113,7 +119,7 @@ No* insertArvore(No* raiz, int valor){
     }
 
     // Sempre atualizar a altura após a inserção
-    raiz->altura = altura(raiz);
+    atualizarAltura(raiz);
     
     // Verifica e se caso necessário, irá balancear a árvore
     raiz = balancear(raiz);
