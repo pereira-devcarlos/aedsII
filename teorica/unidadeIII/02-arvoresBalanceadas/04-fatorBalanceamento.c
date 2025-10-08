@@ -44,6 +44,11 @@ No* rotacionaEsq(No* raiz){
     No* nova = raiz->dir;
     raiz->dir = nova->esq;
     nova->esq = raiz;
+
+    // Atualiza as alturas dos nós
+    raiz->altura = altura(raiz);
+    nova->altura = altura(nova);
+
     return nova;
 }
 
@@ -52,6 +57,11 @@ No* rotacionaDir(No* raiz){
     No* nova = raiz->esq;
     raiz->esq = nova->dir;
     nova->dir = raiz;
+
+    // Atualiza as alturas dos nós
+    raiz->altura = altura(raiz);
+    nova->altura = altura(nova);
+    
     return nova;
 }
 
