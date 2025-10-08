@@ -3,14 +3,28 @@
 
 // Definição da estrutura do nó da árvore
 typedef struct no {
-    int valor;
+    int valor, altura;
     struct no *dir, *esq;
 } No;
+
+// Função para retornar a altura de uma árvore
+int altura(No* raiz){
+    if (raiz == NULL) return 0;
+    
+    int esq = altura(raiz->esq);
+    int dir = altura(raiz->dir);
+    if (esq > dir){
+        return esq + 1;
+    } else {
+        return dir + 1;
+    }
+}
 
 // Função para criar um novo nó
 No* criarNo(int valor){
     No* novo = (No*) malloc(sizeof(No));
     novo->valor = valor;
+    novo->altura = 1;  // Altura inicial do nó é 1
     novo->dir=NULL;
     novo->esq=NULL;
     return novo;
@@ -33,14 +47,14 @@ No* rotacionaDir(No* raiz){
 }
 
 // Função de rotação dupla para esquerda e direita
-No* cotoveloEsq(No* raiz){
+No* rotacionaEsqDir(No* raiz){
     raiz->esq = rotacionaEsq(raiz->esq);
     raiz = rotacionaDir(raiz);
     return raiz;
 }
 
 // Função de rotação dupla para direita e esquerda
-No* cotoveloDir(No* raiz){
+No* rotacionaDirEsq(No* raiz){
     raiz->dir = rotacionaDir(raiz->dir);
     raiz = rotacionaEsq(raiz);
     return raiz;
@@ -95,11 +109,14 @@ int main(){
     printf("Exibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
 
-    printf("\n\nExibindo a arvore em ordem:\n");
-    exibirEmOrdem(raiz);
+    int alturaArvore = altura(raiz);
+    printf("\nAltura dessa arvore: %d", alturaArvore);
 
-    printf("\n\nExibindo a arvore em pos ordem:\n");
-    exibirPosOrdem(raiz);
+    alturaArvore = altura(raiz->esq);
+    printf("\nAltura da subarvore a esquerda: %d", alturaArvore);
+
+    alturaArvore = altura(raiz->dir);
+    printf("\nAltura da subarvore a esquerda: %d", alturaArvore);
 
     return 0;
 }
