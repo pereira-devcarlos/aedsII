@@ -89,9 +89,9 @@ No* balancear(No* raiz){
         raiz = rotacionaEsq(raiz);
     } else if (fator > 1 && fatorBalanceamento(raiz->esq) >= 0){
         raiz = rotacionaDir(raiz);
-    } else if (fator > 1 && fatorBalanceamento(raiz->dir) < 0){
+    } else if (fator > 1 && fatorBalanceamento(raiz->esq) < 0){
         raiz = rotacionaEsqDir(raiz);
-    } else if (fator < -1 && fatorBalanceamento(raiz->esq) > 0){
+    } else if (fator < -1 && fatorBalanceamento(raiz->dir) > 0){
         raiz = rotacionaDirEsq(raiz);
     }
     // Retorna a raiz possivelmente modificada
@@ -145,20 +145,15 @@ int main(){
     No* raiz=NULL;
     
     raiz = insertArvore(raiz, 20);
-    insertArvore(raiz, 10);
-    insertArvore(raiz, 5);
-    insertArvore(raiz, 30);
-    insertArvore(raiz, 50);
-    insertArvore(raiz, 25);
-    insertArvore(raiz, 70);
+    raiz = insertArvore(raiz, 10);
+    raiz = insertArvore(raiz, 5);
+    raiz = insertArvore(raiz, 30);
+    raiz = insertArvore(raiz, 50);
+    raiz = insertArvore(raiz, 25);
+    raiz = insertArvore(raiz, 70);
     
     printf("Exibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
-
-    printf("\n\nAltura dessa arvore: %d", raiz->altura);
-
-    int fator = fatorBalanceamento(raiz);
-    printf("\nFator de balanceamento: %d", fator);
 
     return 0;
 }
