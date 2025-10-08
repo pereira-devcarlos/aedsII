@@ -33,20 +33,21 @@ No* rotacionaDir(No* raiz){
 }
 
 // Função de rotação dupla para esquerda e direita
-No* cotoveloEsq(No* raiz){
+No* rotacionaEsqDir(No* raiz){
     raiz->esq = rotacionaEsq(raiz->esq);
     raiz = rotacionaDir(raiz);
     return raiz;
 }
 
 // Função de rotação dupla para direita e esquerda
-No* cotoveloDir(No* raiz){
+No* rotacionaDirEsq(No* raiz){
     raiz->dir = rotacionaDir(raiz->dir);
     raiz = rotacionaEsq(raiz);
     return raiz;
 }
 
 // Função para inserir um valor na árvore binária de busca
+// (Ainda não insere de forma balanceada)
 No* insertArvore(No* raiz, int valor){
     if (raiz == NULL){
         raiz = criarNo(valor);

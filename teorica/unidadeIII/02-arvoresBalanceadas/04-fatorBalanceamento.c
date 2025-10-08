@@ -80,6 +80,7 @@ No* rotacionaDirEsq(No* raiz){
 }
 
 // Função para inserir um valor na árvore binária de busca
+// (Ainda não insere de forma balanceada)
 No* insertArvore(No* raiz, int valor){
     if (raiz == NULL){
         raiz = criarNo(valor);

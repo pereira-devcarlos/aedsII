@@ -17,6 +17,7 @@ No* criarNo(int valor){
 }
 
 // Função para inserir um valor na árvore binária de busca
+// (Ainda não insere de forma balanceada)
 No* insertArvore(No* raiz, int valor){
     if (raiz == NULL){
         raiz = criarNo(valor);
@@ -31,20 +32,19 @@ No* insertArvore(No* raiz, int valor){
     return raiz;
 }
 
+// Funções de exibição da árvore
 void exibirEmOrdem(No* raiz){
     if (raiz == NULL) return;
     exibirEmOrdem(raiz->esq);
     printf("%d ", raiz->valor);
     exibirEmOrdem(raiz->dir);
 }
-
 void exibirPreOrdem(No* raiz){
     if (raiz == NULL) return;
     printf("%d ", raiz->valor);
     exibirPreOrdem(raiz->esq);
     exibirPreOrdem(raiz->dir);
 }
-
 void exibirPosOrdem(No* raiz){
     if (raiz == NULL) return;
     exibirPosOrdem(raiz->esq);
