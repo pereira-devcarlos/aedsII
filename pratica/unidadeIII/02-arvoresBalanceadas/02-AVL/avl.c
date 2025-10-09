@@ -48,10 +48,15 @@ struct Node *direitaRotate(struct Node *y) {
 // Faz a rotação a esquerda na raiz x
 struct Node *esquerdaRotate(struct Node *x) { 
     struct Node *y = x->direita; 
+    struct Node *T2 = y->esquerda; 
     
-    //////////////////////////////////////////////////////////////
-    ////////////////////// IMPLEMENTAR AQUI //////////////////////
-    //////////////////////////////////////////////////////////////
+    // Realiza a rotação
+    y->esquerda = x;
+    x->direita = T2;
+
+    // Atualiza as alturas
+    y->altura = max(altura(y->esquerda), altura(y->direita)) + 1;
+    x->altura = max(altura(x->esquerda), altura(x->direita)) + 1;
   
     // Retorna a nova raiz
     return y; 
@@ -155,31 +160,44 @@ void inOrder(struct Node *raiz) {
         inOrder(raiz->direita); 
     } 
 } 
+
+// Imprime os nós em pré ordem
+void preOrder(struct Node *raiz){
+    if (raiz != NULL){
+        printf("%d ", raiz->valor);
+        preOrder(raiz->esquerda);
+        preOrder(raiz->direita);
+    }
+}
   
 /* Driver program to test above function*/
 int main() { 
-  struct Node *raiz = NULL; 
+    struct Node *raiz = NULL; 
   
-  /* Constructing tree given in the above figure */
-  raiz = inserir(raiz, 10); 
-  raiz = inserir(raiz, 20); 
-  raiz = inserir(raiz, 30); 
-  raiz = inserir(raiz, 40); 
-  raiz = inserir(raiz, 50); 
-  raiz = inserir(raiz, 25); 
-  
-  /* A árvore AVL construída será
-            30 
-           /  \ 
-         20   40 
-        /  \    \ 
-       10  25    50 
-  
-  A saida correta em pre-ordem é 30 20 10 25 40 50 */
-  
-  printf("Os elementos da árvore, em ordem, são \n"); 
-  inOrder(raiz); 
-  printf("\n");
+    /* Constructing tree given in the above figure */
+    raiz = inserir(raiz, 10); 
+    raiz = inserir(raiz, 20); 
+    raiz = inserir(raiz, 30); 
+    raiz = inserir(raiz, 40); 
+    raiz = inserir(raiz, 50); 
+    raiz = inserir(raiz, 25); 
+    
+    /* A árvore AVL construída será
+              30 
+             /  \ 
+            20   40 
+           /  \    \ 
+         10  25    50 
+    
+    A saida correta em pre-ordem é 30 20 10 25 40 50 */
+    
+    printf("Os elementos da arvore, em ordem, sao:\n"); 
+    inOrder(raiz); 
+    printf("\n");
 
-  return 0; 
+    printf("\nOs elementos da arvore, em pre ordem, sao:\n"); 
+    preOrder(raiz); 
+    printf("\n");
+
+    return 0; 
 } 
