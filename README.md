@@ -13,7 +13,6 @@
 ---
 
 ## 🎯 Objetivo Integrado
-Capacitar o estudante a **compreender e implementar** estruturas de dados, desenvolvendo:
 - Conhecimento sobre representação, manipulação e complexidade de algoritmos.
 - Habilidade para aplicar listas, pilhas, filas, árvores, tabelas de dispersão e algoritmos de ordenação.
 - Capacidade de escolher a estrutura mais adequada para cada problema.
@@ -75,35 +74,11 @@ Capacitar o estudante a **compreender e implementar** estruturas de dados, desen
 
 ## 📊 Avaliação
 
-### **Teoria**
-| Avaliação | Peso | Data |
-|-----------|------| ---- |
-| Avaliação 1 | 3.0 | Combinar |
-| Avaliação 2 | 4.0 | Combinar |
-| Avaliação 3 | 3.0 | Combinar |
-
-### **Prática**
-| Trabalho/Exercício | Peso | Data |
-|--------------------|------| ---- |
-| Trabalho Prático 1 | 0.3 | 23/09 |
-| Trabalho Prático 2 | 0.3 | 22/10 |
-| Trabalho Prático 3 | 0.3 | 19/11 |
-| Exercícios Práticos | 0.1 |  |
-
----
-
-## 📚 Bibliografia Básica
-- **Szwarcfiter, J. L.; Markenzon, L.** *Estruturas de Dados e Seus Algoritmos* (3ª ed.). LTC, 2010.  
-- **Tenenbaum, A. M.; Langsam, Y.; Augenstein, M. J.** *Estruturas de Dados Usando C* (1ª ed.). Pearson, 1995.  
-- **Celes, W.; Cerqueira, R.; Rangel, J.** *Introdução a Estruturas de Dados* (2ª ed.). Elsevier, 2017.
-
----
-
-## 🚀 Pontos Fortes da Disciplina
-- **Integração teoria-prática**: você aprende e já aplica.
-- Base sólida para programação avançada, banco de dados, IA e desenvolvimento de sistemas.
-- Implementação real de estruturas fundamentais para otimização e eficiência.
-- Conteúdo valorizado em entrevistas e provas técnicas.
+| Teoria      | Peso | Data      |   | Prática                                                                                 | Peso | Data   |
+|-------------|------|-----------|---|-----------------------------------------------------------------------------------------|------|--------|
+| Avaliação 1 | 3.0  | Combinar  |   | [Trabalho Prático 1](https://github.com/pereira-devcarlos/palindromo)                   | 0.3  | 23/09  |
+| Avaliação 2 | 4.0  | Combinar  |   | Trabalho Prático 2                                                                      | 0.3  | 05/11  |
+| Avaliação 3 | 3.0  | Combinar  |   | Trabalho Prático 3                                                                      | 0.3  | 25/11  |
 
 ---
 <div align="center">
