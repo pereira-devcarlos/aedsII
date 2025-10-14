@@ -189,22 +189,15 @@ No* removeRaiz(No* raiz){
 }
 
 // Função para remover um nó qualquer da árvore
-No* removerNo(No* raiz, int valor){
-    No* busca = buscaNo(raiz, valor);
-    if (busca){
-        No* pai = buscaPai(raiz, valor);
-        if (pai){
-            if (pai->esq->valor == valor){
-                pai->esq = removeRaiz(busca);
-            } else {
-                pai->dir = removeRaiz(busca);
-            }
-        } else {
-            // Se não existir um pai o nó é a própria raiz
-            return removeRaiz(busca);
-        }
+No* removeNo(No* raiz, int valor){
+    if (raiz == NULL) return NULL;
+    
+    if (valor < raiz->valor){
+        raiz->esq = removeNo(raiz->esq, valor);
+    } else if (valor > raiz->valor){
+        raiz->dir = removeNo(raiz->dir, valor);
     } else {
-        return raiz;
+        return removeRaiz(raiz);
     }
 }
 
@@ -243,7 +236,7 @@ int main(){
     printf("Exibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
 
-    removerNo(raiz, 25);
+    removeNo(raiz, 25);
     printf("\nExibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
     
