@@ -241,5 +241,9 @@ int main(){
     printf("Exibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
 
+    removerNo(raiz, 25);
+    printf("\nExibindo a arvore em pre ordem:\n");
+    exibirPreOrdem(raiz);
+    
     return 0;
 }
