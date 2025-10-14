@@ -184,8 +184,9 @@ No* removeRaiz(No* raiz){
     } 
         
     q->dir = raiz->dir;
+    raiz = q;
     
-    return q;
+    return raiz;
 }
 
 // Função para remover um nó qualquer da árvore
@@ -197,7 +198,7 @@ No* removeNo(No* raiz, int valor){
     } else if (valor > raiz->valor){
         raiz->dir = removeNo(raiz->dir, valor);
     } else {
-        return removeRaiz(raiz);
+        raiz = removeRaiz(raiz);
     }
 
     atualizarAltura(raiz);
@@ -245,7 +246,7 @@ int main(){
         switch (opcao){
         case 1:{
             int numInsert;
-            printf("\n********* Insercao *********");
+            printf("\n************ Insercao ************");
             printf("\nDigite o valor a ser inserido na arvore: ");
             scanf("%d", &numInsert);
 
@@ -254,19 +255,19 @@ int main(){
         }
         case 2:{
             int numRemove;
-            printf("\n********* Remocao *********");
+            printf("\n************ Remocao ************");
             printf("\nDigite o valor a ser removido da arvore: ");
             scanf("%d", &numRemove);
 
             No* verNo = buscaNo(raiz, numRemove);
-            if (verNo) removeNo(raiz, numRemove);
+            if (verNo) raiz = removeNo(raiz, numRemove);
             else printf("\nErro: no inexistente com o valor %d", numRemove);
             
             break;
         }
         case 3:{
             int numBusca;
-            printf("\n********* Busca *********");
+            printf("\n************* Busca *************");
             printf("\nDigite o valor a ser buscado da arvore: ");
             scanf("%d", &numBusca);
             No* resultBusca = buscaNo(raiz, numBusca);
@@ -297,16 +298,14 @@ int main(){
 
             break;
         }
+        case 0:
+            printf("\nEncerrando programa...\n");
+            break;
         default:
             printf("\nErro: opcao invalida!");
             break;
         }
     }
-    
-
-    removeNo(raiz, 25);
-    printf("\nExibindo a arvore em pre ordem, apos remover o 25:\n");
-    exibirPreOrdem(raiz);
     
     return 0;
 }

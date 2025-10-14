@@ -184,8 +184,9 @@ No* removeRaiz(No* raiz){
     } 
         
     q->dir = raiz->dir;
+    raiz = q;
     
-    return q;
+    return raiz;
 }
 
 // Função para remover um nó qualquer da árvore
@@ -197,7 +198,7 @@ No* removeNo(No* raiz, int valor){
     } else if (valor > raiz->valor){
         raiz->dir = removeNo(raiz->dir, valor);
     } else {
-        return removeRaiz(raiz);
+        raiz = removeRaiz(raiz);
     }
 
     atualizarAltura(raiz);
@@ -228,19 +229,18 @@ void exibirPosOrdem(No* raiz){
 int main(){
     No* raiz=NULL;
     
+    raiz = insertArvore(raiz, 15);
     raiz = insertArvore(raiz, 20);
     raiz = insertArvore(raiz, 10);
     raiz = insertArvore(raiz, 5);
-    raiz = insertArvore(raiz, 30);
-    raiz = insertArvore(raiz, 15);
+    raiz = insertArvore(raiz, 7);
     raiz = insertArvore(raiz, 50);
-    raiz = insertArvore(raiz, 25);
-    raiz = insertArvore(raiz, 70);
+    raiz = insertArvore(raiz, 3);
     
     printf("Exibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
 
-    removeNo(raiz, 25);
+    raiz = removeNo(raiz, 15);
     printf("\nExibindo a arvore em pre ordem, apos remover o 25:\n");
     exibirPreOrdem(raiz);
     
