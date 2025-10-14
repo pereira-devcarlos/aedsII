@@ -17,6 +17,11 @@ No* criarNo(int valor){
     return novo;
 }
 
+int maior(int a, int b){
+    if (a > b) return a;
+    else return b;
+}
+
 // Função para retornar a altura de um nó
 int altura(No* raiz){
     if (raiz == NULL) return 0;
@@ -28,11 +33,8 @@ void atualizarAltura(No* raiz) {
     if (raiz) {
         int esq = altura(raiz->esq);
         int dir = altura(raiz->dir);
-        if (esq > dir){
-            raiz->altura = esq + 1;
-        } else {
-            raiz->altura = dir + 1;
-        }
+        
+        raiz->altura = maior(esq, dir) + 1;
     }
 }
 
