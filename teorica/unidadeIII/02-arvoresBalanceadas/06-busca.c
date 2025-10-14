@@ -129,14 +129,15 @@ No* insertArvore(No* raiz, int valor){
 
 // Função para buscar um nó da árvore
 No* buscaNo(No* raiz, int valor){
-    if (raiz == NULL) return raiz;
+    if (raiz == NULL || valor == raiz->valor){
+        return raiz;
+    } 
     
     if (valor < raiz->valor){
-        buscaNo(raiz->esq, valor);
+        return buscaNo(raiz->esq, valor);
     } else {
-        buscaNo(raiz->dir, valor);
+        return buscaNo(raiz->dir, valor);
     }
-    return raiz;
 }
 
 // Funções de exibição da árvore 
