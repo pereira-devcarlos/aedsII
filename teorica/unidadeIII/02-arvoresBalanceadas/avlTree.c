@@ -275,6 +275,22 @@ int main(){
             else printf("\nNo com o valor %d, nao foi encontrado!", numBusca);
             break;
         }
+        case 4:{
+            int numBuscaPai;
+            printf("\n********* Busca Pai *********");
+            printf("\nDigite o valor a ser buscado o pai do no: ");
+            scanf("%d", numBuscaPai);
+
+            No* verNo = buscaNo(raiz, numBuscaPai);
+            if (verNo){
+                No* resultBuscaPai = buscaPai(raiz, numBuscaPai);
+                printf("\nNo com valor %d, pai: %d", numBuscaPai, resultBuscaPai->valor);
+            } else {
+                printf("\nErro: no inexistente com o valor %d", numBuscaPai);
+            }
+
+            break;
+        }
         default:
             printf("\nErro: opcao invalida!");
             break;
