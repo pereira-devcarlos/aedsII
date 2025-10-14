@@ -225,17 +225,38 @@ void exibirPosOrdem(No* raiz){
     printf("%d ", raiz->valor);
 }
 
+void exibirMenu(){
+    printf("\n=============== Menu ===============");
+    printf("\n[1]- Inserir no na arvore");
+    printf("\n[2]- Remover no da arvore");
+    printf("\n[3]- Buscar um no da arvore");
+    printf("\n[4]- Buscar o pai de um no da arvore");
+    printf("\n[5]- Exibir arvore");
+    printf("\n[0]- Encerrar programa");
+    printf("\n=> Digite a opcao desejada: ");
+}
 int main(){
     No* raiz=NULL;
+    int opcao=-1;
     
-    raiz = insertArvore(raiz, 20);
-    raiz = insertArvore(raiz, 10);
-    raiz = insertArvore(raiz, 5);
-    raiz = insertArvore(raiz, 30);
-    raiz = insertArvore(raiz, 15);
-    raiz = insertArvore(raiz, 50);
-    raiz = insertArvore(raiz, 25);
-    raiz = insertArvore(raiz, 70);
+    while (opcao != 0){
+        exibirMenu();
+        scanf("%d", &opcao);
+        switch (opcao){
+        case 1:{
+            int numInsert;
+            printf("\n********* Insercao *********");
+            printf("\nDigite o valor a ser inserido na arvore: ");
+            scanf("%d", &numInsert);
+
+            raiz = insertArvore(raiz, numInsert);
+            break;
+        }
+        default:
+            printf("\nErro: opcao invalida!");
+            break;
+        }
+    }
     
     printf("Exibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
