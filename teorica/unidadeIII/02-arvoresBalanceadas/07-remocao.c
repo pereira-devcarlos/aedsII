@@ -127,6 +127,19 @@ No* insertArvore(No* raiz, int valor){
     return raiz;
 }
 
+// Função para buscar um nó da árvore
+No* buscaNo(No* raiz, int valor){
+    if (raiz == NULL || valor == raiz->valor){
+        return raiz;
+    } 
+    
+    if (valor < raiz->valor){
+        return buscaNo(raiz->esq, valor);
+    } else {
+        return buscaNo(raiz->dir, valor);
+    }
+}
+
 No* removeRaiz(No* raiz){
     if(raiz == NULL) return raiz;
 
