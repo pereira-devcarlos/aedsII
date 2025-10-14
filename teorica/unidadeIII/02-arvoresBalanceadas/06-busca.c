@@ -127,6 +127,18 @@ No* insertArvore(No* raiz, int valor){
     return raiz;
 }
 
+// Função para buscar um nó da árvore
+No* buscaNo(No* raiz, int valor){
+    if (raiz == NULL) return raiz;
+    
+    if (valor < raiz->valor){
+        buscaNo(raiz->esq, valor);
+    } else {
+        buscaNo(raiz->dir, valor);
+    }
+    return raiz;
+}
+
 // Funções de exibição da árvore 
 void exibirPreOrdem(No* raiz){
     if (raiz == NULL) return;
