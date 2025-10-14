@@ -140,6 +140,19 @@ No* buscaNo(No* raiz, int valor){
     }
 }
 
+// Função para buscar um pai de um nó
+No* buscaPai(No* raiz, int valor){
+    if (raiz->esq->valor == valor || raiz->dir->valor == valor){
+        return raiz;
+    }
+
+    if (valor < raiz->valor){
+        return buscaPai(raiz->esq, valor);
+    } else {
+        return buscaPai(raiz->dir, valor);
+    }
+}
+
 // Funções de exibição da árvore 
 void exibirPreOrdem(No* raiz){
     if (raiz == NULL) return;
@@ -173,6 +186,6 @@ int main(){
     
     printf("Exibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
-
+    
     return 0;
 }
