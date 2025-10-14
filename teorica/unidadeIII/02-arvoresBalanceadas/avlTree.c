@@ -231,7 +231,7 @@ void exibirMenu(){
     printf("\n[2]- Remover no da arvore");
     printf("\n[3]- Buscar um no da arvore");
     printf("\n[4]- Buscar o pai de um no da arvore");
-    printf("\n[5]- Exibir arvore");
+    printf("\n[5]- Exibir arvore em pre ordem");
     printf("\n[0]- Encerrar programa");
     printf("\n=> Digite a opcao desejada: ");
 }
@@ -288,6 +288,12 @@ int main(){
             } else {
                 printf("\nErro: no inexistente com o valor %d", numBuscaPai);
             }
+
+            break;
+        }
+        case 5:{
+            printf("\n********* Arvore Pre Ordem *********\n");
+            exibirPreOrdem(raiz);
 
             break;
         }
