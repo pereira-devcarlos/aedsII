@@ -264,14 +264,23 @@ int main(){
             
             break;
         }
+        case 3:{
+            int numBusca;
+            printf("\n********* Busca *********");
+            printf("\nDigite o valor a ser buscado da arvore: ");
+            scanf("%d", &numBusca);
+            No* resultBusca = buscaNo(raiz, numBusca);
+
+            if (resultBusca) printf("\nNo com o valor %d, foi encontrado!", numBusca);
+            else printf("\nNo com o valor %d, nao foi encontrado!", numBusca);
+            break;
+        }
         default:
             printf("\nErro: opcao invalida!");
             break;
         }
     }
     
-    printf("Exibindo a arvore em pre ordem:\n");
-    exibirPreOrdem(raiz);
 
     removeNo(raiz, 25);
     printf("\nExibindo a arvore em pre ordem, apos remover o 25:\n");
