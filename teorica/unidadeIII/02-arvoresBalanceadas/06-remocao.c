@@ -127,6 +127,38 @@ No* insertArvore(No* raiz, int valor){
     return raiz;
 }
 
+No* removeRaiz(No* raiz){
+    if(raiz == NULL) return raiz;
+
+    if (raiz->esq == NULL){
+        // Se não existir nó a esquerda
+        // Nó à direita assume a raiz;
+        if (raiz->dir != NULL){
+            raiz = raiz->dir;
+            return raiz;
+        } else {
+            // Só existe a raiz, retorna null
+            return NULL;
+        }
+    }
+    
+    No* q = raiz->esq;
+    No* p = q;
+    while (q->dir != NULL){
+        p = q;
+        q = q->dir;
+    }
+    
+    if (p != q){
+        p->dir = q->esq;
+        q->esq = p;
+    } 
+        
+    q->dir = raiz->dir;
+    
+    return q;
+}
+
 // Funções de exibição da árvore 
 void exibirPreOrdem(No* raiz){
     if (raiz == NULL) return;
@@ -154,12 +186,20 @@ int main(){
     raiz = insertArvore(raiz, 10);
     raiz = insertArvore(raiz, 5);
     raiz = insertArvore(raiz, 30);
+    raiz = insertArvore(raiz, 15);
     raiz = insertArvore(raiz, 50);
     raiz = insertArvore(raiz, 25);
     raiz = insertArvore(raiz, 70);
     
     printf("Exibindo a arvore em pre ordem:\n");
     exibirPreOrdem(raiz);
+
+    while (raiz != NULL){
+        raiz = removeRaiz(raiz);
+        printf("\nExibindo a arvore em pre ordem:\n");
+        exibirPreOrdem(raiz);
+    }
+    
 
     return 0;
 }
