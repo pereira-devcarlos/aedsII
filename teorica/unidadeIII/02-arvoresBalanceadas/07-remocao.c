@@ -199,6 +199,10 @@ No* removeNo(No* raiz, int valor){
     } else {
         return removeRaiz(raiz);
     }
+
+    atualizarAltura(raiz);
+    raiz = balancear(raiz);
+    return raiz;
 }
 
 // Funções de exibição da árvore 
@@ -237,7 +241,7 @@ int main(){
     exibirPreOrdem(raiz);
 
     removeNo(raiz, 25);
-    printf("\nExibindo a arvore em pre ordem:\n");
+    printf("\nExibindo a arvore em pre ordem, apos remover o 25:\n");
     exibirPreOrdem(raiz);
     
     return 0;
