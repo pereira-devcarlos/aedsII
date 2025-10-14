@@ -252,6 +252,18 @@ int main(){
             raiz = insertArvore(raiz, numInsert);
             break;
         }
+        case 2:{
+            int numRemove;
+            printf("\n********* Remocao *********");
+            printf("\nDigite o valor a ser removido da arvore: ");
+            scanf("%d", &numRemove);
+
+            No* verNo = buscaNo(raiz, numRemove);
+            if (verNo) removeNo(raiz, numRemove);
+            else printf("\nErro: no inexistente com o valor %d", numRemove);
+            
+            break;
+        }
         default:
             printf("\nErro: opcao invalida!");
             break;
