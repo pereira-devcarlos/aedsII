@@ -7,6 +7,8 @@ typedef struct no {
     struct no *dir, *esq;
 } No;
 
+No* removeNo(No* raiz, int valor);
+
 // Função para criar um novo nó
 No* criarNo(int valor){
     No* novo = (No*) malloc(sizeof(No));
@@ -160,32 +162,26 @@ No* removeRaiz(No* raiz){
     if(raiz == NULL) return raiz;
 
     if (raiz->esq == NULL){
-        // Se não existir nó a esquerda
-        // Nó à direita assume a raiz;
-        if (raiz->dir != NULL){
-            raiz = raiz->dir;
-            return raiz;
-        } else {
-            // Só existe a raiz, retorna null
-            return NULL;
+        No* tmp = raiz->dir;
+        free(raiz);
+        if (tmp != NULL){
+            atualizarAltura(tmp);
+            tmp = balancear(tmp);
         }
+        return tmp;
     }
     
+    // Encontrar o maior da esquerda
     No* q = raiz->esq;
-    No* p = q;
     while (q->dir != NULL){
-        p = q;
         q = q->dir;
     }
-    
-    if (p != q){
-        p->dir = q->esq;
-        q->esq = p;
-    } 
-        
-    q->dir = raiz->dir;
-    raiz = q;
-    
+
+    raiz->valor = q->valor;
+    raiz->esq = removeNo(raiz->esq, q->valor);
+
+    atualizarAltura(raiz);
+    raiz = balancear(raiz);    
     return raiz;
 }
 
@@ -241,7 +237,7 @@ int main(){
     exibirPreOrdem(raiz);
 
     raiz = removeNo(raiz, 15);
-    printf("\nExibindo a arvore em pre ordem, apos remover o 25:\n");
+    printf("\nExibindo a arvore em pre ordem, apos remover o 15:\n");
     exibirPreOrdem(raiz);
     
     return 0;
