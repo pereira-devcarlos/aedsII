@@ -153,6 +153,7 @@ No* buscaPai(No* raiz, int valor){
     }
 }
 
+// Função para remover a raiz da arvore
 No* removeRaiz(No* raiz){
     if(raiz == NULL) return raiz;
 
@@ -183,6 +184,11 @@ No* removeRaiz(No* raiz){
     q->dir = raiz->dir;
     
     return q;
+}
+
+// Função para remover um nó qualquer da árvore
+No* removerNo(No* raiz, int valor){
+
 }
 
 // Funções de exibição da árvore 
