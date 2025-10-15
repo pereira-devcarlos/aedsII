@@ -119,55 +119,46 @@ No* removeNo(No* raiz, int x){
 
 // Funções de impressões: pré ordem, em ordem e pós ordem 
 void preOrdem (No *raiz) {
-    if (raiz == NULL){
-        return;
-    }
+    if (raiz == NULL) return;
     printf("%d\n", raiz->valor);
     preOrdem(raiz->esq);
     preOrdem(raiz->dir);
 }
-
 void emOrdem (No *raiz) {
-    if (raiz == NULL){
-        return;
-    }
+    if (raiz == NULL) return;
     emOrdem(raiz->esq);
     printf("%d\n", raiz->valor);
     emOrdem(raiz->dir);
 }
-
 void posOrdem (No *raiz) {
-    if (raiz == NULL){
-        return;
-    }
+    if (raiz == NULL) return;
     posOrdem(raiz->esq);
     posOrdem(raiz->dir);
     printf("%d\n", raiz->valor);
 }
 
+// Menu de opções
+void exibirMenu(){
+    printf("\n\n=============== Menu ===============");
+    printf("\n[1]- Inserir no na arvore");
+    printf("\n[2]- Remover no da arvore");
+    printf("\n[3]- Buscar um no da arvore");
+    printf("\n[4]- Buscar o pai de um no da arvore");
+    printf("\n[5]- Exibir arvore em pre ordem");
+    printf("\n[6]- Exibir arvore em ordem");
+    printf("\n[7]- Exibir arvore em pos ordem");
+    printf("\n[0]- Encerrar programa");
+    printf("\n=> Digite a opcao desejada: ");
+}
+
 int main(){
     No *raiz = NULL;
 
-    // Testando a função de inserir
-    raiz = insere(raiz, 5);
-    raiz = insere(raiz, 3);
-    raiz = insere(raiz, 2);
-    raiz = insere(raiz, 8);
-    raiz = insere(raiz, 4);
-    raiz = insere(raiz, 6);
-
-    printf("\nPre Ordem:\n");
-    preOrdem(raiz);
-
-    // Testando função de remover raiz
-    raiz = removeRaiz(raiz);
-    printf("\nPre Ordem apos remover a raiz:\n");
-    preOrdem(raiz);
-
-    // Testando função de remover nó
-    raiz = removeNo(raiz, 8);
-    printf("\nPre Ordem apos remover o 8:\n");
-    preOrdem(raiz);
+    int opcao=-1;
+    while (opcao != 0){
+        exibirMenu();
+        scanf("%d", &opcao);
+    }
 
     return 0;
 }
