@@ -226,6 +226,14 @@ int main(){
             emOrdem(raiz);
             break;
         }
+        case 7:{
+            printf("\n*************** Pos Ordem ***************\n");
+            posOrdem(raiz);
+            break;
+        }
+        case 0:
+            printf("\nEncerrando o programa...");
+            break;
         default:
             printf("\nOpcao invalida! Tente novamente.");
             break;
