@@ -185,6 +185,17 @@ int main(){
             }
             break;
         }
+        case 3:{
+            int numBusca;
+            printf("\n**************** Busca ****************");
+            printf("\nDigite o valor a ser buscado da arvore: ");
+            scanf("%d", &numBusca);
+            No* resultBusca = busca(raiz, numBusca);
+
+            if (resultBusca) printf("\nNo com o valor %d, foi encontrado!", numBusca);
+            else printf("\nNo com o valor %d, nao foi encontrado!", numBusca);
+            break;
+        }
         default:
             printf("\nOpcao invalida! Tente novamente.");
             break;
