@@ -234,24 +234,22 @@ void exibirMenu(){
     printf("\n[3]- Buscar um no da arvore");
     printf("\n[4]- Buscar o pai de um no da arvore");
     printf("\n[5]- Exibir arvore em pre ordem");
+    printf("\n[6]- Exibir arvore em ordem");
+    printf("\n[7]- Exibir arvore em pos ordem");
     printf("\n[0]- Encerrar programa");
     printf("\n=> Digite a opcao desejada: ");
 }
 int main(){
+    // Criar nó raiz da árvore
     No* raiz=NULL;
-    int opcao=-1;
 
-    raiz = insertArvore(raiz, 15);
-    raiz = insertArvore(raiz, 20);
-    raiz = insertArvore(raiz, 10);
-    raiz = insertArvore(raiz, 5);
-    raiz = insertArvore(raiz, 7);
-    raiz = insertArvore(raiz, 50);
-    raiz = insertArvore(raiz, 3);
-    
+    // Inicializar o loop com uma variável de opção
+    int opcao=-1;
     while (opcao != 0){
+        // Menu de opções
         exibirMenu();
         scanf("%d", &opcao);
+        
         switch (opcao){
         case 1:{
             int numInsert;
@@ -304,9 +302,12 @@ int main(){
         case 5:{
             printf("\n********* Arvore Pre Ordem *********\n");
             exibirPreOrdem(raiz);
-
             break;
         }
+        case 6:
+            printf("\n********** Arvore em Ordem **********\n");
+            exibirEmOrdem(raiz);
+            break;
         case 0:
             printf("\nEncerrando programa...\n");
             break;
