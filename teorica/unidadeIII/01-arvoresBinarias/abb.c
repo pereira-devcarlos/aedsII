@@ -41,8 +41,8 @@ No* busca (No* raiz, int x){
 
 // Função de Buscar o pai
 No* buscaPai (No* raiz, int x) {
-    // Verificando se existe o nó a ser buscado o pai
-    if (!busca(raiz, x)) return NULL;
+    // Verificando se o nó é a raiz
+    if (raiz->valor == x) return NULL;
     
     if (raiz == NULL || raiz->esq->valor == x || raiz->dir->valor == x){
         return raiz;
@@ -160,6 +160,7 @@ void exibirMenu(){
 }
 
 int main(){
+    // Criar nó raiz da árvore
     No *raiz = NULL;
 
     int opcao=-1;
@@ -213,7 +214,7 @@ int main(){
             No* verNo = busca(raiz, numBuscaPai);
             if (verNo){
                 No* resultBuscaPai = buscaPai(raiz, numBuscaPai);
-                if (resultBuscaPai->valor != numBuscaPai){
+                if (resultBuscaPai){
                     printf("\nNo com valor %d, pai: %d", numBuscaPai, resultBuscaPai->valor);
                 } else {
                     printf("\nNo com valor %d, nao possui pai (eh a propria raiz)", numBuscaPai);
@@ -226,16 +227,28 @@ int main(){
         }
         case 5:{
             printf("\n*************** Pre Ordem ***************\n");
+            if (raiz == NULL) {
+                printf("Arvore vazia!");
+                break;
+            }
             preOrdem(raiz);
             break;
         }
         case 6:{
             printf("\n*************** Em Ordem ***************\n");
+            if (raiz == NULL) {
+                printf("Arvore vazia!");
+                break;
+            }
             emOrdem(raiz);
             break;
         }
         case 7:{
             printf("\n*************** Pos Ordem ***************\n");
+            if (raiz == NULL) {
+                printf("Arvore vazia!");
+                break;
+            }
             posOrdem(raiz);
             break;
         }
