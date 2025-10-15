@@ -216,6 +216,11 @@ int main(){
 
             break;
         }
+        case 5:{
+            printf("\n*************** Pre Ordem ***************\n");
+            preOrdem(raiz);
+            break;
+        }
         default:
             printf("\nOpcao invalida! Tente novamente.");
             break;
