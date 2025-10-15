@@ -137,6 +137,14 @@ void posOrdem (No *raiz) {
     printf("%d\n", raiz->valor);
 }
 
+// Função para liberar a memória da árvore
+void liberarArvore(No* raiz){
+    if (raiz == NULL) return;
+    liberarArvore(raiz->esq);
+    liberarArvore(raiz->dir);
+    free(raiz);
+}
+
 // Menu de opções
 void exibirMenu(){
     printf("\n\n=============== Menu ===============");
@@ -240,5 +248,7 @@ int main(){
         }
     }
 
+    // Liberar a memória da árvore antes de encerrar o programa
+    liberarArvore(raiz);
     return 0;
 }
