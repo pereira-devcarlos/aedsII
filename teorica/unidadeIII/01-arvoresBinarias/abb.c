@@ -158,6 +158,22 @@ int main(){
     while (opcao != 0){
         exibirMenu();
         scanf("%d", &opcao);
+
+        switch (opcao){
+        case 1:{
+            int numInsert;
+            printf("\n*************** Insercao ***************");
+            printf("\nDigite o valor a ser inserido na arvore: ");
+            scanf("%d", &numInsert);
+
+            raiz = insere(raiz, numInsert);
+            printf("\nNo com valor %d, foi inserido com sucesso!", numInsert);
+            break;
+        }
+        default:
+            printf("\nOpcao invalida! Tente novamente.");
+            break;
+        }
     }
 
     return 0;
