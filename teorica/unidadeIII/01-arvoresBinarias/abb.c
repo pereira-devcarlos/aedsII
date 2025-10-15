@@ -170,6 +170,21 @@ int main(){
             printf("\nNo com valor %d, foi inserido com sucesso!", numInsert);
             break;
         }
+        case 2:{
+            int numRemove;
+            printf("\n*************** Remocao ***************");
+            printf("\nDigite o valor a ser removido da arvore: ");
+            scanf("%d", &numRemove);
+
+            No* verNo = busca(raiz, numRemove);
+            if (verNo){
+                raiz = removeNo(raiz, numRemove);
+                printf("\nNo com valor %d, foi removido com sucesso!", numRemove);
+            } else {
+                printf("\nErro: no inexistente com o valor %d", numRemove);
+            }
+            break;
+        }
         default:
             printf("\nOpcao invalida! Tente novamente.");
             break;
