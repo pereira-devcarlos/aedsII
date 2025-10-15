@@ -228,7 +228,7 @@ void exibirPosOrdem(No* raiz){
 }
 
 void exibirMenu(){
-    printf("\n=============== Menu ===============");
+    printf("\n\n=============== Menu ===============");
     printf("\n[1]- Inserir no na arvore");
     printf("\n[2]- Remover no da arvore");
     printf("\n[3]- Buscar um no da arvore");
@@ -253,7 +253,7 @@ int main(){
         switch (opcao){
         case 1:{
             int numInsert;
-            printf("\n************ Insercao ************");
+            printf("\n*************** Insercao ***************");
             printf("\nDigite o valor a ser inserido na arvore: ");
             scanf("%d", &numInsert);
 
@@ -262,7 +262,7 @@ int main(){
         }
         case 2:{
             int numRemove;
-            printf("\n************ Remocao ************");
+            printf("\n*************** Remocao ***************");
             printf("\nDigite o valor a ser removido da arvore: ");
             scanf("%d", &numRemove);
 
@@ -274,7 +274,7 @@ int main(){
         }
         case 3:{
             int numBusca;
-            printf("\n************* Busca *************");
+            printf("\n**************** Busca ****************");
             printf("\nDigite o valor a ser buscado da arvore: ");
             scanf("%d", &numBusca);
             No* resultBusca = buscaNo(raiz, numBusca);
@@ -285,7 +285,7 @@ int main(){
         }
         case 4:{
             int numBuscaPai;
-            printf("\n********* Busca Pai *********");
+            printf("\n*************** Busca Pai ***************");
             printf("\nDigite o valor a ser buscado o pai do no: ");
             scanf("%d", numBuscaPai);
 
@@ -301,12 +301,28 @@ int main(){
         }
         case 5:{
             printf("\n********* Arvore Pre Ordem *********\n");
-            exibirPreOrdem(raiz);
+            if (raiz != NULL){
+                exibirPreOrdem(raiz);
+            } else {
+                printf("\nErro: arvore inexistente!");
+            }
             break;
         }
         case 6:
             printf("\n********** Arvore em Ordem **********\n");
-            exibirEmOrdem(raiz);
+            if (raiz != NULL){
+                exibirEmOrdem(raiz);
+            } else {
+                printf("\nErro: arvore inexistente!");
+            }
+            break;
+        case 7:
+            printf("\n********* Arvore Pos Ordem *********\n");
+            if (raiz != NULL){
+                exibirPosOrdem(raiz);
+            } else {
+                printf("\nErro: arvore inexistente!");
+            }
             break;
         case 0:
             printf("\nEncerrando programa...\n");
