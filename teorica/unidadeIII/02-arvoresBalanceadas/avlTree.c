@@ -7,6 +7,9 @@ typedef struct no {
     struct no *dir, *esq;
 } No;
 
+// Prototipos de Funções
+No* removeNo(No* raiz, int valor);
+
 // Função para criar um novo nó
 No* criarNo(int valor){
     No* novo = (No*) malloc(sizeof(No));
@@ -164,28 +167,26 @@ No* removeRaiz(No* raiz){
         // Nó à direita assume a raiz;
         if (raiz->dir != NULL){
             raiz = raiz->dir;
+            atualizarAltura(raiz);
+            raiz = balancear(raiz);
             return raiz;
-        } else {
-            // Só existe a raiz, retorna null
-            return NULL;
-        }
+        }    
+        // Só existe a raiz, retorna null
+        return NULL;
     }
     
+    // Encontrar o maior da esquerda
     No* q = raiz->esq;
-    No* p = q;
     while (q->dir != NULL){
-        p = q;
         q = q->dir;
     }
-    
-    if (p != q){
-        p->dir = q->esq;
-        q->esq = p;
-    } 
         
-    q->dir = raiz->dir;
-    raiz = q;
+    // Troca os valores 
+    raiz->valor = q->valor;
+    raiz->esq = removeNo(raiz->esq, q->valor);
     
+    atualizarAltura(raiz);
+    raiz = balancear(raiz);
     return raiz;
 }
 
@@ -239,6 +240,14 @@ void exibirMenu(){
 int main(){
     No* raiz=NULL;
     int opcao=-1;
+
+    raiz = insertArvore(raiz, 15);
+    raiz = insertArvore(raiz, 20);
+    raiz = insertArvore(raiz, 10);
+    raiz = insertArvore(raiz, 5);
+    raiz = insertArvore(raiz, 7);
+    raiz = insertArvore(raiz, 50);
+    raiz = insertArvore(raiz, 3);
     
     while (opcao != 0){
         exibirMenu();
