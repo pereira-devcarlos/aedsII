@@ -146,15 +146,18 @@ No* buscaNo(No* raiz, int valor){
 }
 
 // Função para buscar um pai de um nó
-No* buscaPai(No* raiz, int valor){
-    if (raiz->esq->valor == valor || raiz->dir->valor == valor){
+No* buscaPai(No* raiz, int x){
+    if (raiz->valor == x) return raiz;
+    
+    if (raiz == NULL || raiz->esq->valor == x || raiz->dir->valor == x){
         return raiz;
-    }
-
-    if (valor < raiz->valor){
-        return buscaPai(raiz->esq, valor);
     } else {
-        return buscaPai(raiz->dir, valor);
+        if (x < raiz->valor){
+            raiz = buscaPai(raiz->esq, x);
+        } else {
+            raiz = buscaPai(raiz->dir, x);
+        }        
+        return raiz;
     }
 }
 
@@ -227,6 +230,7 @@ void exibirPosOrdem(No* raiz){
     printf("%d ", raiz->valor);
 }
 
+// Menu de opções
 void exibirMenu(){
     printf("\n\n=============== Menu ===============");
     printf("\n[1]- Inserir no na arvore");
@@ -239,6 +243,7 @@ void exibirMenu(){
     printf("\n[0]- Encerrar programa");
     printf("\n=> Digite a opcao desejada: ");
 }
+
 int main(){
     // Criar nó raiz da árvore
     No* raiz=NULL;
@@ -258,6 +263,7 @@ int main(){
             scanf("%d", &numInsert);
 
             raiz = insertArvore(raiz, numInsert);
+            printf("\nNo com valor %d, foi inserido com sucesso!", numInsert);
             break;
         }
         case 2:{
@@ -267,7 +273,10 @@ int main(){
             scanf("%d", &numRemove);
 
             No* verNo = buscaNo(raiz, numRemove);
-            if (verNo) raiz = removeNo(raiz, numRemove);
+            if (verNo) {
+                raiz = removeNo(raiz, numRemove);
+                printf("\nNo com valor %d, foi removido com sucesso!", numRemove);
+            }
             else printf("\nErro: no inexistente com o valor %d", numRemove);
             
             break;
@@ -287,12 +296,16 @@ int main(){
             int numBuscaPai;
             printf("\n*************** Busca Pai ***************");
             printf("\nDigite o valor a ser buscado o pai do no: ");
-            scanf("%d", numBuscaPai);
+            scanf("%d", &numBuscaPai);
 
             No* verNo = buscaNo(raiz, numBuscaPai);
             if (verNo){
                 No* resultBuscaPai = buscaPai(raiz, numBuscaPai);
-                printf("\nNo com valor %d, pai: %d", numBuscaPai, resultBuscaPai->valor);
+                if (resultBuscaPai->valor != numBuscaPai){
+                    printf("\nNo com valor %d, pai: %d", numBuscaPai, resultBuscaPai->valor);
+                } else {
+                    printf("\nNo com valor %d, nao possui pai (eh a propria raiz)", numBuscaPai);
+                }
             } else {
                 printf("\nErro: no inexistente com o valor %d", numBuscaPai);
             }
@@ -304,7 +317,7 @@ int main(){
             if (raiz != NULL){
                 exibirPreOrdem(raiz);
             } else {
-                printf("\nErro: arvore inexistente!");
+                printf("Erro: arvore inexistente!");
             }
             break;
         }
@@ -313,7 +326,7 @@ int main(){
             if (raiz != NULL){
                 exibirEmOrdem(raiz);
             } else {
-                printf("\nErro: arvore inexistente!");
+                printf("Erro: arvore inexistente!");
             }
             break;
         case 7:
@@ -321,7 +334,7 @@ int main(){
             if (raiz != NULL){
                 exibirPosOrdem(raiz);
             } else {
-                printf("\nErro: arvore inexistente!");
+                printf("Erro: arvore inexistente!");
             }
             break;
         case 0:
