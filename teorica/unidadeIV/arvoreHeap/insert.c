@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct no {
+    int chave;
+    int valor;
+} No;
+
+No pai(No vetor[], int i){
+    return vetor[(i-2)/2];
+}
+
+No filhoEsq(No vetor[], int i){
+    return vetor[(2*i)+1];
+}
+
+No filhoDir(No vetor[], int i){
+    return vetor[(2*i)+2];
+}
+
+int main(){
+    No v[7];
+    v[0].chave = 1;
+    v[0].valor = 7;
+
+    v[1].chave = 3;
+    v[1].valor = 10;
+
+    v[2].chave = 6;
+    v[2].valor = 20;
+    
+    No result = pai(v, 2);
+    printf("Pai de %d: %d\n", v[2].chave, result.chave);
+
+    result = pai(v, 1);
+    printf("Pai de %d: %d\n", v[1].chave, result.chave);
+
+    result = filhoEsq(v, 0);
+    printf("Filho a esquerda de %d: %d\n", v[0].chave, result.chave);
+
+    result = filhoDir(v, 0);
+    printf("Filho a direita de %d: %d\n", v[0].chave, result.chave);
+
+    return 0;
+}
