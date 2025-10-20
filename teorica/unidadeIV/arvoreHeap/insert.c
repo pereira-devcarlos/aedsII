@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX 7
 
 typedef struct no {
     int chave;
@@ -35,6 +36,15 @@ void trocar(No vetor[], No no1, No no2){
     vetor[indiceNo2] = no1;
 }
 
+int busca(No vetor[], int fim, int chave){
+    for (int i = 0; i <= fim; i++){
+        if (vetor[i].chave == chave){
+            return chave;
+        }
+    }
+    return -1;
+}
+
 void imprimir(No v[], int fim){
     printf("Impressao dos nos da arvore:\n");
     for(int i = 0; i <= fim; i++){
@@ -44,6 +54,16 @@ void imprimir(No v[], int fim){
 }
 
 void insert(No vetor[], int *fim, No novo){
+    if ((*fim)+1 == MAX){
+        printf("\nErro: arvore cheia!\n");
+        return;
+    }
+
+    if (busca(vetor, *fim, novo.chave) != -1){
+        printf("\nErro: ja possui no com esta chave!\n");
+        return;
+    }
+    
     (*fim)++;
     vetor[*fim] = novo;
     int i = *fim; 
@@ -58,7 +78,7 @@ void insert(No vetor[], int *fim, No novo){
 }
 
 int main(){
-    No v[7];
+    No v[MAX];
     int fim=2;
 
     v[0].chave = 2;
@@ -97,6 +117,10 @@ int main(){
     novo.valor = 30;
     insert(v, &fim, novo);
     
+    novo.chave = 8;
+    novo.valor = 30;
+    insert(v, &fim, novo);
+
     imprimir(v, fim);
 
     return 0;
