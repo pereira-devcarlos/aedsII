@@ -26,6 +26,13 @@ int indice(No vetor[], int chave){
     }
 }
 
+
+void insert(No vetor[], int *fim, No novo){
+    (*fim)++;
+    vetor[*fim] = novo;
+    int i = *fim; 
+}
+
 int main(){
     No v[7];
     int fim=2;
@@ -49,7 +56,8 @@ int main(){
     printf("\nFilho a esquerda de %d: %d\n", v[0].chave, result.chave);
 
     result = filhoDir(v, 0);
-    printf("Filho a direita de %d: %d\n", v[0].chave, result.chave);
+    int ind = indice(v, result.chave);
+    printf("Filho a direita de %d: %d, indice=%d\n", v[0].chave, result.chave, ind);
 
 
     No novo = {7, 25};
