@@ -53,16 +53,16 @@ int main(){
     printf("Pai de %d: %d\n", v[1].chave, result.chave);
 
     result = filhoEsq(v, 0);
-    printf("\nFilho a esquerda de %d: %d\n", v[0].chave, result.chave);
+    int ind = indice(v, result.chave);
+    printf("\nFilho a esquerda de %d: %d, indice=%d\n", v[0].chave, result.chave, ind);
 
     result = filhoDir(v, 0);
-    int ind = indice(v, result.chave);
+    ind = indice(v, result.chave);
     printf("Filho a direita de %d: %d, indice=%d\n", v[0].chave, result.chave, ind);
 
 
     No novo = {7, 25};
     insert(v, &fim, novo);
-    printf("\n%d\n", fim);
     printf("\nNo inserido: chave=%d, valor=%d\n", v[fim].chave, v[fim].valor);
 
     return 0;
