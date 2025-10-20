@@ -56,27 +56,31 @@ int busca(No vetor[], int fim, int chave){
 void imprimir(No v[], int fim){
     printf("Impressao dos nos da arvore:\n");
     for(int i = 0; i <= fim; i++){
-        printf("No %d: chave=%d, valor=%d\n", i, v[i].chave, v[i].valor);
+        printf("No posicao %d: chave=%d, valor=%d\n", i, v[i].chave, v[i].valor);
     }
     printf("\n");
 }
 
 // Insere um novo no na arvore heap
 void insert(No vetor[], int *fim, No novo){
+    // Verifica se a arvore esta cheia
     if ((*fim)+1 == MAX){
         printf("\nErro: arvore cheia!\n");
         return;
     }
 
+    // Verifica se ja existe um no com a mesma chave
     if (busca(vetor, *fim, novo.chave) != -1){
         printf("\nErro: ja possui no com esta chave!\n");
         return;
     }
     
+    // Insere o novo no na ultima posicao 
     (*fim)++;
     vetor[*fim] = novo;
     int i = *fim; 
 
+    // Reorganiza a arvore para manter a propriedade de heap
     while (i != 0 && pai(vetor, i).chave > vetor[i].chave){
         trocar(vetor, pai(vetor, i), vetor[i]);
         i = indice(vetor, novo.chave);
@@ -116,7 +120,7 @@ int main(){
     // Teste da funcao insert
     No novo = {1, 25};
     insert(v, &fim, novo);
-    printf("\nNo inserido: chave=%d, valor=%d\n", novo.chave, novo.valor);
+    printf("\nNo inserido: chave=%d, valor=%d\n\n", novo.chave, novo.valor);
 
     novo.chave = 4;
     novo.valor = 15;
