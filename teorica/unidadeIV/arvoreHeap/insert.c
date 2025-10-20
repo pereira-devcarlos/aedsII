@@ -68,12 +68,9 @@ void insert(No vetor[], int *fim, No novo){
     vetor[*fim] = novo;
     int i = *fim; 
 
-    while (i != 0){
-        if (pai(vetor, i).chave > vetor[i].chave){
-            trocar(vetor, pai(vetor, i), vetor[i]);
-        } else {
-            i--;
-        }
+    while (i != 0 && pai(vetor, i).chave > vetor[i].chave){
+        trocar(vetor, pai(vetor, i), vetor[i]);
+        i = indice(vetor, novo.chave);
     }
 }
 
