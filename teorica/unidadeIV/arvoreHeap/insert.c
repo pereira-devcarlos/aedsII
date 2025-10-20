@@ -18,8 +18,15 @@ No filhoDir(No vetor[], int i){
     return vetor[(2*i)+2];
 }
 
+void insert(No vetor[], int *fim, No novo){
+    (*fim)++;
+    vetor[*fim] = novo;
+}
+
 int main(){
     No v[7];
+    int fim=2;
+
     v[0].chave = 1;
     v[0].valor = 7;
 
@@ -36,10 +43,16 @@ int main(){
     printf("Pai de %d: %d\n", v[1].chave, result.chave);
 
     result = filhoEsq(v, 0);
-    printf("Filho a esquerda de %d: %d\n", v[0].chave, result.chave);
+    printf("\nFilho a esquerda de %d: %d\n", v[0].chave, result.chave);
 
     result = filhoDir(v, 0);
     printf("Filho a direita de %d: %d\n", v[0].chave, result.chave);
+
+
+    No novo = {7, 25};
+    insert(v, &fim, novo);
+    printf("\n%d\n", fim);
+    printf("\nNo inserido: chave=%d, valor=%d\n", v[fim].chave, v[fim].valor);
 
     return 0;
 }
