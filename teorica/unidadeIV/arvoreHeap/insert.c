@@ -26,11 +26,20 @@ int indice(No vetor[], int chave){
     }
 }
 
+void trocar(No vetor[], No no1, No no2){
+    int indiceNo1, indiceNo2;
+    indiceNo1 = indice(vetor, no1.chave);
+    indiceNo2 = indice(vetor, no2.chave);
+
+    vetor[indiceNo1] = no2;
+    vetor[indiceNo2] = no1;
+}
 
 void insert(No vetor[], int *fim, No novo){
     (*fim)++;
     vetor[*fim] = novo;
     int i = *fim; 
+
 }
 
 int main(){
