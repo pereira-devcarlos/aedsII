@@ -7,7 +7,7 @@ typedef struct no {
 } No;
 
 No pai(No vetor[], int i){
-    return vetor[(i-2)/2];
+    return vetor[(i-1)/2];
 }
 
 No filhoEsq(No vetor[], int i){
@@ -35,18 +35,33 @@ void trocar(No vetor[], No no1, No no2){
     vetor[indiceNo2] = no1;
 }
 
+void imprimir(No v[], int fim){
+    printf("Impressao dos nos da arvore:\n");
+    for(int i = 0; i <= fim; i++){
+        printf("No %d: chave=%d, valor=%d\n", i, v[i].chave, v[i].valor);
+    }
+    printf("\n");
+}
+
 void insert(No vetor[], int *fim, No novo){
     (*fim)++;
     vetor[*fim] = novo;
     int i = *fim; 
 
+    while (i != 0){
+        if (pai(vetor, i).chave > vetor[i].chave){
+            trocar(vetor, pai(vetor, i), vetor[i]);
+        } else {
+            i--;
+        }
+    }
 }
 
 int main(){
     No v[7];
     int fim=2;
 
-    v[0].chave = 1;
+    v[0].chave = 2;
     v[0].valor = 7;
 
     v[1].chave = 3;
@@ -70,9 +85,19 @@ int main(){
     printf("Filho a direita de %d: %d, indice=%d\n", v[0].chave, result.chave, ind);
 
 
-    No novo = {7, 25};
+    No novo = {1, 25};
     insert(v, &fim, novo);
-    printf("\nNo inserido: chave=%d, valor=%d\n", v[fim].chave, v[fim].valor);
+    printf("\nNo inserido: chave=%d, valor=%d\n", novo.chave, novo.valor);
+
+    novo.chave = 4;
+    novo.valor = 15;
+    insert(v, &fim, novo);
+
+    novo.chave = 5;
+    novo.valor = 30;
+    insert(v, &fim, novo);
+    
+    imprimir(v, fim);
 
     return 0;
 }
