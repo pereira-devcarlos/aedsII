@@ -18,9 +18,12 @@ No filhoDir(No vetor[], int i){
     return vetor[(2*i)+2];
 }
 
-void insert(No vetor[], int *fim, No novo){
-    (*fim)++;
-    vetor[*fim] = novo;
+int indice(No vetor[], int chave){
+    for (int i = 0; i < 6; i++){
+        if (vetor[i].chave == chave){
+            return i;
+        }
+    }
 }
 
 int main(){
