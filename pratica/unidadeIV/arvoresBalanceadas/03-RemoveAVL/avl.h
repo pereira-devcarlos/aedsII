@@ -16,5 +16,7 @@ struct Node *esquerdaRotate(struct Node *x);
 int balanceamento(struct Node *N);
 struct Node* inserir(struct Node* node, int valor);
 void inOrder(struct Node *raiz);
+struct Node *removeRaiz(struct Node *raiz);
+struct Node *removeNode(struct Node *raiz, int x);
 
 #endif // _H_AVL_

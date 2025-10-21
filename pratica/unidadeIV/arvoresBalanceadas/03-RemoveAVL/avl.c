@@ -2,6 +2,8 @@
 #include<stdlib.h> 
 #include "avl.h"
   
+struct Node *removeNode(struct Node *raiz, int x);
+
 // Obtem a altura da AVL
 int altura(struct Node *N) { 
     if (N == NULL) {
@@ -44,7 +46,7 @@ struct Node *direitaRotate(struct Node *y) {
     // Retorna a nova raiz
     return x; 
 } 
-  
+
 // Faz a rotação a esquerda na raiz x
 struct Node *esquerdaRotate(struct Node *x) { 
     struct Node *y = x->direita; 
@@ -69,7 +71,25 @@ int balanceamento(struct Node *N) {
     }
     return (altura(N->esquerda) - altura(N->direita)); 
 } 
-  
+
+struct Node *balancear(struct Node *node, int valor){
+    int balance = balanceamento(node);
+    if (balance > 1 && valor < node->esquerda->valor) {
+        return direitaRotate(node); 
+    }
+    if (balance < -1 && valor > node->direita->valor) {
+        return esquerdaRotate(node); 
+    }
+    if (balance < -1 && valor > node->direita->valor) {
+        return esquerdaRotate(node); 
+    }
+    if (balance > 1 && valor > node->esquerda->valor) { 
+        node->esquerda =  esquerdaRotate(node->esquerda); 
+        return direitaRotate(node); 
+    } 
+    return node;
+}
+
 // Função recursiva para inserir um novo item na árvore com raiz
 // *Node e retorna a nova raiz da subárvore
 struct Node* inserir(struct Node* node, int valor) { 
@@ -93,7 +113,7 @@ struct Node* inserir(struct Node* node, int valor) {
   
     /* 3. Obtem o fator de balanceamento da raiz 
     para observar se a árvore continua balanceada */
-    int balance = balanceamento(node); 
+    //int balance = balanceamento(node); 
   
     // Se a árvore está desbalanceada, então existem quatro casos possíveis
   
@@ -106,9 +126,9 @@ struct Node* inserir(struct Node* node, int valor) {
       x   T3                               T1  T2  T3  T4
      / \
     T1   T2                                              */
-    if (balance > 1 && valor < node->esquerda->valor) {
-        return direitaRotate(node); 
-    }
+    //if (balance > 1 && valor < node->esquerda->valor) {
+    //    return direitaRotate(node); 
+    //}
   
     /* Caso direita direita
       z                                y
@@ -118,9 +138,9 @@ struct Node* inserir(struct Node* node, int valor) {
        T2   x                     T1  T2 T3  T4
            / \
          T3  T4                                  */
-    if (balance < -1 && valor > node->direita->valor) {
-        return esquerdaRotate(node); 
-    }
+    // if (balance < -1 && valor > node->direita->valor) {
+    //     return esquerdaRotate(node); 
+    // }
 
     /* Caso esquerda direita
          z                               z                              x
@@ -130,10 +150,10 @@ struct Node* inserir(struct Node* node, int valor) {
     T1   x                          y    T3                       T1  T2 T3  T4
         / \                        / \
       T2   T3                    T1   T2                                     */
-    if (balance > 1 && valor > node->esquerda->valor) { 
-        node->esquerda =  esquerdaRotate(node->esquerda); 
-        return direitaRotate(node); 
-    } 
+    // if (balance > 1 && valor > node->esquerda->valor) { 
+    //     node->esquerda =  esquerdaRotate(node->esquerda); 
+    //     return direitaRotate(node); 
+    // } 
   
     /* Caso direita esquerda
        z                            z                            x
@@ -143,13 +163,50 @@ struct Node* inserir(struct Node* node, int valor) {
        x   T4                      T2   y                  T1  T2  T3  T4
       / \                              /  \
     T2   T3                           T3   T4                             */
-    if (balance < -1 && valor < node->direita->valor) { 
-        node->direita = direitaRotate(node->direita); 
-        return esquerdaRotate(node); 
-    } 
+    // if (balance < -1 && valor < node->direita->valor) { 
+    //     node->direita = direitaRotate(node->direita); 
+    //     return esquerdaRotate(node); 
+    // } 
   
     /* retorna o ponteiro (não-atualizado) para a raiz */
+    node = balancear(node, valor);
     return node; 
+} 
+
+// Função para remover a raiz
+struct Node *removeRaiz(struct Node *raiz){
+    // Caso de apenas 1 filho
+    if (raiz->esquerda == NULL){
+        if (raiz->direita != NULL){
+            raiz = raiz->direita;
+            return raiz;
+        }
+        return NULL;
+    }
+    
+    struct Node *q = raiz->esquerda;
+
+    while (q->direita != NULL){
+        q = q->direita;
+    }
+    raiz->valor = q->valor;
+    raiz->esquerda = removeNode(raiz->esquerda, q->valor);
+    return raiz;
+}
+
+// Função de remover um nó
+struct Node *removeNode(struct Node *raiz, int x){
+    if (raiz == NULL) return NULL;
+
+    if (raiz->valor > x){
+        raiz->esquerda = removeNode(raiz->esquerda, x);
+    } else if (raiz->valor < x){
+        raiz->direita = removeNode(raiz->direita, x);
+    } else {
+        raiz = removeRaiz(raiz);
+    }
+
+    return raiz;
 } 
   
 // Imprime os nós em ordem
@@ -195,6 +252,11 @@ int main() {
     inOrder(raiz); 
     printf("\n");
 
+    printf("\nOs elementos da arvore, em pre ordem, sao:\n"); 
+    preOrder(raiz); 
+    printf("\n");
+
+    raiz = removeNode(raiz, 20);
     printf("\nOs elementos da arvore, em pre ordem, sao:\n"); 
     preOrder(raiz); 
     printf("\n");
