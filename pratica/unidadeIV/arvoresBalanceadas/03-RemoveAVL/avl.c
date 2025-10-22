@@ -72,21 +72,32 @@ int balanceamento(struct Node *N) {
     return (altura(N->esquerda) - altura(N->direita)); 
 } 
 
-struct Node *balancear(struct Node *node, int valor){
+// Função para balancear a árvore
+struct Node *balancear(struct Node *node){
+    // Obtem o fator de balanceamento da raiz
     int balance = balanceamento(node);
-    if (balance > 1 && valor < node->esquerda->valor) {
+
+    // Verifica os quatro casos possíveis de desbalanceamento
+    // Caso Esquerda Esquerda
+    if (balance > 1 && balanceamento(node->esquerda) >= 0) {
         return direitaRotate(node); 
     }
-    if (balance < -1 && valor > node->direita->valor) {
+    // Caso Direita Direita
+    if (balance < -1 && balanceamento(node->direita) <= 0) {
         return esquerdaRotate(node); 
     }
-    if (balance < -1 && valor > node->direita->valor) {
-        return esquerdaRotate(node); 
-    }
-    if (balance > 1 && valor > node->esquerda->valor) { 
+    // Caso Esquerda Direita
+    if (balance > 1 && balanceamento(node->esquerda) <= 0) { 
         node->esquerda =  esquerdaRotate(node->esquerda); 
         return direitaRotate(node); 
     } 
+    // Caso Direita Esquerda
+    if (balance < -1 && balanceamento(node->direita) >= 0) { 
+        node->direita = direitaRotate(node->direita); 
+        return esquerdaRotate(node); 
+    } 
+    // Retorna o ponteiro (não-atualizado) para a raiz
+    // já que não houve desbalanceamento
     return node;
 }
 
@@ -108,104 +119,62 @@ struct Node* inserir(struct Node* node, int valor) {
     }
 
     /* 2. Atualiza a altura de seu antecessor */
-    node->altura = 1 + max(altura(node->esquerda), 
-                        altura(node->direita)); 
+    node->altura = 1 + max(altura(node->esquerda), altura(node->direita)); 
   
-    /* 3. Obtem o fator de balanceamento da raiz 
-    para observar se a árvore continua balanceada */
-    //int balance = balanceamento(node); 
-  
-    // Se a árvore está desbalanceada, então existem quatro casos possíveis
-  
-    /* Caso esquerda esquerda
-        T1, T2, T3 e T4 são sub-árvores.
-          z                                      y 
-         / \                                   /   \
-        y   T4     Rotação direita (z)        x      z
-       / \          - - - - - - - - ->      /  \    /  \ 
-      x   T3                               T1  T2  T3  T4
-     / \
-    T1   T2                                              */
-    //if (balance > 1 && valor < node->esquerda->valor) {
-    //    return direitaRotate(node); 
-    //}
-  
-    /* Caso direita direita
-      z                                y
-     /  \                            /   \ 
-    T1   y   Rotação esquerda (z)   z      x
-        /  \   - - - - - - - ->    / \    / \
-       T2   x                     T1  T2 T3  T4
-           / \
-         T3  T4                                  */
-    // if (balance < -1 && valor > node->direita->valor) {
-    //     return esquerdaRotate(node); 
-    // }
-
-    /* Caso esquerda direita
-         z                               z                              x
-        / \                            /   \                           /  \ 
-       y   T4  Rotação esquerda (y)   x    T4  Rotação direita (z)   y      z
-      / \      - - - - - - - - ->    /  \       - - - - - - - ->    / \    / \
-    T1   x                          y    T3                       T1  T2 T3  T4
-        / \                        / \
-      T2   T3                    T1   T2                                     */
-    // if (balance > 1 && valor > node->esquerda->valor) { 
-    //     node->esquerda =  esquerdaRotate(node->esquerda); 
-    //     return direitaRotate(node); 
-    // } 
-  
-    /* Caso direita esquerda
-       z                            z                            x
-      / \                          / \                          /  \ 
-    T1   y   Right Rotate (y)    T1   x      Left Rotate(z)   z      y
-        / \  - - - - - - - - ->     /  \   - - - - - - - ->  / \    / \
-       x   T4                      T2   y                  T1  T2  T3  T4
-      / \                              /  \
-    T2   T3                           T3   T4                             */
-    // if (balance < -1 && valor < node->direita->valor) { 
-    //     node->direita = direitaRotate(node->direita); 
-    //     return esquerdaRotate(node); 
-    // } 
-  
-    /* retorna o ponteiro (não-atualizado) para a raiz */
-    node = balancear(node, valor);
+    /* 3. Se precisar após a inserção irá balancear a árvore*/
+    node = balancear(node);
+    
     return node; 
 } 
 
 // Função para remover a raiz
 struct Node *removeRaiz(struct Node *raiz){
-    // Caso de apenas 1 filho
+    // Caso de apenas 1 filho a direita ou nenhum
     if (raiz->esquerda == NULL){
+        // Verifica se há filho a direita
         if (raiz->direita != NULL){
             raiz = raiz->direita;
             return raiz;
         }
+        // Não há filhos(é folha)
         return NULL;
     }
     
+    // Caso houver filho a esquerda
     struct Node *q = raiz->esquerda;
 
+    // Procura o maior valor na subárvore esquerda
     while (q->direita != NULL){
         q = q->direita;
     }
+    // Substitui o valor da raiz pelo maior valor da subárvore esquerda
     raiz->valor = q->valor;
+
+    // Remove o nó que continha o maior valor da subárvore esquerda
     raiz->esquerda = removeNode(raiz->esquerda, q->valor);
     return raiz;
 }
 
 // Função de remover um nó
 struct Node *removeNode(struct Node *raiz, int x){
+    // Caso base: árvore vazia
     if (raiz == NULL) return NULL;
 
+    // Procura o nó a ser removido
     if (raiz->valor > x){
         raiz->esquerda = removeNode(raiz->esquerda, x);
     } else if (raiz->valor < x){
         raiz->direita = removeNode(raiz->direita, x);
     } else {
+        // Nó encontrado irá ser removido
         raiz = removeRaiz(raiz);
-    }
+        // Se após remoção a raiz for nula, retorna nulo
+        if(raiz == NULL) return NULL;
+    }    
 
+    // Atualiza a altura da raiz e balanceia a árvore
+    raiz->altura = 1 + max(altura(raiz->esquerda), altura(raiz->direita));
+    raiz = balancear(raiz);
     return raiz;
 } 
   
@@ -238,6 +207,7 @@ int main() {
     raiz = inserir(raiz, 40); 
     raiz = inserir(raiz, 50); 
     raiz = inserir(raiz, 25); 
+    raiz = inserir(raiz, 5); 
     
     /* A árvore AVL construída será
               30 
@@ -245,8 +215,10 @@ int main() {
             20   40 
            /  \    \ 
          10  25    50 
-    
-    A saida correta em pre-ordem é 30 20 10 25 40 50 */
+        /
+       5
+
+    A saida correta em pre-ordem é 30 20 10 5 25 40 50 */
     
     printf("Os elementos da arvore, em ordem, sao:\n"); 
     inOrder(raiz); 
@@ -256,7 +228,19 @@ int main() {
     preOrder(raiz); 
     printf("\n");
 
-    raiz = removeNode(raiz, 20);
+    raiz = removeNode(raiz, 40);
+
+        /* A árvore AVL após a remoção do 40 será
+            30                30               20
+           /  \              /  \             /  \
+          20  40    ==>    20   50   ==>    10   30
+         /  \   \         /  \             /    /  \
+        10  25  50      10  25            5   25   50
+       /               /
+      5               5
+
+    A saida correta em pre-ordem é 20 10 5 30 25 50 */
+
     printf("\nOs elementos da arvore, em pre ordem, sao:\n"); 
     preOrder(raiz); 
     printf("\n");
