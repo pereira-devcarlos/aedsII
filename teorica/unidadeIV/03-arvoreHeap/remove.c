@@ -10,16 +10,31 @@ typedef struct no {
 
 // Retorna o no pai do no na posicao i
 No pai(No vetor[], int i){
+    // Se o no for a raiz, nao possui pai
+    if (i == 0){
+        No vazio = {-1, -1};
+        return vazio;
+    }
     return vetor[(i-1)/2];
 }
 
 // Retorna o no filho esquerdo do no na posicao i
 No filhoEsq(No vetor[], int i){
+    // Se o no nao possuir filho esquerdo
+    if ((2*i)+1 >= MAX){
+        No vazio = {-1, -1};
+        return vazio;
+    }
     return vetor[(2*i)+1];
 }
 
 // Retorna o no filho direito do no na posicao i
 No filhoDir(No vetor[], int i){
+    // Se o no nao possuir filho direito
+    if ((2*i)+2 >= MAX){
+        No vazio = {-1, -1};
+        return vazio;
+    }
     return vetor[(2*i)+2];
 }
 
@@ -87,10 +102,28 @@ void insert(No vetor[], int *fim, No novo){
     }
 }
 
-/** Função de remove um nó da árvore heap
- * em desenvolvimento.
- * ainda não implementada!!!
- */
+// Função de remoção da arvore heap
+void remover(No vetor[], int chave, int *fim){
+    // Verifica se a arvore esta vazia
+    if (*fim == -1){
+        printf("\nErro: arvore vazia!\n");
+        return;
+    }
+
+    // Verifica se o no com a chave especificada existe
+    if (busca(vetor, *fim, chave) == -1){
+        printf("\nErro: no com esta chave nao existe!\n");
+        return;
+    }
+
+    // Substitui o no a ser removido pelo ultimo no da arvore
+    int ind = indice(vetor, chave);
+    vetor[ind] = vetor[*fim];
+    (*fim)--;
+
+    // Reorganiza a arvore para manter a propriedade de heap
+    
+}
 
 int main(){
     No v[MAX];
