@@ -122,7 +122,39 @@ void remover(No vetor[], int chave, int *fim){
     (*fim)--;
 
     // Reorganiza a arvore para manter a propriedade de heap
-    
+    int i = ind;
+    while (1){
+        // Armazena os filhos do no atual
+        No esq = filhoEsq(vetor, i);
+        No dir = filhoDir(vetor, i);
+        int menorFilhoInd;
+
+        // Determina o indice do menor filho
+        if (esq.chave != -1 && dir.chave != -1){
+            // Ambos os filhos existem, verifica qual e o menor
+            menorFilhoInd = (esq.chave < dir.chave) ? (2*i)+1 : (2*i)+2;
+        } else if (esq.chave != -1){
+            // Apenas o filho esquerdo existe
+            menorFilhoInd = (2*i)+1;
+        } else {
+            // Apenas o filho direito existe
+            menorFilhoInd = (2*i)+2;
+        }
+
+        if (menorFilhoInd >= MAX || vetor[menorFilhoInd].chave == -1){
+            // No atual nao possui filhos
+            break;
+        }
+
+        // Compara o no atual com o menor filho e troca se necessario
+        if (vetor[i].chave > vetor[menorFilhoInd].chave){
+            trocar(vetor, vetor[i], vetor[menorFilhoInd]);
+            i = menorFilhoInd;
+        } else {
+            // Propriedade de heap satisfeita
+            break;
+        }
+    }
 }
 
 int main(){
@@ -173,6 +205,9 @@ int main(){
     insert(v, &fim, novo);
 
     // Impressao dos nos da arvore apos insercoes
+    imprimir(v, fim);
+
+    remover(v, 1, &fim);
     imprimir(v, fim);
 
     return 0;
