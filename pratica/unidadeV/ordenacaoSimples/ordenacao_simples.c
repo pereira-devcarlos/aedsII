@@ -11,10 +11,8 @@ void imprimir(int *vetor) {
     printf("\n");
 }
 
+// Função de ordenação bubble sort
 void bubble(int *vetor) {
-    // lógica do bubble sort
-    int aux; // variavel auxiliar para troca de valores
-
     // loop externo controla o número de passagens
     for (int i = 50; i >= 0; i--){
         // loop interno realiza as comparações e trocas
@@ -22,7 +20,7 @@ void bubble(int *vetor) {
             // Verifica se o elemento atual é maior que o próximo
             if (vetor[j] > vetor[j+1]){
                 // Troca os elementos de posição
-                aux = vetor[j];
+                int aux = vetor[j];
                 vetor[j] = vetor[j+1];
                 vetor[j+1] = aux;
             }
@@ -34,24 +32,27 @@ void bubble(int *vetor) {
     return;
 }
 
+// Função de ordenação selection sort
 void selection(int *vetor) {
-    int aux;
+    // loop externo percorre todo o vetor
     for (int i = 0; i < 50 -1; i++){
-        int menorInd = i;
+        int menorInd = i; // índice do menor elemento encontrado
         for (int j = i; j < 50; j++){
+            // Compara o elemento atual com o menor encontrado
             if (vetor[menorInd] > vetor[j]){
+                // Atualiza o índice do menor elemento
                 menorInd = j;
             }
         }
+        // Troca o menor elemento encontrado com o elemento na posição i
         if (menorInd != i){
-            aux = vetor[i];
+            int aux = vetor[i];
             vetor[i] = vetor[menorInd];
             vetor[menorInd] = aux;
         }
-        
     }
     
-
+    // Imprime o vetor ordenado
     imprimir(vetor);
     return;
 }
