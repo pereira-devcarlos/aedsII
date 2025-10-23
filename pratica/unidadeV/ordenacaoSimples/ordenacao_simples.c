@@ -14,7 +14,7 @@ void imprimir(int *vetor) {
 void bubble(int *vetor) {
     // lógica do bubble sort
     int aux; // variavel auxiliar para troca de valores
-    
+
     // loop externo controla o número de passagens
     for (int i = 50; i >= 0; i--){
         // loop interno realiza as comparações e trocas
@@ -35,9 +35,23 @@ void bubble(int *vetor) {
 }
 
 void selection(int *vetor) {
-    //////////////////////////////////////////////////////////////
-    ////////////////////// IMPLEMENTAR AQUI //////////////////////
-    //////////////////////////////////////////////////////////////
+    int aux;
+    for (int i = 0; i < 50 -1; i++){
+        int menorInd = i;
+        for (int j = i; j < 50; j++){
+            if (vetor[menorInd] > vetor[j]){
+                menorInd = j;
+            }
+        }
+        if (menorInd != i){
+            aux = vetor[i];
+            vetor[i] = vetor[menorInd];
+            vetor[menorInd] = aux;
+        }
+        
+    }
+    
+
     imprimir(vetor);
     return;
 }
