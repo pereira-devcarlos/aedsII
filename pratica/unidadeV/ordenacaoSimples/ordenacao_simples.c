@@ -12,9 +12,24 @@ void imprimir(int *vetor) {
 }
 
 void bubble(int *vetor) {
-    //////////////////////////////////////////////////////////////
-    ////////////////////// IMPLEMENTAR AQUI //////////////////////
-    //////////////////////////////////////////////////////////////
+    // lógica do bubble sort
+    int aux; // variavel auxiliar para troca de valores
+    
+    // loop externo controla o número de passagens
+    for (int i = 50; i >= 0; i--){
+        // loop interno realiza as comparações e trocas
+        for (int j = 0; j < 50-1; j++){
+            // Verifica se o elemento atual é maior que o próximo
+            if (vetor[j] > vetor[j+1]){
+                // Troca os elementos de posição
+                aux = vetor[j];
+                vetor[j] = vetor[j+1];
+                vetor[j+1] = aux;
+            }
+        }
+    }
+
+    // Imprime o vetor ordenado
     imprimir(vetor);
     return;
 }
