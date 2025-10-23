@@ -58,9 +58,16 @@ void selection(int *vetor) {
 }
 
 void insertion(int *vetor) {
-    //////////////////////////////////////////////////////////////
-    ////////////////////// IMPLEMENTAR AQUI //////////////////////
-    //////////////////////////////////////////////////////////////
+    for (int i = 1; i < 50; i++){
+        int chave = vetor[i];
+        int j = i -1;
+        while (j >= 0 && vetor[j] > chave){
+            vetor[j+1] = vetor[j];
+            j--;
+        }
+        vetor[j+1] = chave;
+    }
+    
     imprimir(vetor);
     return;
 }
