@@ -93,7 +93,7 @@ void insert(No vetor[], int *fim, No novo){
     // Insere o novo no na ultima posicao 
     (*fim)++;
     vetor[*fim] = novo;
-    int i = *fim; 
+    int i = *fim;
 
     // Reorganiza a arvore para manter a propriedade de heap
     while (i != 0 && pai(vetor, i).chave > vetor[i].chave){
@@ -127,9 +127,9 @@ void remover(No vetor[], int chave, int *fim){
         // Armazena os filhos do no atual
         No esq = filhoEsq(vetor, i);
         No dir = filhoDir(vetor, i);
-        int menorFilhoInd;
-
+        
         // Determina o indice do menor filho
+        int menorFilhoInd;
         if (esq.chave != -1 && dir.chave != -1){
             // Ambos os filhos existem, verifica qual e o menor
             menorFilhoInd = (esq.chave < dir.chave) ? (2*i)+1 : (2*i)+2;
