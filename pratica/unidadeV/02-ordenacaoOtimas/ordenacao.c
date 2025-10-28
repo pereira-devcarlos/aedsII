@@ -25,15 +25,30 @@ void bubble(int *vetor) {
             }
         }
     }
-    
+
     imprimir(vetor);
     return;
 }
 
 void selection(int *vetor) {
-    //////////////////////////////////////////////////////////////
-    ////////////////////// IMPLEMENTAR AQUI //////////////////////
-    //////////////////////////////////////////////////////////////
+    // loop externo percorre todo o vetor
+    for (int i = 0; i < 50 -1; i++){
+        int menorInd = i; // índice do menor elemento encontrado
+        for (int j = i; j < 50; j++){
+            // Compara o elemento atual com o menor encontrado
+            if (vetor[menorInd] > vetor[j]){
+                // Atualiza o índice do menor elemento
+                menorInd = j;
+            }
+        }
+        // Troca o menor elemento encontrado com o elemento na posição i
+        if (menorInd != i){
+            int aux = vetor[i];
+            vetor[i] = vetor[menorInd];
+            vetor[menorInd] = aux;
+        }
+    }
+    
     imprimir(vetor);
     return;
 }
