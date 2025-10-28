@@ -148,22 +148,28 @@ int main() {
     printf("\nEntre sua opção : ");
     scanf("%d",&n);
     switch(n) {
-        case 1: bubble(vetor);
-                break;
-        case 2: selection(vetor);
-                break;
-        case 3: insertion(vetor);
-                break;
+        case 1: 
+            bubble(vetor);
+            break;
+        case 2: 
+            selection(vetor);
+            break;
+        case 3: 
+            insertion(vetor);
+            break;
         case 4: 
             mergeSort(vetor, 0, 49);
             imprimir(vetor);
             break;
-        case 5: quick(vetor);
-                break;
-        case 0: exit(0);
-                break;
-        default: printf("\n Opção errada!");
-                break;
+        case 5: 
+            quick(vetor);
+            break;
+        case 0: 
+            exit(0);
+            break;
+        default: 
+            printf("\n Opção errada!");
+            break;
     }
   } while(1);
 
