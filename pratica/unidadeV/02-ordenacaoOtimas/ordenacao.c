@@ -54,9 +54,20 @@ void selection(int *vetor) {
 }
 
 void insertion(int *vetor) {
-    //////////////////////////////////////////////////////////////
-    ////////////////////// IMPLEMENTAR AQUI //////////////////////
-    //////////////////////////////////////////////////////////////
+    // loop externo percorre todo o vetor
+    for (int i = 1; i < 50; i++){
+        int chave = vetor[i]; // elemento a ser inserido na posição correta
+        int j = i -1;         // índice do elemento anterior
+
+        // Move os elementos maiores que a chave para a direita
+        while (j >= 0 && vetor[j] > chave){
+            vetor[j+1] = vetor[j];
+            j--;
+        }
+        // Insere a chave na posição correta
+        vetor[j+1] = chave;
+    }
+    
     imprimir(vetor);
     return;
 }
