@@ -1,5 +1,5 @@
 #include <stdio.h> 
-#include <stdlib.h> 
+#include <stdlib.h>
 #include "ordenacao.h"
   
 // Imprime um vetor de inteiros
@@ -72,12 +72,46 @@ void insertion(int *vetor) {
     return;
 }
 
-void merge(int *vetor) {
-    //////////////////////////////////////////////////////////////
-    ////////////////////// IMPLEMENTAR AQUI //////////////////////
-    //////////////////////////////////////////////////////////////
-    imprimir(vetor);
-    return;
+void merge(int *vetor, int inicio, int meio, int fim) {
+    int n1 = meio - inicio + 1;
+    int n2 = fim - meio;
+
+    int *L = (int *)malloc(n1 * sizeof(int));
+    int *R = (int *)malloc(n2 * sizeof(int));
+
+    for (int i = 0; i < n1; i++){
+        L[i] = vetor[inicio + i];
+    } 
+    for (int j = 0; j < n2; j++){
+        R[j] = vetor[meio + 1 + j];
+    } 
+
+    int i = 0, j = 0, k = inicio;
+
+    // Intercala enquanto houver elementos em ambos os lados
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            vetor[k++] = L[i++];
+        } else {
+            vetor[k++] = R[j++];
+        }
+    }
+
+    // Copia o restante (se houver)
+    while (i < n1) vetor[k++] = L[i++];
+    while (j < n2) vetor[k++] = R[j++];
+
+    free(L);
+    free(R);
+}
+
+void mergeSort(int *vetor,int inicio,int fim){
+    if (inicio < fim){
+        int meio = (inicio + fim)/2;
+        mergeSort(vetor, inicio, meio);
+        mergeSort(vetor, meio+1, fim);
+        merge(vetor, inicio, meio, fim);
+    }
 }
 
 void quick(int *vetor) {
@@ -94,32 +128,34 @@ int main() {
   int n;
   do {
     int vetor[50] = {40, 32, 24, 25,  1, 48, 38,  7, 17,  8, 42,  4, 44, 45, 27, 49, 30, 18,  6, 23,  5, 41, 33, 26, 28,  3, 37, 19, 11, 43, 39, 16, 36, 21,  9,  2, 47, 12, 50, 20, 14, 29, 35, 46, 13, 34, 31, 15, 10, 2};
-    printf("\n\n\n******************** Escolha seu algoritmo *******************");
-	printf("\n1.Bubble sort");
-	 printf("\n2.Selection sort");
-	 printf("\n3.Insertion sort");
-     printf("\n3.Merge sort");
-     printf("\n3.Quick sort");
-     printf("\n0.Sair");
-	 printf("\nEntre sua opção : ");
-	 scanf("%d",&n);
-	 switch(n) {
+    printf("\n\n******************** Escolha seu algoritmo *******************");
+    printf("\n1.Bubble sort");
+    printf("\n2.Selection sort");
+    printf("\n3.Insertion sort");
+    printf("\n4.Merge sort");
+    printf("\n5.Quick sort");
+    printf("\n0.Sair");
+    printf("\nEntre sua opção : ");
+    scanf("%d",&n);
+    switch(n) {
         case 1: bubble(vetor);
-			    break;
-		case 2: selection(vetor);
-			    break;
-		case 3: insertion(vetor);
-			    break;
-        case 4: merge(vetor);
-			    break;
+                break;
+        case 2: selection(vetor);
+                break;
+        case 3: insertion(vetor);
+                break;
+        case 4: 
+            mergeSort(vetor, 0, 49);
+            imprimir(vetor);
+            break;
         case 5: quick(vetor);
-			    break;
+                break;
         case 0: exit(0);
-		 	    break;
-		default: printf("\n Opção errada!");
-		 	    break;
-		}
-	} while(1);
+                break;
+        default: printf("\n Opção errada!");
+                break;
+    }
+  } while(1);
 
   return 0; 
-} 
+}
