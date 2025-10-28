@@ -73,12 +73,15 @@ void insertion(int *vetor) {
 }
 
 void merge(int *vetor, int inicio, int meio, int fim) {
+    // Cria os vetores temporários
     int n1 = meio - inicio + 1;
     int n2 = fim - meio;
 
+    // Aloca memória para os vetores temporários
     int *L = (int *)malloc(n1 * sizeof(int));
     int *R = (int *)malloc(n2 * sizeof(int));
 
+    // Copia os dados para os vetores temporários L[] e R[]
     for (int i = 0; i < n1; i++){
         L[i] = vetor[inicio + i];
     } 
@@ -86,6 +89,7 @@ void merge(int *vetor, int inicio, int meio, int fim) {
         R[j] = vetor[meio + 1 + j];
     } 
 
+    // Índices iniciais dos vetores temporários e do vetor principal
     int i = 0, j = 0, k = inicio;
 
     // Intercala enquanto houver elementos em ambos os lados
@@ -101,23 +105,29 @@ void merge(int *vetor, int inicio, int meio, int fim) {
     while (i < n1) vetor[k++] = L[i++];
     while (j < n2) vetor[k++] = R[j++];
 
+    // Libera a memória alocada
     free(L);
     free(R);
 }
 
 void mergeSort(int *vetor,int inicio,int fim){
+    // Verifica se o vetor pode ser dividido
     if (inicio < fim){
+        // Encontra o ponto médio
         int meio = (inicio + fim)/2;
+
+        // Chama recursivamente para as duas metades
         mergeSort(vetor, inicio, meio);
         mergeSort(vetor, meio+1, fim);
+
+        // Intercala as duas metades ordenadas
         merge(vetor, inicio, meio, fim);
     }
 }
 
 void quick(int *vetor) {
-    //////////////////////////////////////////////////////////////
-    ////////////////////// IMPLEMENTAR AQUI //////////////////////
-    //////////////////////////////////////////////////////////////
+
+
     imprimir(vetor);
     return;
 }
