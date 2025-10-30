@@ -7,6 +7,7 @@ void selection(int *vetor);
 void insertion(int *vetor);
 void merge(int *vetor, int inicio, int meio, int fim);
 void mergeSort(int *vetor,int inicio,int fim);
-void quick(int *vetor);
+int particiona(int V[], int inicio, int final);
+void quickSort(int V[], int inicio, int final);
 
 #endif // _H_ORDENACAO_

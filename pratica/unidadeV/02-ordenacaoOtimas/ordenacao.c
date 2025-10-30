@@ -125,41 +125,47 @@ void mergeSort(int *vetor,int inicio,int fim){
     }
 }
 
-// Função para particionar o vetor
-void partcionar(int *vetor, int baixo, int alto, int *i, int *j) {
-    int pivo = vetor[(baixo + alto) / 2];
-    *i = baixo;
-    *j = alto;
+// Função de particionamento para o QuickSort
+int particiona(int V[], int inicio, int final) {
+    int esq = inicio;
+    int dir = final;
+    int pivo = V[inicio];
+    int aux;
 
-    while (1) {
-        while (vetor[*i] < pivo) (*i)++;
-        while (vetor[*j] > pivo) (*j)--;
+    while (esq < dir) {
+        // Avança posição da esquerda enquanto os elementos forem <= pivo
+        while (esq <= final && V[esq] <= pivo)
+            esq++;
 
-        if (*i >= *j) return;
+        // Recuar posição da direita enquanto os elementos forem > pivo
+        while (dir >= 0 && V[dir] > pivo)
+            dir--;
 
-        // Troca os elementos em i e j
-        int temp = vetor[*i];
-        vetor[*i] = vetor[*j];
-        vetor[*j] = temp;
-
-        (*i)++;
-        (*j)--;
+        // Se ainda não se cruzaram, troca os elementos
+        if (esq < dir) {
+            aux = V[esq];
+            V[esq] = V[dir];
+            V[dir] = aux;
+        }
     }
+
+    // Coloca o pivô na posição correta
+    V[inicio] = V[dir];
+    V[dir] = pivo;
+
+    // Retorna a posição final do pivô
+    return dir;
 }
 
-// Função auxiliar para o Quick Sort
-void quickSort(int *vetor, int baixo, int alto) {
-    if (baixo < alto) {
-        int i, j;
-        partcionar(vetor, baixo, alto, &i, &j);
+// Função recursiva QuickSort
+void quickSort(int V[], int inicio, int final) {
+    int posPivo;
 
-        // Chama recursivamente para as duas metades
-        quickSort(vetor, baixo, j);
-        quickSort(vetor, i, alto);
+    if (inicio < final) { // Condição de parada
+        posPivo = particiona(V, inicio, final); // Divide o vetor
+        quickSort(V, inicio, posPivo - 1);      // Ordena a parte esquerda
+        quickSort(V, posPivo + 1, final);       // Ordena a parte direita
     }
-
-    imprimir(vetor);
-    return;
 }
 
 int main() { 
@@ -192,7 +198,8 @@ int main() {
             imprimir(vetor);
             break;
         case 5: 
-            quick(vetor);
+            quickSort(vetor, 0, 49);
+            imprimir(vetor); // imprime só o resultado final
             break;
         case 0: 
             exit(0);
