@@ -125,7 +125,30 @@ void mergeSort(int *vetor,int inicio,int fim){
     }
 }
 
-void quick(int *vetor) {
+// Função para particionar o vetor
+void partcionar(int *vetor, int baixo, int alto, int *i, int *j) {
+    int pivo = vetor[(baixo + alto) / 2];
+    *i = baixo;
+    *j = alto;
+
+    while (1) {
+        while (vetor[*i] < pivo) (*i)++;
+        while (vetor[*j] > pivo) (*j)--;
+
+        if (*i >= *j) return;
+
+        // Troca os elementos em i e j
+        int temp = vetor[*i];
+        vetor[*i] = vetor[*j];
+        vetor[*j] = temp;
+
+        (*i)++;
+        (*j)--;
+    }
+}
+
+// Função auxiliar para o Quick Sort
+void quickSort(int *vetor) {
 
 
     imprimir(vetor);
