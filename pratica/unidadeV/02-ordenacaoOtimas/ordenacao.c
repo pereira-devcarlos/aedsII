@@ -148,8 +148,15 @@ void partcionar(int *vetor, int baixo, int alto, int *i, int *j) {
 }
 
 // Função auxiliar para o Quick Sort
-void quickSort(int *vetor) {
+void quickSort(int *vetor, int baixo, int alto) {
+    if (baixo < alto) {
+        int i, j;
+        partcionar(vetor, baixo, alto, &i, &j);
 
+        // Chama recursivamente para as duas metades
+        quickSort(vetor, baixo, j);
+        quickSort(vetor, i, alto);
+    }
 
     imprimir(vetor);
     return;
