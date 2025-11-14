@@ -63,11 +63,6 @@ Jogador removerVetorOrdenado(VetorOrdenado* v) {
     return v->dados[v->tamanho]; // Retorna o último elemento
 }
 
-// --- Lista Não Ordenada ---
-typedef struct {
-    Node* head;
-} ListaNaoOrdenada;
-
 ListaNaoOrdenada* criarListaNaoOrdenada() {
     ListaNaoOrdenada* l = (ListaNaoOrdenada*)malloc(sizeof(ListaNaoOrdenada));
     if (l == NULL) {
@@ -134,11 +129,6 @@ Jogador removerListaNaoOrdenada(ListaNaoOrdenada* l) {
     free(maxNode);
     return j;
 }
-
-// --- Lista Encadeada Ordenada ---
-typedef struct {
-    Node* head;
-} ListaEncadeadaOrdenada;
 
 ListaEncadeadaOrdenada* criarListaEncadeadaOrdenada() {
     ListaEncadeadaOrdenada* l = (ListaEncadeadaOrdenada*)malloc(sizeof(ListaEncadeadaOrdenada));
