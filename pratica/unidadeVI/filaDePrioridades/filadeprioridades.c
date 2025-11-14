@@ -3,7 +3,6 @@
 #include <string.h>
 #include "filadeprioridades.h"
 
-
 // Vetor Ordenado
 // Mantido em ordem CRESCENTE de idade (menor para maior)
 VetorOrdenado* criarVetorOrdenado(int capacidadeInicial) {
@@ -63,6 +62,7 @@ Jogador removerVetorOrdenado(VetorOrdenado* v) {
     return v->dados[v->tamanho]; // Retorna o último elemento
 }
 
+// Lista Não Ordenada
 ListaNaoOrdenada* criarListaNaoOrdenada() {
     ListaNaoOrdenada* l = (ListaNaoOrdenada*)malloc(sizeof(ListaNaoOrdenada));
     if (l == NULL) {
@@ -130,6 +130,7 @@ Jogador removerListaNaoOrdenada(ListaNaoOrdenada* l) {
     return j;
 }
 
+// Lista Encadeada Ordenada
 ListaEncadeadaOrdenada* criarListaEncadeadaOrdenada() {
     ListaEncadeadaOrdenada* l = (ListaEncadeadaOrdenada*)malloc(sizeof(ListaEncadeadaOrdenada));
     if (l == NULL) {
