@@ -103,16 +103,28 @@ int main() {
     heap_imprime(heap);
 
     printf("Heap está cheia? %s\n", ehCheia(heap) ? "Sim" : "Não");
+
     printf("Heap está vazia? %s\n", ehVazia(heap) ? "Sim" : "Não");
 
-    // Remove elementos do topo
-    printf("Removendo topo: %d\n", heap_remove(heap));
+    // Remove elementos do topo até a heap ficar vazia
+    printf("\nRemovendo topo: %d\n", heap_remove(heap));
     heap_imprime(heap);
 
-    printf("Removendo topo: %d\n", heap_remove(heap));
+    printf("\nRemovendo topo: %d\n", heap_remove(heap));
     heap_imprime(heap);
 
+    printf("\nRemovendo topo: %d\n", heap_remove(heap));
+    heap_imprime(heap);
+
+    printf("\nRemovendo topo: %d\n", heap_remove(heap));
+    heap_imprime(heap);
+
+    printf("\nRemovendo topo: %d\n", heap_remove(heap));
+
+    // Verificando se está cheia
     printf("Heap está cheia? %s\n", ehCheia(heap) ? "Sim" : "Não");
+
+    // Verificando se está vazia
     printf("Heap está vazia? %s\n", ehVazia(heap) ? "Sim" : "Não");
 
     // Libera memória
