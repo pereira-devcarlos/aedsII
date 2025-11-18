@@ -74,8 +74,50 @@ void corrige_abaixo(int *prios, int atual, int tam) {
     }
 }
 
+void heap_imprime(struct Heap* heap) {
+    printf("Heap: ");
+    for (int i = 0; i < heap->pos; i++) {
+        printf("%d ", heap->prioridade[i]);
+    }
+    printf("\n");
+}
+
+int ehVazia(struct Heap* heap) {
+    return heap->pos == 0;
+}
+
+int ehCheia(struct Heap* heap) {
+    return heap->pos == heap->max;
+}
 
 int main() { 
+    struct Heap* heap = heap_inicializa(10);
 
-    return (1);
+    // Insere elementos
+    heap_insere(heap, 15);
+    heap_insere(heap, 10);
+    heap_insere(heap, 30);
+    heap_insere(heap, 5);
+    heap_insere(heap, 25);
+
+    heap_imprime(heap);
+
+    printf("Heap está cheia? %s\n", ehCheia(heap) ? "Sim" : "Não");
+    printf("Heap está vazia? %s\n", ehVazia(heap) ? "Sim" : "Não");
+
+    // Remove elementos do topo
+    printf("Removendo topo: %d\n", heap_remove(heap));
+    heap_imprime(heap);
+
+    printf("Removendo topo: %d\n", heap_remove(heap));
+    heap_imprime(heap);
+
+    printf("Heap está cheia? %s\n", ehCheia(heap) ? "Sim" : "Não");
+    printf("Heap está vazia? %s\n", ehVazia(heap) ? "Sim" : "Não");
+
+    // Libera memória
+    free(heap->prioridade);
+    free(heap);
+
+    return 0;
 }

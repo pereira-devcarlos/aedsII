@@ -25,4 +25,13 @@ int heap_remove(struct Heap* heap);
 /* Função auxiliar ao método de remoção */
 void corrige_abaixo(int *prios, int atual, int tam);
 
+/* Imprime os elementos da heap */
+void heap_imprime(struct Heap* heap);
+
+/* Verifica se a heap está vazia */
+int ehVazia(struct Heap* heap);
+
+/* Verifica se a heap está cheia */
+int ehCheia(struct Heap* heap);
+
 #endif // _H_HEAP_
