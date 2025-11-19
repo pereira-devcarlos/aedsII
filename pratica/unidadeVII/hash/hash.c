@@ -3,19 +3,44 @@
 #include "hash.h"
 
 int M;
+int contador = 0;
 
 struct Hash* criar_hash(int tamanho) {
     M = tamanho;
     struct Hash* hash = (struct Hash*) malloc(sizeof(struct Hash));
     hash->items = (struct Item*) malloc(tamanho*sizeof(struct Item));
+
+    // Definindo todas as posições da tabela como Vazias
+    for (int i = 0; i < M; i++){
+        hash->items[i].estado = VAZIO;
+    }
     return hash;
 }
 
 void hash_insere(struct Hash* hash, struct Item item) {
-    hash->items[hashing(item.valor)] = item;
+    if (contador == M){
+        printf("\nErro: tabela cheia!");
+        return;
+    }
+    
+    int hashInt = hashing(item.valor);
+    for (int i = 0; i < M; i++){
+        int pos = (hashInt + i) % M;
+        if (hash->items[pos].estado != PREENCHIDO){
+            hash->items[pos] = item;
+            hash->items[pos].estado = PREENCHIDO;
+            contador++;
+            return;
+        }
+    }
 }
 
 void hash_remove(struct Hash* hash, struct Item item) {
+    if (contador == 0){
+        printf("\nErro: tabela vazia!");
+    }
+    
+
     struct Item newItem;
     newItem.valor = 0;
     hash->items[hashing(item.valor)] = newItem;

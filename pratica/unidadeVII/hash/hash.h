@@ -1,12 +1,15 @@
 #ifndef _H_HASH_
 #define _H_HASH_
 
+enum Estado {VAZIO, PREENCHIDO, REMOVIDO};
+
 struct Item {
     int valor;
+    enum Estado estado;
 };
 
 struct Hash {
- struct Item* items;   /* vetor de items da hash */
+    struct Item* items;   /* vetor de items da hash */
 }; 
 
 /* Cria uma hash*/
