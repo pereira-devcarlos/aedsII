@@ -64,7 +64,29 @@ void hash_remove(struct Hash* hash, struct Item item) {
 }
 
 struct Item busca(struct Hash* hash, struct Item item) {
-    return (hash->items[hashing(item.valor)]);
+    if (contador == 0){
+        printf("\nErro: tabela vazia!");
+        return;
+    }
+    
+    int hashInt = hashing(item.valor);
+    
+    // Caso 1: não houver nenhuma inserção se quer na posição
+    if (hash->items[hashInt].estado == VAZIO){
+        printf("\nItem nao encontrado!");
+
+        struct Item noItem;
+        noItem.valor = -1;
+        noItem.estado = VAZIO;
+        return noItem;
+    }
+
+    for (int i = 0; i < M; i++){
+        int pos = (hashInt + i) % M;
+        if (hash->items[pos].estado == PREENCHIDO && hash->items[pos].valor == item.valor){
+            return hash->items[pos];
+        }
+    }
 }
 
 int hashing(int chave) {
