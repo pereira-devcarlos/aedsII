@@ -18,6 +18,7 @@ struct Hash* criar_hash(int tamanho) {
 }
 
 void hash_insere(struct Hash* hash, struct Item item) {
+    // Verifica se a tabela está cheia
     if (contador == M){
         printf("\nErro: tabela cheia!");
         return;
@@ -25,22 +26,29 @@ void hash_insere(struct Hash* hash, struct Item item) {
     
     int hashInt = hashing(item.valor);
     for (int i = 0; i < M; i++){
+        // Calcula as posições seguintes caso haja colisão
         int pos = (hashInt + i) % M;
+
+        // Verifica se a posição está disponível
         if (hash->items[pos].estado != PREENCHIDO){
             hash->items[pos] = item;
             hash->items[pos].estado = PREENCHIDO;
             contador++;
+
+            printf("\nItem %d inserido com sucesso!", item.valor);
             return;
         }
     }
 }
 
 void hash_remove(struct Hash* hash, struct Item item) {
+    // Verifica se a tabela está vazia
     if (contador == 0){
         printf("\nErro: tabela vazia!");
         return;
     }
 
+    // Cria um item de estado REMOVIDO
     struct Item newItem;
     newItem.valor = 0;
     newItem.estado = REMOVIDO;
@@ -58,6 +66,8 @@ void hash_remove(struct Hash* hash, struct Item item) {
         if (hash->items[pos].estado == PREENCHIDO && hash->items[pos].valor == item.valor){
             hash->items[pos] = newItem;
             contador--;
+
+            printf("\nItem %d removido com sucesso!", item.valor);
             return;
         }           
     }   
@@ -66,15 +76,18 @@ void hash_remove(struct Hash* hash, struct Item item) {
 struct Item busca(struct Hash* hash, struct Item item) {
     int hashInt = hashing(item.valor);
     
+    // Laço para procurar o item na tabela
     for (int i = 0; i < M; i++){
         int pos = (hashInt + i) % M;
         if (hash->items[pos].estado == PREENCHIDO && hash->items[pos].valor == item.valor){
+            printf("\nItem %d encontrado!", item.valor);
             return hash->items[pos];
         }
     }
         
-    printf("\nItem nao encontrado!");
+    printf("\nItem %d nao encontrado!", item.valor);
 
+    // Retorna um item inválido caso não encontre
     struct Item noItem;
     noItem.valor = -1;
     noItem.estado = VAZIO;
@@ -110,12 +123,6 @@ int main() {
             case 3: printf("\nDigite o item ");
                     scanf("%d",&item.valor);
                     item = busca(hash, item);
-
-                    if (item.estado != VAZIO){
-                        printf("\nValor %d encontrado", item.valor);
-                    } else {
-                        printf("\nErro: item nao foi encontrado!");
-                    }
                     break;
             case 0: exit(0);
                     break;
