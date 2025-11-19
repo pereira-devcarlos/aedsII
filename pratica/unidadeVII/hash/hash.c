@@ -38,12 +38,29 @@ void hash_insere(struct Hash* hash, struct Item item) {
 void hash_remove(struct Hash* hash, struct Item item) {
     if (contador == 0){
         printf("\nErro: tabela vazia!");
+        return;
     }
-    
 
     struct Item newItem;
     newItem.valor = 0;
-    hash->items[hashing(item.valor)] = newItem;
+    newItem.estado = REMOVIDO;
+    
+    int hashInt = hashing(item.valor);
+    // Caso 1: não houver nenhuma inserção se quer na posição
+    if (hash->items[hashInt].estado == VAZIO){
+        printf("\nItem nao encontrado!");
+        return;
+    }
+    
+    // Caso 2: procurar linearmente na tabela
+    for (int i = 0; i < M; i++){
+        int pos = (hashInt + i) % M;
+        if (hash->items[pos].estado == PREENCHIDO && hash->items[pos].valor == item.valor){
+            hash->items[pos] = newItem;
+            contador--;
+            return;
+        }           
+    }   
 }
 
 struct Item busca(struct Hash* hash, struct Item item) {
