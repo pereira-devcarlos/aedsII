@@ -110,6 +110,12 @@ int main() {
             case 3: printf("\nDigite o item ");
                     scanf("%d",&item.valor);
                     item = busca(hash, item);
+
+                    if (item.estado != VAZIO){
+                        printf("\nValor %d encontrado", item.valor);
+                    } else {
+                        printf("\nErro: item nao foi encontrado!");
+                    }
                     break;
             case 0: exit(0);
                     break;
