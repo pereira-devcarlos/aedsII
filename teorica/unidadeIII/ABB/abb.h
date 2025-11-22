@@ -7,4 +7,6 @@ typedef struct no {
     struct no *esq, *dir;
 } No;
 
+No *alocarNo(int valor);
+
 #endif // _H_ABB
