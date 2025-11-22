@@ -43,37 +43,6 @@ No *inserirNo(No *raiz, No *novo){
     return raiz;
 }
 
-No *buscaNo(No *raiz, int valor){
-    // No auxiliar para percorrer a árvore
-    No *aux = raiz;
-    // Percorre a árvore até encontrar o valor ou chegar ao final
-    while (aux != NULL){
-        if (valor == aux->valor){
-            return aux;
-        } else if (valor < aux->valor){
-            aux = aux->esq;
-        } else {
-            aux = aux->dir;
-        } 
-    }
-    return NULL;
-}
-
-No *buscaPai(No *raiz, int valor){
-    No *pai = NULL;
-    No *aux = raiz;
-    // Percorre a árvore até encontrar o valor ou chegar ao final
-    while (aux != NULL && aux->valor != valor){
-        pai = aux;
-        if (valor < aux->valor){
-            aux = aux->esq;
-        } else {
-            aux = aux->dir;
-        }
-    }
-    return pai;
-}
-
 // Função para imprimir a arvore
 void preOrdem(No *raiz){
     if (raiz != NULL){
