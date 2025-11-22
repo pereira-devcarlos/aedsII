@@ -81,19 +81,5 @@ int main(){
     printf("\nArvore em ordem:\n");
     emOrdem(raiz);
 
-    No *resultBusca = buscaNo(raiz, 9);
-    if (resultBusca != NULL){
-        printf("\nValor 9 foi encontrado!\n");
-    } else {
-        printf("\nValor 9 nao foi encontrado\n");
-    }
-
-    resultBusca = buscaPai(raiz, 2);
-    if (resultBusca != NULL){
-        printf("\nPai de 5: %d\n", resultBusca->valor);
-    } else {
-        printf("\nValor 7 nao foi encontrado\n");
-    }
-
     return 0;
 }
