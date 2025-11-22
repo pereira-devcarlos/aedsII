@@ -14,26 +14,25 @@ No *alocarNo(int valor){
 }
 
 No *inserirNo(No *raiz, No *novo){
-    // Arvore Vazia, nó inserido se torna a raiz
     if (raiz == NULL) return novo;
-    
-    No *aux = raiz;
-    No *pai = NULL;
-    while (aux != NULL){
-        pai = aux;
-        if (novo->valor < aux->valor){
-            aux = aux->esq;
-        } else if (novo->valor > aux->valor){
-            aux = aux->dir;
+
+    No *p = NULL;
+    No *q = raiz;
+    while (q != NULL){
+        p = q;
+        if (novo->valor < q->valor){
+            q = q->esq;
+        } else if (novo->valor > q->valor) {
+            q = q->dir;
         } else {
             return raiz;
         }
     }
 
-    if (novo->valor < pai->valor){
-        pai->esq = novo;
+    if (novo->valor < p->valor){
+        p->esq = novo;
     } else {
-        pai->dir = novo;
+        p->dir = novo;
     }
     return raiz;
 }
@@ -50,6 +49,20 @@ No *buscaNo(No *raiz, int valor){
         } 
     }
     return NULL;
+}
+
+No *buscaPai(No *raiz, int valor){
+    No *pai = NULL;
+    No *aux = raiz;
+    while (aux != NULL && aux->valor != valor){
+        pai = aux;
+        if (valor < aux->valor){
+            aux = aux->esq;
+        } else {
+            aux = aux->dir;
+        }
+    }
+    return pai;
 }
 
 // Função para imprimir a arvore
@@ -96,12 +109,12 @@ int main(){
     } else {
         printf("\nValor 9 nao foi encontrado\n");
     }
-    
-    resultBusca = buscaNo(raiz, 5);
+
+    resultBusca = buscaPai(raiz, 2);
     if (resultBusca != NULL){
-        printf("\nValor 5 foi encontrado!\n");
+        printf("\nPai de 5: %d\n", resultBusca->valor);
     } else {
-        printf("\nValor 5 nao foi encontrado\n");
+        printf("\nValor 7 nao foi encontrado\n");
     }
 
     return 0;
