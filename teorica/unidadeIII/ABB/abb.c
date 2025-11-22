@@ -61,6 +61,7 @@ No *buscaPai(No *raiz, int valor){
     }
 }
 
+// Função para remover a raiz da árvore
 No *removeRaiz(No *raiz){
     if (raiz == NULL) return NULL;
     
@@ -86,6 +87,24 @@ No *removeRaiz(No *raiz){
     q->dir = raiz->dir;
 
     return q;    
+}
+
+// Função para remover um determinado nó da árvore
+No *removerNo(No *raiz, int valor){
+    No *n = buscaNo(raiz, valor);
+    if (n){
+        No *pai = buscaPai(raiz, valor);
+        if (pai){
+            if (pai->esq->valor == valor){
+                pai->esq = removeRaiz(n);
+            } else {
+                pai->dir = removeRaiz(n);
+            }
+        } else {
+            raiz = removeRaiz(n);
+        }
+    } 
+    return raiz;
 }
 
 // Função para imprimir a arvore
@@ -147,17 +166,9 @@ int main(){
         printf("\nValor 7 nao foi encontrado\n");
     }
 
-    raiz = removeRaiz(raiz);
+    raiz = removerNo(raiz, 7);
     printf("\nArvore em pre ordem:\n");
     preOrdem(raiz);
 
-    raiz = removeRaiz(raiz);
-    printf("\nArvore em pre ordem:\n");
-    preOrdem(raiz);
-
-    raiz = removeRaiz(raiz);
-    printf("\nArvore em pre ordem:\n");
-    preOrdem(raiz);
-    
     return 0;
 }
