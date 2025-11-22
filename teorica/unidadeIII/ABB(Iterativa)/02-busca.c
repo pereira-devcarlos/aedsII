@@ -104,11 +104,11 @@ int main(){
         printf("\nValor 9 nao foi encontrado\n");
     }
 
-    resultBusca = buscaPai(raiz, 2);
+    resultBusca = buscaNo(raiz, 2);
     if (resultBusca != NULL){
-        printf("\nPai de 5: %d\n", resultBusca->valor);
+        printf("\nValor 2 foi encontrado\n");
     } else {
-        printf("\nValor 7 nao foi encontrado\n");
+        printf("\nValor 2 nao foi encontrado\n");
     }
 
     return 0;
