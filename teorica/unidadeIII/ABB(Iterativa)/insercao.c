@@ -25,8 +25,9 @@ No *inserirNo(No *raiz, No *novo){
             aux = aux->esq;
         } else if (novo->valor > aux->valor){
             aux = aux->dir;
+        } else {
+            return raiz;
         }
-        return raiz;
     }
 
     if (novo->valor < pai->valor){
@@ -57,7 +58,23 @@ void emOrdem(No *raiz){
 int main(){
     No *raiz = NULL;
 
-    
+    No *noInserir = alocarNo(10);
+    raiz = inserirNo(raiz, noInserir);
+
+    noInserir = alocarNo(5);
+    raiz = inserirNo(raiz, noInserir);
+
+    noInserir = alocarNo(2);
+    raiz = inserirNo(raiz, noInserir);
+
+    noInserir = alocarNo(7);
+    raiz = inserirNo(raiz, noInserir);
+
+    printf("\nArvore em pre ordem:\n");
+    preOrdem(raiz);
+
+    printf("\nArvore em ordem:\n");
+    emOrdem(raiz);
     
     return 0;
 }
