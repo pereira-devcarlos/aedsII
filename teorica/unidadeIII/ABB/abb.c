@@ -41,6 +41,26 @@ No *buscaNo(No *raiz, int valor){
     return raiz;
 }
 
+// Função para buscar o pai de um No
+No *buscaPai(No *raiz, int valor){
+    if (raiz == NULL || raiz->valor == valor){
+        return NULL;
+    }
+
+    if (raiz->esq != NULL &&  raiz->esq->valor == valor){
+        return raiz;
+    } else if (raiz->dir != NULL && raiz->dir->valor == valor){
+        return raiz;
+    } else {
+        if (valor < raiz->valor){
+            raiz = buscaPai(raiz->esq, valor);
+        } else {
+            raiz = buscaPai(raiz->dir, valor);
+        }
+        return raiz;
+    }
+}
+
 // Função para imprimir a arvore
 void preOrdem(No *raiz){
     if (raiz != NULL){
@@ -67,6 +87,12 @@ int main(){
     noInserir = alocarNo(5);
     raiz = insertNo(raiz, noInserir);
 
+    noInserir = alocarNo(2);
+    raiz = insertNo(raiz, noInserir);
+
+    noInserir = alocarNo(7);
+    raiz = insertNo(raiz, noInserir);
+
     printf("\nArvore em pre ordem:\n");
     preOrdem(raiz);
 
@@ -75,16 +101,23 @@ int main(){
 
     No *resultBusca = buscaNo(raiz, 7);
     if (resultBusca != NULL){
-        printf("\nValor 7 foi encontrado!");
+        printf("\nValor 7 foi encontrado!\n");
     } else {
-        printf("\nValor 7 nao foi encontrado");
+        printf("\nValor 7 nao foi encontrado\n");
     }
     
     resultBusca = buscaNo(raiz, 5);
     if (resultBusca != NULL){
-        printf("\nValor 5 foi encontrado!");
+        printf("\nValor 5 foi encontrado!\n");
     } else {
-        printf("\nValor 5 nao foi encontrado");
+        printf("\nValor 5 nao foi encontrado\n");
+    }
+
+    resultBusca = buscaPai(raiz, 7);
+    if (resultBusca != NULL){
+        printf("\nPai de 7: %d\n", resultBusca->valor);
+    } else {
+        printf("\nValor 7 nao foi encontrado\n");
     }
 
     return 0;
