@@ -10,7 +10,18 @@ No *alocarNo(int valor){
     novo->esq = NULL;
 }
 
-
+// Função para inserir um nó na Arvore
+No *insertNo(No *raiz, No *noInserir){
+    if (noInserir == NULL) return NULL;
+    
+    if (noInserir->valor < raiz->valor){
+        raiz->esq = insertNo(raiz->esq, noInserir);
+    } else if (noInserir->valor > raiz->valor){
+        raiz->dir = insertNo(raiz->dir, noInserir);
+    } else {
+        raiz = noInserir;
+    }
+}
 
 int main(){
     

@@ -8,5 +8,6 @@ typedef struct no {
 } No;
 
 No *alocarNo(int valor);
+No *insertNo(No *raiz, No *noInserir);
 
 #endif // _H_ABB
