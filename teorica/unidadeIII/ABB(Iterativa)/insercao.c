@@ -37,8 +37,27 @@ No *inserirNo(No *raiz, No *novo){
     return raiz;
 }
 
+// Função para imprimir a arvore
+void preOrdem(No *raiz){
+    if (raiz != NULL){
+        printf("%d ", raiz->valor);
+        preOrdem(raiz->esq);
+        preOrdem(raiz->dir);
+    }
+}
+
+void emOrdem(No *raiz){
+    if (raiz != NULL){    
+        emOrdem(raiz->esq);
+        printf("%d ", raiz->valor);
+        emOrdem(raiz->dir);
+    }
+}
+
 int main(){
     No *raiz = NULL;
+
+    
     
     return 0;
 }
