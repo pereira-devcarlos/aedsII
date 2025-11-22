@@ -9,5 +9,7 @@ typedef struct no {
 
 No *alocarNo(int valor);
 No *insertNo(No *raiz, No *noInserir);
+void preOrdem(No *raiz);
+void emOrdem(No *raiz);
 
 #endif // _H_ABB

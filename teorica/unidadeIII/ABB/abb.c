@@ -23,6 +23,19 @@ No *insertNo(No *raiz, No *noInserir){
     }
 }
 
+// Função para imprimir a arvore
+void preOrdem(No *raiz){
+    printf("%d ", raiz->valor);
+    preOrdem(raiz->esq);
+    preOrdem(raiz->dir);
+}
+
+void emOrdem(No *raiz){
+    emOrdem(raiz->esq);
+    printf("%d ", raiz->valor);
+    emOrdem(raiz->dir);
+}
+
 int main(){
     
     return 0;
