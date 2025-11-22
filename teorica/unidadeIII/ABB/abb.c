@@ -61,6 +61,33 @@ No *buscaPai(No *raiz, int valor){
     }
 }
 
+No *removeRaiz(No *raiz){
+    if (raiz == NULL) return NULL;
+    
+    No *p = raiz;
+    No *q = (raiz->esq != NULL) ? raiz->esq : raiz;
+
+    // Não possui filhos a esquerda
+    if (p == q){
+        q = p->dir;
+        free(p);
+        return q;
+    }
+
+    while (q->dir != NULL){
+        p = q;
+        q = q->dir;
+    }
+    
+    if (p != raiz){
+        p->dir = q->esq;
+        q->esq = raiz->esq;
+    }
+    q->dir = raiz->dir;
+
+    return q;    
+}
+
 // Função para imprimir a arvore
 void preOrdem(No *raiz){
     if (raiz != NULL){
@@ -120,5 +147,17 @@ int main(){
         printf("\nValor 7 nao foi encontrado\n");
     }
 
+    raiz = removeRaiz(raiz);
+    printf("\nArvore em pre ordem:\n");
+    preOrdem(raiz);
+
+    raiz = removeRaiz(raiz);
+    printf("\nArvore em pre ordem:\n");
+    preOrdem(raiz);
+
+    raiz = removeRaiz(raiz);
+    printf("\nArvore em pre ordem:\n");
+    preOrdem(raiz);
+    
     return 0;
 }
