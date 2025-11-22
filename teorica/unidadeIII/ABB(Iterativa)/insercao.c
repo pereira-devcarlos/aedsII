@@ -6,6 +6,7 @@ typedef struct no {
     struct no *esq, *dir;
 } No;
 
+// Função para alocar um novo nó na memória
 No *alocarNo(int valor){
     No *novo = (No*) malloc(sizeof(No));
     novo->valor = valor;
@@ -13,11 +14,15 @@ No *alocarNo(int valor){
     novo->dir = NULL;
 }
 
+// Função para inserir um nó na Arvore (iterativa)
 No *inserirNo(No *raiz, No *novo){
+    // Caso árvore vazia
     if (raiz == NULL) return novo;
 
     No *p = NULL;
     No *q = raiz;
+
+    // Percorre a árvore até encontrar a posição correta
     while (q != NULL){
         p = q;
         if (novo->valor < q->valor){
@@ -29,6 +34,7 @@ No *inserirNo(No *raiz, No *novo){
         }
     }
 
+    // Insere o novo nó como filho de p(pai)
     if (novo->valor < p->valor){
         p->esq = novo;
     } else {
@@ -38,7 +44,9 @@ No *inserirNo(No *raiz, No *novo){
 }
 
 No *buscaNo(No *raiz, int valor){
+    // No auxiliar para percorrer a árvore
     No *aux = raiz;
+    // Percorre a árvore até encontrar o valor ou chegar ao final
     while (aux != NULL){
         if (valor == aux->valor){
             return aux;
@@ -54,6 +62,7 @@ No *buscaNo(No *raiz, int valor){
 No *buscaPai(No *raiz, int valor){
     No *pai = NULL;
     No *aux = raiz;
+    // Percorre a árvore até encontrar o valor ou chegar ao final
     while (aux != NULL && aux->valor != valor){
         pai = aux;
         if (valor < aux->valor){
