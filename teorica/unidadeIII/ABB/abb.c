@@ -27,6 +27,20 @@ No *insertNo(No *raiz, No *noInserir){
     return raiz;
 }
 
+// Função para buscar um no na Árvore
+No *buscaNo(No *raiz, int valor){
+    if (raiz == NULL){
+        return NULL;
+    }
+
+    if (valor < raiz->valor){
+        raiz = buscaNo(raiz->esq, valor);
+    } else if (valor > raiz->valor){
+        raiz = buscaNo(raiz->dir, valor);
+    } 
+    return raiz;
+}
+
 // Função para imprimir a arvore
 void preOrdem(No *raiz){
     if (raiz != NULL){
@@ -58,6 +72,20 @@ int main(){
 
     printf("\nArvore em ordem:\n");
     emOrdem(raiz);
+
+    No *resultBusca = buscaNo(raiz, 7);
+    if (resultBusca != NULL){
+        printf("\nValor 7 foi encontrado!");
+    } else {
+        printf("\nValor 7 nao foi encontrado");
+    }
+    
+    resultBusca = buscaNo(raiz, 5);
+    if (resultBusca != NULL){
+        printf("\nValor 5 foi encontrado!");
+    } else {
+        printf("\nValor 5 nao foi encontrado");
+    }
 
     return 0;
 }
