@@ -57,13 +57,10 @@ void corrige_abaixo(int *prios, int atual, int tam) {
     while (2*pai+1 < tam){
         filho_esq = 2*pai+1;
         filho_dir = 2*pai+2;
-        if (filho_dir >= tam) {
-            filho_dir=filho_esq;
-        }
-        if (prios[filho_esq] > prios[filho_dir]) {
-                filho = filho_esq;
-        } else {
+        if (filho_dir < tam && prios[filho_esq] < prios[filho_dir]) {
             filho = filho_dir;
+        } else {
+            filho = filho_esq;
         }
         if (prios[pai] < prios[filho]) {
             troca(pai,filho,prios);
