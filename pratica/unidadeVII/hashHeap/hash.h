@@ -1,27 +1,42 @@
 #ifndef _H_HASH_
 #define _H_HASH_
 
-struct Item {
-    int valor;
+#define MAX 10
+
+// Estrutura do Heap
+struct Heap {
+    int dados[MAX];
+    int tamanho;
 };
 
+// Estrutura do Hash (guarda índice do valor no heap)
 struct Hash {
- struct Item* items;   /* vetor de items da hash */
-}; 
+    int indices[MAX]; // indices[valor] = índice do valor no heap
+    int estado[MAX];  // 0 = vazio, 1 = ocupado
+};
 
-/* Cria uma hash*/
-struct Hash* criar_hash(int tamanho);
+// Inicializa heap
+void heap_init(struct Heap* h);
 
-/* Insere um novo elemento na hash */
-void hash_insere(struct Hash* hash, struct Item item);
+// Inicializa hash
+void hash_init(struct Hash* hash);
 
-/* Remove um elemento da hash de acordo com sua chave */
-void hash_remove(struct Hash* hash, struct Item item);
+// Troca elementos no heap e atualiza hash
+void troca(struct Heap* h, struct Hash* hash, int i, int j);
 
-/* Obtém um item da hash */
-struct Item busca(struct Hash* hash, struct Item item);
+// Insere no heap e atualiza hash
+void heap_insere(struct Heap* h, struct Hash* hash, int valor);
 
-/* Função de hashing */
-int hashing(int chave);
+// Remove o topo do heap e atualiza hash
+int heap_remove(struct Heap* h, struct Hash* hash);
+
+// Busca índice do valor no heap usando hash
+int heap_busca(struct Hash* hash, int valor);
+
+// Imprime heap
+void heap_imprime(struct Heap* h);
+
+// Imprime hash
+void hash_imprime(struct Hash* hash);
 
 #endif // _H_HASH_
