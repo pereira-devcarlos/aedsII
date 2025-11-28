@@ -77,7 +77,7 @@
 | Teoria      | Peso | Data      |   |   | Prática                                                                                 | Peso | Data   |
 |-------------|------|-----------|---|---|-----------------------------------------------------------------------------------------|------|--------|
 | Avaliação 1 | 3.0  | Combinar  |   |   | [Trabalho Prático 1](https://github.com/pereira-devcarlos/palindromo)                   | 0.3  | 23/09  |
-| Avaliação 2 | 4.0  | Combinar  |   |   | Trabalho Prático 2                                                                      | 0.3  | 05/11  |
+| Avaliação 2 | 4.0  | Combinar  |   |   | [Trabalho Prático 2](https://github.com/pereira-devcarlos/external-mergesort)           | 0.3  | 05/11  |
 | Avaliação 3 | 3.0  | Combinar  |   |   | Trabalho Prático 3                                                                      | 0.3  | 25/11  |
 
 ---
