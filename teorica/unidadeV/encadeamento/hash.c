@@ -32,7 +32,19 @@ void insert(Node* table[], int key){
         }
         aux->next = newNode;
     }
+}
+
+Node *search(Node *table[], int key){
+    int index = keyHash(key);
+    Node* aux = table[index];
     
+    while (aux != NULL){
+        if (aux->key == key){
+            return aux;
+        }
+        aux = aux->next;
+    }
+    return NULL;
 }
 
 int main(){
