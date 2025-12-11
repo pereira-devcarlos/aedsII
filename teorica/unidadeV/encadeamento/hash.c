@@ -74,6 +74,35 @@ Node *removeKey(Node *table[], int key){
 
 int main(){
     Node* hashTable[TABLE_SIZE] = {NULL};
+    
+    // Testando inserções
+    insert(hashTable, 10);
+    insert(hashTable, 20);
+    insert(hashTable, 15);
+
+    // Testando buscas
+    Node* foundNode = search(hashTable, 15);
+    if (foundNode != NULL){
+        printf("Chave %d encontrada na tabela.\n", foundNode->key);
+    } else {
+        printf("Chave nao encontrada na tabela.\n");
+    }
+
+    // Testando remoção
+    Node* removedNode = removeKey(hashTable, 20);
+    if (removedNode != NULL){
+        printf("Chave %d removida da tabela.\n", removedNode->key);
+        free(removedNode);
+    } else {
+        printf("Chave para remoção nao encontrada na tabela.\n");
+    }
+
+    foundNode = search(hashTable, 20);
+    if (foundNode != NULL){
+        printf("Chave %d encontrada na tabela.\n", foundNode->key);
+    } else {
+        printf("Chave nao encontrada na tabela.\n");
+    }
 
     return 0;
 }
