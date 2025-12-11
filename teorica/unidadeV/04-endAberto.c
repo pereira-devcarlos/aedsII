@@ -1,6 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define TAM 10
+int contador = 0;
+
+// Status da célula na tabela hash
+enum{Vazio, Ocupado, Removido};
+
+// Estrutura da célula da tabela hash
+typedef struct {
+    int chave;
+    int status;
+} Hash;
 
 // Função de hash usando o método da divisão
 int chaveDivisao(int chave){
@@ -8,11 +18,26 @@ int chaveDivisao(int chave){
 }
 
 // Inserção na tabela hash
-void insere(int tabela[], int chave){
+void insere(Hash tabela[], int chave){
+    if (contador == TAM){
+        printf("\nErro: tabela cheia!!");
+        return;
+    }
+    
     int indice = chaveDivisao(chave);
-
-    printf("Inserindo chave %d na posição %d\n", chave, indice);
-    tabela[indice] = chave;
+    
+    for (int i = 0; i < TAM; i++){
+        int modIndice = (indice + i) % TAM;
+        if (tabela[modIndice].status != Ocupado){
+            // Inserindo a chave e atualizando o status
+            tabela[modIndice].chave = chave;
+            tabela[modIndice].status = Ocupado;
+            printf("\nInserindo chave %d na posição %d\n", chave, modIndice);
+            contador++;
+            return;
+        } 
+    }
+    
 }
 
 // Busca na tabela hash
@@ -28,18 +53,16 @@ void busca(int tabela[], int chave){
 }
 
 int main(){
-    int tabela[TAM];
+    Hash tabela[TAM];
     // Inicializa a tabela com -1 (indicando vazio)
     for(int i = 0; i < TAM; i++){
-        tabela[i] = -1; 
+        tabela[i].status = Vazio; 
     }
 
     // Testando inserção e busca utilizando a função da divisão
     insere(tabela, 15);
-    insere(tabela, 27);
-
-    busca(tabela, 15);
-    busca(tabela, 30);
+    insere(tabela, 25);
+    insere(tabela, 5);
 
     return 0;
 }
