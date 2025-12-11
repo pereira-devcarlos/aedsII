@@ -8,12 +8,13 @@ void merge(int v[], int inicio, int meio, int fim) {
     int quantDir = fim - meio;
 
     // Armazena os elementos em 2 vetores
-    int Esq[quantEsq], Dir[quantDir];
-    for (int i = inicio, j=0; i <= meio; i++,j++){
-        Esq[j] = v[i];
+    int *Esq = (int*) malloc(quantEsq * sizeof(int));
+    int *Dir = (int*) malloc(quantDir * sizeof(int));
+    for (int i = 0; i < quantEsq; i++){
+        Esq[i] = v[inicio + i];
     }
-    for (int i = meio+1, j=0; i <= fim; i++,j++){
-        Dir[j] = v[i];
+    for (int j =0; j < quantDir; j++){
+        Dir[j] = v[meio + 1 + j];
     }
     
     // Incializando variaveis para percorrer os vetores
@@ -24,24 +25,20 @@ void merge(int v[], int inicio, int meio, int fim) {
     // Loop comparando os valores
     while (i < quantEsq && j < quantDir){
         if (Esq[i] <= Dir[j]){
-            v[k] = Esq[i];
-            i++,k++;
+            v[k++] = Esq[i++];
         } else {
-            v[k] = Dir[j];
-            j++,k++;
+            v[k++] = Dir[j++];
         }
     }
 
     // Loop se caso sobrar valores a Esquerda
     while (i < quantEsq){
-        v[k] = Esq[i];
-        i++,k++;
+        v[k++] = Esq[i++];
     }
 
     // Loop se caso sobrar valores a Direita
-    while (i < quantDir){
-        v[k] = Dir[j];
-        j++,k++;
+    while (j < quantDir){
+        v[k++] = Dir[j++];
     }
 }
 
