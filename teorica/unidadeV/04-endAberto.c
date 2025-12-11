@@ -32,7 +32,7 @@ void insere(Hash tabela[], int chave){
             // Inserindo a chave e atualizando o status
             tabela[modIndice].chave = chave;
             tabela[modIndice].status = Ocupado;
-            printf("\nInserindo chave %d na posição %d\n", chave, modIndice);
+            printf("Inserindo chave %d na posição %d\n", chave, modIndice);
             contador++;
             return;
         } 
@@ -41,15 +41,21 @@ void insere(Hash tabela[], int chave){
 }
 
 // Busca na tabela hash
-void busca(int tabela[], int chave){
+void busca(Hash tabela[], int chave){
     int indice = chaveDivisao(chave);
-
     printf("\nBuscando chave %d na posição %d\n", chave, indice);
-    if(tabela[indice] == chave){
-        printf("Chave %d encontrada na posição %d\n", chave, indice);
-    } else {
-        printf("Chave %d não encontrada\n", chave);
+    
+    if (tabela[indice].status != Vazio){
+        for (int i = 0; i < TAM; i++){
+            int modIndice = (indice + i) % TAM;
+            if(tabela[modIndice].chave == chave){
+                printf("Chave %d encontrada na posição %d\n", chave, modIndice);
+                return;
+            }
+        }
     }
+    printf("Chave %d não encontrada\n", chave); 
+    
 }
 
 int main(){
@@ -63,6 +69,9 @@ int main(){
     insere(tabela, 15);
     insere(tabela, 25);
     insere(tabela, 5);
+
+    busca(tabela, 3);
+    busca(tabela, 5);
 
     return 0;
 }
