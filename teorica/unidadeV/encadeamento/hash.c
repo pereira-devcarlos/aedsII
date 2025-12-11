@@ -47,8 +47,33 @@ Node *search(Node *table[], int key){
     return NULL;
 }
 
+Node *removeKey(Node *table[], int key){
+    int index = keyHash(key);
+
+    // Nós auxiliares para percorrer a lista
+    Node *aux = table[index];
+    Node *prev = NULL;
+
+    while (aux != NULL){
+        if (aux->key == key){
+            // Caso especial: remoção do primeiro nó da lista
+            if (prev == NULL){
+                table[index] = aux->next;
+            } else {
+                // Remoção de um nó que não é o primeiro
+                prev->next = aux->next;
+            }
+            return aux;
+        }
+        // "Avança na lista"
+        prev = aux;
+        aux = aux->next;
+    }
+    return NULL;
+}
+
 int main(){
     Node* hashTable[TABLE_SIZE] = {NULL};
-    
+
     return 0;
 }
