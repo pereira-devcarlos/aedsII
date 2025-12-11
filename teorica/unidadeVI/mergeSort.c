@@ -7,7 +7,7 @@ void merge(int v[], int inicio, int meio, int fim) {
     int quantEsq = meio - inicio + 1;
     int quantDir = fim - meio;
 
-    // Armazena os elementos em 2 vetores
+    // Aloca e armazena os elementos em 2 vetores
     int *Esq = (int*) malloc(quantEsq * sizeof(int));
     int *Dir = (int*) malloc(quantDir * sizeof(int));
     for (int i = 0; i < quantEsq; i++){
