@@ -43,19 +43,37 @@ void insere(Hash tabela[], int chave){
 // Busca na tabela hash
 void busca(Hash tabela[], int chave){
     int indice = chaveDivisao(chave);
-    printf("\nBuscando chave %d na posição %d\n", chave, indice);
     
     if (tabela[indice].status != Vazio){
-        for (int i = 0; i < TAM; i++){
+        for (int i = 0; i <= contador; i++){
             int modIndice = (indice + i) % TAM;
-            if(tabela[modIndice].chave == chave){
-                printf("Chave %d encontrada na posição %d\n", chave, modIndice);
+            printf("\nBuscando chave %d na posição %d: ", chave, modIndice);
+            if(tabela[modIndice].status == Ocupado &&
+                tabela[modIndice].chave == chave){
+                printf("foi encontrada!\n", chave, modIndice);
+                return;
+            } else {
+                printf("nao foi encontrada", chave); 
+            }
+        }
+    }
+    printf("\nChave %d inexistente", chave);
+}
+
+void remover(Hash tabela[], int chave){
+    int indice = chaveDivisao(chave);
+    if (tabela[indice].status != Vazio) {
+        int modIndice = (indice + 1) % TAM;
+        for (int i = 0; i <= contador; i++){
+            if (tabela[modIndice].status == Ocupado && tabela[modIndice].chave == chave){
+                tabela[modIndice].status = Removido;
+                contador--;
+                printf("\nChave %d na posicao %d foi removida", chave, modIndice);
                 return;
             }
         }
     }
-    printf("Chave %d não encontrada\n", chave); 
-    
+    printf("\nErro: chave %d inexistente", chave);
 }
 
 int main(){
@@ -70,8 +88,11 @@ int main(){
     insere(tabela, 25);
     insere(tabela, 5);
 
-    busca(tabela, 3);
+    busca(tabela, 25);
     busca(tabela, 5);
+
+    remover(tabela, 25);
+    busca(tabela, 25);
 
     return 0;
 }
