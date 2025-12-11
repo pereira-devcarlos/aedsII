@@ -1,21 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define TAM 5
 int contador = 0;
 
+void swap(int *v1, int *v2){
+    int aux = *v1;
+    *v1 = *v2;
+    *v2 = aux;
+}
+
 void bubbleSort(int v[]){
     int aux;
-    int trocou = 1; // Flag para verificar se houve troca na passagem
+    bool trocou = true; // Flag para verificar se houve troca na passagem
     for (int i = TAM-1; i > 0 && trocou; i--){
-        trocou = 0;
+        trocou = false;
         for (int j = 0; j < i; j++){
             if (v[j] > v[j+1]){
-                aux = v[j];
-                v[j] = v[j+1];
-                v[j+1] = aux;
+                swap(&v[j], &v[j+1]);
 
-                trocou = 1;
+                trocou = true;
             }
         }
         // Contabiliza uma passagem completa pelo vetor
@@ -25,7 +30,7 @@ void bubbleSort(int v[]){
 }
 
 int main(){
-    int v[TAM] = {1, 2, 3, 8, 4};
+    int v[TAM] = {11, 2, 3, 8, 4};
     printf("Vetor antes da ordenacao:\n");
     for (int i = 0; i < TAM; i++){
         printf("%d ", v[i]);
