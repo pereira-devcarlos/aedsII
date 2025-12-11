@@ -83,6 +83,13 @@ int main(){
     // Testando buscas
     Node* foundNode = search(hashTable, 15);
     if (foundNode != NULL){
+        printf("\nChave %d encontrada na tabela.\n", foundNode->key);
+    } else {
+        printf("Chave nao encontrada na tabela.\n");
+    }
+
+    foundNode = search(hashTable, 20);
+    if (foundNode != NULL){
         printf("Chave %d encontrada na tabela.\n", foundNode->key);
     } else {
         printf("Chave nao encontrada na tabela.\n");
@@ -91,17 +98,18 @@ int main(){
     // Testando remoção
     Node* removedNode = removeKey(hashTable, 20);
     if (removedNode != NULL){
-        printf("Chave %d removida da tabela.\n", removedNode->key);
+        printf("\nChave %d removida da tabela.\n", removedNode->key);
         free(removedNode);
     } else {
         printf("Chave para remoção nao encontrada na tabela.\n");
     }
 
-    foundNode = search(hashTable, 20);
+    int searchKey = 20;
+    foundNode = search(hashTable, searchKey);
     if (foundNode != NULL){
         printf("Chave %d encontrada na tabela.\n", foundNode->key);
     } else {
-        printf("Chave nao encontrada na tabela.\n");
+        printf("Chave %d nao encontrada na tabela.\n", searchKey);
     }
 
     return 0;
