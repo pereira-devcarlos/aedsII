@@ -78,20 +78,13 @@ int heap_remove(struct Heap* heap) {
     return -1;
 }
 
-void heap_imprime(struct Heap* heap) {
-    printf("Heap: ");
-    for (int i = 0; i < heap->pos; i++) {
-        printf("%d ", heap->prioridade[i]);
+void heap_sort(struct Heap* heap, int v[]){
+    for (int i = 0; i < TAM; i++){
+        heap_insere(heap, v[i]);
     }
-    printf("\n");
-}
-
-int ehVazia(struct Heap* heap) {
-    return heap->pos == 0;
-}
-
-int ehCheia(struct Heap* heap) {
-    return heap->pos == heap->max;
+    for (int j = TAM-1; j >= 0; j--){
+        v[j] = heap_remove(heap);
+    }
 }
 
 int main() { 
@@ -103,12 +96,7 @@ int main() {
         printf("%d ", v[i]);
     }
 
-    for (int i = 0; i < TAM; i++){
-        heap_insere(heap, v[i]);
-    }
-    for (int j = TAM-1; j >= 0; j--){
-        v[j] = heap_remove(heap);
-    }
+    heap_sort(heap, v);
     
     printf("\nVetor apos a ordenacao:\n");
     for (int i = 0; i < TAM; i++){
