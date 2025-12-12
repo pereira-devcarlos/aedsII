@@ -6,10 +6,10 @@ int particao(int v[], int in, int fim){
     // Pivo sempre será no fim da repartição
     int pivo = v[fim];
     int aux;    // Var auxiliar para fazer os swap's
-    int i = -1; // Indice onde será colocados: valores < pivo
+    int i = in - 1; // Indice onde será colocados: valores < pivo
 
     // Loop separar os valores < pivo
-    for (int j = 0; j < fim; j++){
+    for (int j = in; j < fim; j++){
         if (v[j] < pivo){
             i++;
             aux = v[i];
