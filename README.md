@@ -5,7 +5,7 @@
 > **Semestre:** 2025/2 (Teoria) e 2025/2 (Prática)  
 > **Professores:** Flávio Barbieri Gonzaga (Teoria) | Iago Augusto de Carvalho (Prática)
 
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![Status](https://img.shields.io/badge/status-concluído-yellow)
 ![Linguagem](https://img.shields.io/badge/Linguagem-C/C++-blue)
 ![Disciplina](https://img.shields.io/badge/Disciplina-AEDs%20II%20-orange)
 ![Ano/Semestre](https://img.shields.io/badge/2025-2%C2%BA%20semestre-brightgreen)
